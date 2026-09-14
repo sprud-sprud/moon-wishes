@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>달빛 아래 강강술래 🌕</title>
   
+  <!-- 카카오톡 / SNS 링크 공유 시 나타나는 미리보기 설정 (Open Graph) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="달빛 아래 강강술래 🌕" />
+  <meta property="og:description" content="손을 잡고 함께 원을 만들어 달빛 아래 덕담을 나눠요!" />
+  <meta property="og:image" content="https://api.dicebear.com/7.x/big-smile/svg?seed=moon_preview&backgroundColor=fde047" />
+
   <!-- Firebase SDK (Compat Version) CDN -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
@@ -53,7 +59,7 @@
       position: absolute; width: 100%; height: 100%; border-radius: 50%; z-index: 10;
     }
 
-    /* 👧🏻 강강술래 귀여운 아바타 아이템 */
+    /* 🐰🐻 깜찍 동글 캐릭터 아바타 */
     .avatar-item {
       position: absolute; top: 50%; left: 50%;
       width: 48px; height: 48px;
@@ -70,10 +76,10 @@
       filter: drop-shadow(0 0 12px #FDE047);
     }
 
-    /* 귀여운 일러스트 이미지 스타일 */
+    /* 둥글둥글 캐릭터 파스텔 이미지 스타일 */
     .avatar-img {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 2px solid #FDE047; background: #1F2937;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2px solid #FDE047; background: #FFF;
       object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       pointer-events: none;
     }
@@ -128,7 +134,7 @@
       background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: #F9FAFB;
       border: 1px solid rgba(255, 255, 255, 0.15); padding: 24px; border-radius: 24px; max-width: 320px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
-    .modal-avatar-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #FDE047; margin-bottom: 10px; }
+    .modal-avatar-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #FDE047; margin-bottom: 10px; background: #FFF; }
     .zodiac-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: #FFF; margin-bottom: 8px; }
     
     .modal-action-btns { display: flex; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -239,11 +245,14 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // 🎨 랜선 아바타 이미지 생성기 (DiceBear API)
+    // 🎨 파스텔 톤의 둥글둥글하고 깜찍한 스마일/동물 캐릭터 생성 함수
     function getRandomAvatarUrl(seedName) {
       const randomSeed = seedName ? encodeURIComponent(seedName + "_" + Math.random()) : Math.random().toString(36).substring(7);
-      // adventurer 스타일: 아기자기한 캐릭터 일러스트
-      return `https://api.dicebear.com/7.x/adventurer/svg?seed=${randomSeed}&backgroundColor=fef08a,fde047,eab308,b45309`;
+      const bgColors = ['fef08a', 'fbcfe8', 'bfdbfe', 'bbf7d0', 'fed7aa', 'e9d5ff'];
+      const randomBg = bgColors[Math.floor(Math.random() * bgColors.length)];
+      
+      // big-smile 스타일: 볼살이 통통하고 미소 짓는 귀여운 캐릭터
+      return `https://api.dicebear.com/7.x/big-smile/svg?seed=${randomSeed}&backgroundColor=${randomBg}`;
     }
 
     const zodiacList = [
@@ -314,7 +323,7 @@
 
     function updatePageHeader() {
       document.getElementById('pageTitle').innerText = `${ownerName}님의 강강술래 🌕`;
-      document.getElementById('pageSubtitle').innerText = `${ownerName}님과 손을 잡고 덕담을 올해보세요!`;
+      document.getElementById('pageSubtitle').innerText = `${ownerName}님과 손을 잡고 덕담을 올려보세요!`;
       
       const badge = document.getElementById('ownerZodiacBadge');
       document.getElementById('ownerZodiacIcon').innerText = ownerZodiac.symbol;
