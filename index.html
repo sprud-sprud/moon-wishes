@@ -356,6 +356,21 @@
       badge.style.display = 'flex';
     }
 
+    // 기본창 및 신규 생성 모달 비밀코드 통합 검증 함수
+    function checkSecretCodeAndProceed(successCallback) {
+      const requestCode = prompt("개발자에게 강강술래 코드를 요청하세요");
+      
+      if (requestCode === null) return; // 취소 누른 경우
+
+      // 띄어쓰기(공백) 지우고 검증 (한가위2026, 한가위 2026 모두 가능)
+      if (requestCode.replace(/\s+/g, '') === "한가위2026") {
+        successCallback();
+      } else {
+        alert("코드가 올바르지 않습니다. 개발자에게 문의하세요.");
+      }
+    }
+
+    // 시작하기 버튼 클릭 시 검증 로직 추가
     document.getElementById('saveOwnerBtn').addEventListener('click', () => {
       const nameVal = document.getElementById('ownerNameInput').value.trim();
       const birthVal = document.getElementById('ownerBirthInput').value;
@@ -365,17 +380,20 @@
         return;
       }
 
-      ownerName = nameVal;
-      ownerBirth = birthVal;
-      ownerZodiac = getZodiacByDate(ownerBirth);
+      // 비밀코드 검증 통과 시 생성 진행
+      checkSecretCodeAndProceed(() => {
+        ownerName = nameVal;
+        ownerBirth = birthVal;
+        ownerZodiac = getZodiacByDate(ownerBirth);
 
-      ownerModal.classList.remove('active');
-      updatePageHeader();
+        ownerModal.classList.remove('active');
+        updatePageHeader();
 
-      const newUrl = `${window.location.origin}${window.location.pathname}?moon=${encodeURIComponent(ownerName)}&birth=${ownerBirth}`;
-      window.history.replaceState(null, '', newUrl);
-      listenForDuckdams();
-      alert(`[${ownerName}]님의 강강술래 원이 개설되었습니다!\n링크를 복사해 친구들에게 공유하세요.`);
+        const newUrl = `${window.location.origin}${window.location.pathname}?moon=${encodeURIComponent(ownerName)}&birth=${ownerBirth}`;
+        window.history.replaceState(null, '', newUrl);
+        listenForDuckdams();
+        alert(`[${ownerName}]님의 강강술래 원이 개설되었습니다!\n링크를 복사해 친구들에게 공유하세요.`);
+      });
     });
 
     let friendZodiac = null;
@@ -524,19 +542,11 @@
       });
     });
 
-    // 강강술래 만들기 코드 검증 로직 추가
+    // 하단 '나도 내 강강술래 만들기' 버튼
     document.getElementById('createNewBtn').addEventListener('click', () => {
-      const requestCode = prompt("개발자에게 강강술래 코드를 요청하세요");
-      
-      if (requestCode === null) return;
-
-      if (requestCode.trim() === "한가위2026") {
-        document.getElementById('ownerNameInput').value = '';
-        document.getElementById('ownerBirthInput').value = '';
-        ownerModal.classList.add('active');
-      } else {
-        alert("코드가 올바르지 않습니다. 개발자에게 문의하세요.");
-      }
+      document.getElementById('ownerNameInput').value = '';
+      document.getElementById('ownerBirthInput').value = '';
+      ownerModal.classList.add('active');
     });
 
     document.getElementById('closeModal').addEventListener('click', () => {
