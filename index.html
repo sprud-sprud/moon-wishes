@@ -1,3351 +1,557 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-<title>진도수첩</title>
-<meta name="theme-color" content="#B84F39">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="진도수첩">
-<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFPklEQVR4nO3cS27cRhSG0XKQfSlDeRfKyuxd2EN7ZcpAaUCgpW4+6nGr7jmTDIIAVPP/WGLbSCkAAAAAAAAAAAAAAFP6MvoCanp+eXodfQ1Z/Pz+e4ntTPtDGHs8M0Yx1QUb/TxmiWGKizT8eUUPIfTFGf46ooYQ8qIMf13RQgh1MYafR5QQ/hp9ATfGn0uU+z28wigfBOOMPA2GngDGTyljdzAsAOPnvVF7GBKA8fOREbvoHoDxc0/vfXQNwPjZo+dOugVg/BzRay9dAjB+zuixm+YBGD9XtN5P0wCMnxpa7ijMX4WAEZoF4OlPTa321CQA46eFFrvyKxCpVQ/A05+Wau/LCUBqVQPw9KeHmjtzApBatQA8/emp1t6cAKRWJQBPf0aosTsnAKkJgNQuB+DXH0a6uj8nAKkJgNQEQGoCILVLAXgBJoIrO3QCkJoASE0ApCYAUhMAqQmA1ATAYT++/Rp9CdUIgENu418lAgGw23b0K0SwZAAr3JhoPvtMZ/+slwtgtSM6gkef5cyf9TIB/Pj2a+obMbtZP/slAlj1eI5g72f49d9/Wl5GM3+PvoArDLyt1cdfyuQnwJ4PXiTnZBh/KZMHsJcIjsky/lIWCGCFmxBJtofF9AHsle3GnnHkM1rlwbNEAKvcjJEyjr+URQIoxQtxLyuNv5SFAthLBH/K9NK7tVQAK96g1jKPv5TFAtjLKfAm+/hLWTCAlW9WTcb/ZrkASvFC/Ejmn31ryQD2yjiErF93fmbZADLcvKOM/0/LBrBXxlPgkSzjL2XxADLdyEe89H5s6QBK8UJcivHfs3wAe60agfHflyKArDfX+B9LEcBeK50CK/0sLaUJINNTzted+6UJoJQcL8TGf0yqAPaaPYI9jP9NugBWvvFeeo9LF8Bes50Cxn9OygBWG4Hxn5cygFLWeSE2/mvSBrCCGQKNLnUAM58Cvu6sI3UAe0WLwPjrSR/AygNZ+WerJX0Apcz1q5CX3roEMBHjr08A/4t+Chh/GwI4aEQExt+OAN6JOKAo7x6rEsAJvUbp6872BLARZUjG34cAPhD9hfg9479GABe0isBLbz8C+MSocRl/XwK4qOYpYPz9CeCOnkMz/jEE8ECPF+IoL9QZCaCSsyP2dedYAtih1fCMfzwBVNTqVxnjb0cAO9UeoZfeGARwQK0XYuOPQwAN3Bu48ccigIOuDNP44xFAI9ux+64/JgGccPQJ7evOuL5c+Y+fX55ea13IjGo/1Y3/vJ/ff5/ashMgCOMfQwAX1Bqt8Y8jgMGMfywBXHRlwMY/ngAqODNk449BAKQmgEqOPNE9/eMQQCOfjdz4YxFARbdxb/+5/ffEIYDKPhu98cckgA6MPy4BkJoASE0ApCYAUhMAqQmA1ARAagIgNQGQmgBITQCkJgBSuxTA2f8XC9R0ZYdOAFITAKkJgNQEQGqXA/AizEhX9+cEIDUBkFqVAPwaxAg1ducEILVqATgF6KnW3pwApFY1AKcAPdTcmROA1KoH4BSgpdr7cgKQWpMAnAK00GJXzU4AEVBTqz35FYjUmgbgFKCGljtqfgKIgCta76fLr0Ai4Iweu+n2DiACjui1l64vwSJgj5476f4tkAi4p/c+hnwNKgI+MmIXw/4cQAS8N2oPQ/8gTASUMnYHYQb4/PL0Ovoa6CvCAzDMX4WI8GHQT5T7HeIitpwG64oy/JtQF7MlhHVEG/5NyIvaEsK8og7/JvTFbQlhHtGHfzPFRX5EDPHMMvr3prvge0TRz4xjBwAAAAAAAAAAAGA1/wEFMvgy8ft7YQAAAABJRU5ErkJggg==">
-<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFPklEQVR4nO3cS27cRhSG0XKQfSlDeRfKyuxd2EN7ZcpAaUCgpW4+6nGr7jmTDIIAVPP/WGLbSCkAAAAAAAAAAAAAAFP6MvoCanp+eXodfQ1Z/Pz+e4ntTPtDGHs8M0Yx1QUb/TxmiWGKizT8eUUPIfTFGf46ooYQ8qIMf13RQgh1MYafR5QQ/hp9ATfGn0uU+z28wigfBOOMPA2GngDGTyljdzAsAOPnvVF7GBKA8fOREbvoHoDxc0/vfXQNwPjZo+dOugVg/BzRay9dAjB+zuixm+YBGD9XtN5P0wCMnxpa7ijMX4WAEZoF4OlPTa321CQA46eFFrvyKxCpVQ/A05+Wau/LCUBqVQPw9KeHmjtzApBatQA8/emp1t6cAKRWJQBPf0aosTsnAKkJgNQuB+DXH0a6uj8nAKkJgNQEQGoCILVLAXgBJoIrO3QCkJoASE0ApCYAUhMAqQmA1ATAYT++/Rp9CdUIgENu418lAgGw23b0K0SwZAAr3JhoPvtMZ/+slwtgtSM6gkef5cyf9TIB/Pj2a+obMbtZP/slAlj1eI5g72f49d9/Wl5GM3+PvoArDLyt1cdfyuQnwJ4PXiTnZBh/KZMHsJcIjsky/lIWCGCFmxBJtofF9AHsle3GnnHkM1rlwbNEAKvcjJEyjr+URQIoxQtxLyuNv5SFAthLBH/K9NK7tVQAK96g1jKPv5TFAtjLKfAm+/hLWTCAlW9WTcb/ZrkASvFC/Ejmn31ryQD2yjiErF93fmbZADLcvKOM/0/LBrBXxlPgkSzjL2XxADLdyEe89H5s6QBK8UJcivHfs3wAe60agfHflyKArDfX+B9LEcBeK50CK/0sLaUJINNTzted+6UJoJQcL8TGf0yqAPaaPYI9jP9NugBWvvFeeo9LF8Bes50Cxn9OygBWG4Hxn5cygFLWeSE2/mvSBrCCGQKNLnUAM58Cvu6sI3UAe0WLwPjrSR/AygNZ+WerJX0Apcz1q5CX3roEMBHjr08A/4t+Chh/GwI4aEQExt+OAN6JOKAo7x6rEsAJvUbp6872BLARZUjG34cAPhD9hfg9479GABe0isBLbz8C+MSocRl/XwK4qOYpYPz9CeCOnkMz/jEE8ECPF+IoL9QZCaCSsyP2dedYAtih1fCMfzwBVNTqVxnjb0cAO9UeoZfeGARwQK0XYuOPQwAN3Bu48ccigIOuDNP44xFAI9ux+64/JgGccPQJ7evOuL5c+Y+fX55ea13IjGo/1Y3/vJ/ff5/ashMgCOMfQwAX1Bqt8Y8jgMGMfywBXHRlwMY/ngAqODNk449BAKQmgEqOPNE9/eMQQCOfjdz4YxFARbdxb/+5/ffEIYDKPhu98cckgA6MPy4BkJoASE0ApCYAUhMAqQmA1ARAagIgNQGQmgBITQCkJgBSuxTA2f8XC9R0ZYdOAFITAKkJgNQEQGqXA/AizEhX9+cEIDUBkFqVAPwaxAg1ducEILVqATgF6KnW3pwApFY1AKcAPdTcmROA1KoH4BSgpdr7cgKQWpMAnAK00GJXzU4AEVBTqz35FYjUmgbgFKCGljtqfgKIgCta76fLr0Ai4Iweu+n2DiACjui1l64vwSJgj5476f4tkAi4p/c+hnwNKgI+MmIXw/4cQAS8N2oPQ/8gTASUMnYHYQb4/PL0Ovoa6CvCAzDMX4WI8GHQT5T7HeIitpwG64oy/JtQF7MlhHVEG/5NyIvaEsK8og7/JvTFbQlhHtGHfzPFRX5EDPHMMvr3prvge0TRz4xjBwAAAAAAAAAAAGA1/wEFMvgy8ft7YQAAAABJRU5ErkJggg==">
-<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjogIuynhOuPhOyImOyyqSIsICJzaG9ydF9uYW1lIjogIuynhOuPhOyImOyyqSIsICJzdGFydF91cmwiOiAiLiIsICJzY29wZSI6ICIuIiwgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGOUY4RjYiLCAidGhlbWVfY29sb3IiOiAiI0I4NEYzOSIsICJpY29ucyI6IFt7InNyYyI6ICJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQU1BQUFBREFDQVlBQUFCUzNHd0hBQUFGUGtsRVFWUjRuTzNjUzI3Y1JoU0cwWEtRZlNsRGVSZkt5dXhkMkVON1pjcEFhVUNncFc0KzZuR3I3am1URElJQVZQUC9XR0xiU0NrQUFBQUFBQUFBQUFBQUFGUDZNdm9DYW5wK2VYb2RmUTFaL1B6K2U0bnRUUHRER0hzOE0wWXgxUVViL1R4bWlXR0tpelQ4ZVVVUElmVEZHZjQ2b29ZUThxSU1mMTNSUWdoMU1ZYWZSNVFRL2hwOUFUZkduMHVVK3oyOHdpZ2ZCT09NUEEyR25nREdUeWxqZHpBc0FPUG52VkY3R0JLQThmT1JFYnZvSG9EeGMwL3ZmWFFOd1BqWm8rZE91Z1ZnL0J6UmF5OWRBakIrenVpeG0rWUJHRDlYdE41UDB3Q01ueHBhN2lqTVg0V0FFWm9GNE9sUFRhMzIxQ1FBNDZlRkZydnlLeENwVlEvQTA1K1dhdS9MQ1VCcVZRUHc5S2VIbWp0ekFwQmF0UUE4L2VtcDF0NmNBS1JXSlFCUGYwYW9zVHNuQUtrSmdOUXVCK0RYSDBhNnVqOG5BS2tKZ05RRVFHb0NJTFZMQVhnQkpvSXJPM1FDa0pvQVNFMEFwQ1lBVWhNQXFRbUExQVRBWVQrKy9ScDlDZFVJZ0VOdTQxOGxBZ0d3MjNiMEswU3daQUFyM0pob1B2dE1aLytzbHd0Z3RTTTZna2VmNWN5ZjlUSUIvUGoyYStvYk1idFpQL3NsQWxqMWVJNWc3MmY0OWQ5L1dsNUdNMytQdm9BckRMeXQxY2RmeXVRbndKNFBYaVRuWkJoL0taTUhzSmNJanNreS9sSVdDR0NGbXhCSnRvZkY5QUhzbGUzR25uSGtNMXJsd2JORUFLdmNqSkV5anIrVVJRSW94UXR4THl1TnY1U0ZBdGhMQkgvSzlOSzd0VlFBSzk2ZzFqS1B2NVRGQXRqTEtmQW0rL2hMV1RDQWxXOVdUY2IvWnJrQVN2RkMvRWptbjMxcnlRRDJ5amlFckY5M2ZtYlpBRExjdktPTS8wL0xCckJYeGxQZ2tTempMMlh4QURMZHlFZTg5SDVzNlFCSzhVSmNpdkhmczN3QWU2MGFnZkhmbHlLQXJEZlgrQjlMRWNCZUs1MENLLzBzTGFVSklOTlR6dGVkKzZVSm9KUWNMOFRHZjB5cUFQYWFQWUk5alA5TnVnQld2dkZlZW85TEY4QmVzNTBDeG45T3lnQldHNEh4bjVjeWdGTFdlU0UyL212U0JyQ0NHUUtOTG5VQU01OEN2dTZzSTNVQWUwV0x3UGpyU1IvQXlnTlorV2VySlgwQXBjejFxNUNYM3JvRU1CSGpyMDhBLzR0K0NoaC9Hd0k0YUVRRXh0K09BTjZKT0tBbzd4NnJFc0FKdlVicDY4NzJCTEFSWlVqRzM0Y0FQaEQ5aGZnOTQ3OUdBQmUwaXNCTGJ6OEMrTVNvY1JsL1h3SzRxT1lwWVB6OUNlQ09ua016L2pFRThFQ1BGK0lvTDlRWkNhQ1NzeVAyZGVkWUF0aWgxZkNNZnp3QlZOVHFWeG5qYjBjQU85VWVvWmZlR0FSd1FLMFhZdU9QUXdBTjNCdTQ4Y2NpZ0lPdUROUDQ0eEZBSTl1eCs2NC9KZ0djY1BRSjdldk91TDVjK1krZlg1NWVhMTNJakdvLzFZMy92Si9mZjUvYXNoTWdDT01mUXdBWDFCcXQ4WThqZ01HTWZ5d0JYSFJsd01ZL25nQXFPRE5rNDQ5QkFLUW1nRXFPUE5FOS9lTVFRQ09mamR6NFl4RkFSYmR4Yi8rNS9mZkVJWURLUGh1OThjY2tnQTZNUHk0QmtKb0FTRTBBcENZQVVoTUFxUW1BMUFSQWFnSWdOUUdRbWdCSVRRQ2tKZ0JTdXhUQTJmOFhDOVIwWllkT0FGSVRBS2tKZ05RRVFHcVhBL0FpekVoWDkrY0VJRFVCa0ZxVkFQd2F4QWcxZHVjRUlMVnFBVGdGNktuVzNwd0FwRlkxQUtjQVBkVGNtUk9BMUtvSDRCU2dwZHI3Y2dLUVdwTUFuQUswMEdKWHpVNEFFVkJUcXozNUZZalVtZ2JnRktDR2xqdHFmZ0tJZ0N0YTc2ZkxyMEFpNEl3ZXUrbjJEaUFDanVpMWw2NHZ3U0pnajU0NzZmNHRrQWk0cC9jK2hud05LZ0krTW1JWHcvNGNRQVM4TjJvUFEvOGdUQVNVTW5ZSFlRYjQvUEwwT3ZvYTZDdkNBekRNWDRXSThHSFFUNVQ3SGVJaXRwd0c2NG95L0p0UUY3TWxoSFZFRy81TnlJdmFFc0s4b2c3L0p2VEZiUWxoSHRHSGZ6UEZSWDVFRFBITU12cjNwcnZnZTBUUno0eGpCd0FBQUFBQUFBQUFBR0ExL3dFRk12Z3k4ZnQ3WVFBQUFBQkpSVTVFcmtKZ2dnPT0iLCAic2l6ZXMiOiAiMTkyeDE5MiIsICJ0eXBlIjogImltYWdlL3BuZyJ9LCB7InNyYyI6ICJkYXRhOmltYWdlL3BuZztiYXNlNjQsaVZCT1J3MEtHZ29BQUFBTlNVaEVVZ0FBQWdBQUFBSUFDQVlBQUFEMGVOVDZBQUFQdzBsRVFWUjRuTzNjU1hJbFJScUYwYUNzOWdWRDJBV3NESFlCUTFnWkRKUktkYStKMXYxdnpobVhXU2tWSWIrZkl2UllGZ0FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQXkrV0gyRjBCT1AvLzY0Nyt6dndiZ3pWOS8vT004WnhNM0REY1plS2hGSVBDWkd3SmpEMDJKZ3Q1Yy9JWU1QbkNMSU9qRnhXN0E0QU43Q0lMYVhOeWlqRDV3SmpGUWp3dGFpTkVIUmhBRE5iaUl5Umw5WUNZeGtKY0xsNVRoQnlJUkF2bTRZSWtZZlNBRE1aQ0RpNVNBNFFjeUVnS3h1VGlCR1g2Z0FpRVFrNHNTa09FSEtoSUNzYmdZZ1JoK29BTWhFSU9MRUlEaEJ6b1NBblA5Yi9ZWDBKM3hCN3B5L3MybHZpWng0d084OFRSZ1BOL3d3UXcvd0gxQ1lCeXZBQVl5L2dDUE9TZkhVVm9EdUtFQnR2TTA0RnFlQUZ6TStBUHM0L3k4bGdDNGtKc1g0QmpuNkhVOFhybUFHeGJnZkY0Sm5Nc1RnSk1aZjRCck9GL1BKUUJPNU9ZRXVKWno5andlcDV6QURRa3dubGNDeDNnQ2NKRHhCNWpEK1h1TUFEakF6UWN3bDNONFB3R3drNXNPSUFibjhUNENZQWMzRzBBc3p1WHRCTUJHYmpLQW1KelAyd2lBRGR4Y0FMRTVwOWNUQUN1NXFRQnljRjZ2SXdCV2NETUI1T0xjZms0QVBPRW1Bc2pKK2YyWUFIakF6UU9RbTNQOFBnRndoNXNHb0FibitXMEM0QVkzQzBBdHp2V3ZCTUFuYmhLQW1wenZId21BZDl3Y0FMVTU1OThJZ0cvY0ZBQTlPTzlmQ0lERnpRRFFqWE5mQUFCQVMrMERRQVVDOU5UOS9HOGRBTjB2UGtCM25YZWdiUUIwdnVnQXZPbTZCMjBEQUFBNmF4a0FYV3NQZ05zNjdrSzdBT2g0a1FGNHJ0cyt0QXFBYmhjWGdHMDY3VVNyQUFBQVhyUUpnRTVWQjhCK1hmYWlSUUIwdVpnQW5LUERiclFJQUFEZ28vSUIwS0hpQURoZjlmMG9Id0FBd0ZlbEE2QjZ2UUZ3cmNvN1VqWUFLbDgwQU1hcHVpZGxBd0FBdUs5a0FGU3ROUURtcUxnckpRTUFBSGlzWEFCVXJEUUE1cXUyTCtVQ0FBQjRybFFBVktzekFHS3B0RE9sQWdBQVdLZE1BRlNxTWdEaXFySTNaUUlBQUZpdlJBQlVxVEVBY3Fpd095VUNBQURZUmdBQVFFUHBBNkRDWXhnQThzbStQK2tEQUFEWUxuVUFaSzh2QUhMTHZFT3BBd0FBMkVjQUFFQkRhUU1nODJNWEFPckl1a2RwQXdBQTJFOEFBRUJES1FNZzYrTVdBR3JLdUVzcEF3QUFPRVlBQUVCRDZRSWc0Mk1XQU9yTHRrL3BBZ0FBT0U0QUFFQkRBZ0FBR2tvVkFObmVyd0RRUzZhZFNoVUFBTUE1QkFBQU5DUUFBS0NoTkFHUTZiMEtBSDFsMmFzMEFRQUFuRWNBQUVCREFnQUFHaElBQU5CUWlnREk4Z2NWQUxBc09YWXJSUUFBQU9jU0FBRFFrQUFBZ0lZRUFBQTBKQUFBb0NFQkFBQU5DUUFBYUNoOEFHVDRMQ1VBZkJaOXY4SUhBQUJ3UGdFQUFBMEpBQUJvU0FBQVFFTUNBQUFhRWdBQTBKQUFBSUNHQkFBQU5DUUFBS0FoQVFBQURRa0FnTUwrL1AzdjJWOENRUWtBZ0tKZXgxOEVjSXNBQUNqbzgraUxBRDRUQUFERjNCdDdFY0I3QWdDZ2tUOS8vMXNJc0N5TEFBQW9aZTI0aXdBRUFFQVJXMGRkQlBRbUFBQUsyRHZtSXFBdkFRQ1EzTkVSRndFOUNRQ0F4TTRhYnhIUWp3RGdFSWNHekhQMno1K2Y1MTRFQUx2NXI0ekJQRmY5M1BtWVlCOENnTTBjRUZDZm4vSDZCQUNiK0MrTXdYeWpmdDc4WE5jbUFGakZiLzBRdytpZlF6LzNkUWtBbnZKZkZvTVladnlNL2ZMYlQ4UC9QeGxEQUhEWG50LzZSUUJjdy9oek5nSEFUWVljNGpEK1hFRUE4TUVaNy9yRkE1ekh6eE5YRVFCODU2Q0JXR2I5VFBydHZ3Y0J3Q1YvNFM4bUlDZmozNGNBYU83S29SWUJzSi8zL2x6dC83Ty9BT1l3emhDWDhXY0VUd0NhR3ZYRExqUmdHK1BQS0FJQUlBamp6MGdDb0RGUEFTQU80ODlvQW9BaFJBRGM1K2VER1FSQWMzNERnTGw4MXA5WkJBQmVCVUF6eHA5bEVRQUEwM2p2ejB3Q2dHVlpQQVdBMFl3L3N3a0FoaE1CZEdmOGlVQUE4SjBEQXE1bi9JbENBUENCVndGd0hlTlBKQUlBWUFEUlN6UUNnQzg4QllCeithdy9FUWtBcGhJQmNBM2p6ek1DZ0pzY0huQU83LzJKU2dCd2wxY0JjSXp4SnpJQlFBZ2lnR3FNUDlFSkFCNXlvTUIyeHA4TUJBQmhlQXBBQmNhZkxBUUFUemxjWUIwUlN5WUNnRlg4UVNBODVyUCtaQ01BQ0VjRXdEckdueU1FQUtzNWJPQTI3LzNKU0FBUWtxY0FaR0g4eVVvQXNJbURCOTRZZnpJVEFHem1Ed0xCK0pPZkFDQTBFVUJFeHA4S0JBQzdPSXpvU3BSU2hRQmdONjhDNk1abi9hbEVBQUFFWnZ5NWlnRGdFRThCNk1KN2Y2b1JBS1FoQXBqRitGT1JBT0F3QnhXVkdYK3FFZ0Njd3FzQUtqTCtWQ1lBQUc0dy9sUW5BRGlOcHdCVTRSNmpBd0ZBU2c1b3F2SGJQNk1KQUU3bEVDTTdqLzdwUWdCd09xOEN5TXI0MDRrQUFGaU1QLzBJQUM3aEtRQ1pHSDg2RWdDa0p3STR3dmpUbFFEZ01nNDVvalArZENZQXVKUlhBVVRsbnFFN0FRQXdpTi8raVVRQWNEbFBBWWpHbzM4UUFCUWpBbmpHK01NTEFjQVFEa0FpTVA3d1JnQXdqRmNCekdUODRTTUJBSlJuL09FckFjQlFuZ0l3bW5zQmJoTUFsT1hnWjlZOTRMZC9NaEFBRE9kd3BETDNOMWtJQUtid0tvQ3JlZThQandrQW9CempEODhKQUtieEZJQXJHSDlZUndEUWdnam93ZmpEZWdLQXFSeWVuTVg0d3pZQ2dPbThDdUFvMXhhMkV3QkFhajdyRC9zSUFFTHdGSUJNakQ4VkNBRGFFUUYxZU84UCt3a0F3bkN3c29YeGgyTUVBS0Y0RmNBYXhoK09Fd0JBS3NZZnppRUFDTWRUQU80eC9uQWVBVUJySWlBUDF3ck9KUUFJeVc5ZHZPZXovbkErQVVCWVhnVXdrL0duT2dFQWhPYTlQMXhEQUJDYXB3QzlHWCs0amdDQWIwUkFMTVlmcmlVQUNNK2gzSS94aCtzSkFGTHdLcUFQNHc5akNBRDRSQVRNNDNzUDR3Z0EwdkJiV20wKzZ3OWpDUUM0d1craVBSaC9PaE1BcE9MQXJzbDdmeGhQQUpDT1B3aXN4ZmpESEFJQUhoQUIxekwrTUk4QUlDV0hlSDdHSCtZU0FLVGxWVUJleGgvbUV3REFVSUlLWWhBQXBPWXBRQzQrNnc5eENBQllTUVRrWlB6aE5nRkFlZzc0SEx6M2gxZ0VBQ1Y0RlJDYjhZZDRCQUJ3S2VNUE1Ra0F5dkFVSUI3akQzRUpBTmhCQkR4bi9DRTJBVUFwQmlBR2dRVHhDUURLOFNwZ0xwLzFoeHdFQUpDZThZZnRCQUFsZVFvd2gvZitrSWNBZ0lORXdBdmpEN2tJQU1veUR1TVlmOGhIQUZDYVZ3SFhNLzZRa3dBQWRqUCtrSmNBb0R4UEFhN1I3ZDhMMVFnQU9KRlJ2SmJmL3VFOEFvQVdETWU1UFBxSC9BUUFiWGdWY0E3akR6VUlBR0ExNHc5MUNBQmE4UlJnUCtNUHRRZ0F1RWlsQ0REK1VJOEFvQjNEc28zeGg1b0VBQzE1RmJCTzlxOGZ1RThBQUtINDdSL0dFQUMwNVNuQVl4NzlRMjBDQUFiSUZnSEdIK29UQUxSbWRMNHkvdENEQUtBOXJ3TGVHSC9vUXdBQXk3SVlmK2hHQU1EaUtVRFVyd3U0amdDQXdhS043YXl2eDIvL01KY0FnRzhNMGppKzF6Q2ZBSUIzdXIwSzhONGYraElBMEpUeGg5NEVBSHpTNFNtQThRY0VBRXcwWTRpTlA3QXNBZ0J1cWpwWXhoOTRKUURnam1xdkFxTDg0U0VRZ3dDQUJueldIL2hNQU1BRDFaNENqR1Q4SVRZQkFFRmNGUUhlK3dPM0NBQjRJdk9ZR1gvZ0hnRUFLMlI4RldEOGdVY0VBQVJ6eG5BYmYrQVpBUUFyWlJrNDR3K3NJUUFnb0wwalh2SFRCTUExQkFCc0VQazNYWi8xQjdZUUFMQlJ4ajhJdklyeGg3d0VBQVMyTmdLODl3ZTJFZ0N3UTZUeE0vN0FIZ0lBZ25zMDhNWWYyRXNBd0U2emg5RDRBMGNJQURoZzFoOEVHbi9nS0FFQVNieU9mb1pQQndEeENRQTRhT1J2eGo3ckQ1eEZBTUFKS2c5azVYOGJkQ1lBZ0x1TVA5UWxBT0FrMWNheTJyOEgrRWdBQUY4WWY2aFBBTUNKS2d4bmhYOEQ4SndBZ0pObEh0RE1YenV3alFBQWdJWUVBRndnNDIvU0diOW1ZRDhCQUJoL2FFZ0F3RVd5akdxV3J4TTRsd0NBQzBVZjEraGZIM0FkQVFCTkdYL29UUURBeFNJT2JjU3ZDUmhMQUVBenhoOVlGZ0VBUXhoZElCb0JBSU5FaUlBSVh3TVFnd0NBSm93LzhKNEFnSUZtamJEeEJ6NFRBRkNjOFFkdUVRQXcyTlpCL3VXM24zYVB1UEVIN2hFQU1NSGFZWDcvdjlzVERnRDNDQUFJNk41di9YdkNBZUFXQVFDVDNCdnBaK045NUpVQXdDc0JBRUZzSGZhOUFRR3dMQUlBcG5vZDY3UCt5TS80QTJzSkFKanM2R2dmalFpZ0p3RUFCUmgvWUNzQkFBQU5DUUFBYUVnQUFFQkRBZ0FBR2hJQUFOQ1FBQUNBaGdRQUFEUWtBQUNnSVFFQUFBMEpBQUJvU0FBQVFFTUNBQUFhRWdBQTBKQUFBSUNHQkFBQU5DUUFBS0FoQVFBQURRa0FBR2hJQUFCQVF3SUFBQm9TQUFEUWtBQUFnSVlFQUFBMEpBQUFvQ0VCQUFBTkNRQUFhRWdBQUVCREFnQUFHaElBQU5CUStBRDQ2NDkvZnBqOU5RREFWdEgzSzN3QUFBRG5Fd0FBMEpBQUFJQ0dCQUFBTkNRQUFLQWhBUUFBRFFrQUFHZ29SUUJFL3l3bEFMeVhZYmRTQkFBQWNDNEJBQUFOQ1FBQWFFZ0FBRUJEYVFJZ3d4OVVBRUNXdlVvVEFBREFlUVFBQURRa0FBQ2dvVlFCa09XOUNnQTlaZHFwVkFFQUFKeERBQUJBUXdJQUFCcEtGd0NaM3E4QTBFZTJmVW9YQUFEQWNRSUFBQnBLR1FEWkhyTUFVRnZHWFVvWkFBREFNUUlBQUJwS0d3QVpIN2NBVUUvV1BVb2JBQURBZmdJQUFCcEtIUUJaSDdzQVVFUG1IVW9kQUFEQVB1a0RJSE45QVpCWDl2MUpId0FBd0hZQ0FBQWFLaEVBMlIvREFKQkxoZDBwRVFBQXdEWmxBcUJDalFFUVg1VzlLUk1BQU1CNnBRS2dTcFVCRUZPbG5Ta1ZBQURBT3VVQ29GS2RBUkJIdFgwcEZ3QUF3SE1sQTZCYXBRRXdWOFZkS1JrQUFNQmpaUU9nWXEwQk1GN1ZQU2tiQU10Uzk2SUJNRWJsSFNrZEFBREFiZVVEb0hLOUFYQ2Q2dnRSUGdBQWdLOWFCRUQxaWdQZ1hCMTJvMFVBTEV1UGl3bkFjVjMyb2swQUFBQnZXZ1ZBbDZvRFlKOU9POUVxQUphbDE4VUZZTDF1KzlBdUFKYWwzMFVHNExHT3U5QXlBQUNndTdZQjBMSDJBUGlxNng2MERZQmw2WHZSQVhqUmVRZGFCOEN5OUw3NEFKMTFQLy9iQndBQWRDUUFGaFVJMEkxelh3Qjg1MllBNk1GNS8wSUF2T09tQUtqTk9mOUdBSHppNWdDb3lmbitrUUM0d1UwQ1VJdHovU3NCY0llYkJhQUc1L2x0QXVBQk53MUFiczd4K3dUQUUyNGVnSnljMzQ4SmdCWGNSQUM1T0xlZkV3QXJ1WmtBY25CZXJ5TUFObkJUQWNUbW5GNVBBR3prNWdLSXlmbThqUURZd1UwR0VJdHplVHNCc0pPYkRTQUc1L0UrQXVBQU54M0FYTTdoL1FUQVFXNCtnRG1jdjhmNDVwM281MTkvL0hmMjF3QlFuZUUvaHljQUozSlRBbHpMT1hzZUFYQXlOeWZBTlp5djUvTE52SkJYQWdESEdmNXJlQUp3SVRjdHdESE8wZXNJZ0l1NWVRSDJjWDVleXpkM0lLOEVBSjR6L0dONEFqQ1FteHJnTWVma09MN1JrM2dhQVBERzhJL25HejZaRUFBNk0venplQVV3bVpzZjZNcjVONWR2ZmlDZUJnQWRHUDRZWElTQWhBQlFrZUdQeGNVSVRBZ0FGUmorbUZ5VUJJUUFrSkhoajgzRlNVUUlBQmtZL2h4Y3BLVEVBQkNKMGMvSEJVdE9DQUF6R2Y2OFhMaEN4QUF3Z3RHdndVVXNTZ3dBWnpMNjliaWdEWWdCWUEralg1dUwyNUFnQUc0eCtMMjQyQWdDYU1yZzkrYmljNU1vZ0ZxTVBaKzVJZGhGSUVBc0JoNEFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUZyNUQybDdPWFB4MFd0L0FBQUFBRWxGVGtTdVFtQ0MiLCAic2l6ZXMiOiAiNTEyeDUxMiIsICJ0eXBlIjogImltYWdlL3BuZyJ9XX0=">
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
-<style>
-  :root{
-    --bg:#F9F8F6;
-    --bg-soft:#F1EFE9;
-    --card:#FFFFFF;
-    --ink:#22252A;
-    --ink-soft:#75726C;
-    --ink-faint:#C9C6BF;
-    --line:#E6E3DC;
-    --sage:#7E9A74;
-    --sage-deep:#48603F;
-    --sage-bg:#E6EDE2;
-    --coral:#E06D53;
-    --coral-deep:#B84F39;
-    --coral-bg:#FBE7E1;
-    --lav:#8D82A8;
-    --lav-deep:#54486F;
-    --lav-bg:#E7E3EF;
-    --butter:#B5924A;
-    --butter-deep:#71581F;
-    --butter-bg:#EFE7D3;
-    --rose:#AD6D68;
-    --rose-deep:#733B36;
-    --stamp:#7E9A74;
-    --holiday-bg:#FCE8E6;
-    --shadow: 0 1px 8px rgba(34,37,42,0.06);
-    --shadow-soft: 0 1px 3px rgba(34,37,42,0.05);
-    --radius: 12px;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;overscroll-behavior:none;}
-  body{
-    background:var(--bg);
-    color:var(--ink);
-    font-family:'Pretendard', -apple-system, 'Apple SD Gothic Neo', sans-serif;
-    -webkit-font-smoothing:antialiased;
-    min-height:100vh;
-  }
-  h1,h2,h3{ font-family:'Pretendard', sans-serif; font-weight:700; letter-spacing:-0.3px; }
-  #app{
-    max-width:520px;
-    margin:0 auto;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    position:relative;
-    padding-top:env(safe-area-inset-top);
-    background:var(--bg);
-  }
-  .topbar{
-    padding:20px 20px 12px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    border-bottom:1px solid var(--line);
-  }
-  .topbar .logo{
-    font-family:'Pretendard', sans-serif;
-    font-weight:700;
-    font-size:1.125rem;
-    letter-spacing:-0.3px;
-    color:var(--ink);
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .topbar .logo .dot{
-    width:8px;height:8px;border-radius:2px;background:var(--coral);display:inline-block;
-  }
-  .save-badge{
-    font-size:0.75rem;
-    color:var(--coral-deep);
-    background:var(--coral-bg);
-    padding:4px 10px;
-    border-radius:6px;
-    opacity:0;
-    transition:opacity .25s ease;
-    white-space:nowrap;
-  }
-  .save-badge.show{opacity:1;}
-  main{
-    flex:1;
-    padding:0 16px 96px;
-    overflow-x:hidden;
-  }
-  .empty-state{
-    text-align:center;
-    padding:60px 20px;
-    color:var(--ink-soft);
-  }
-  .empty-state .big-emoji{font-size:2.125rem;margin-bottom:10px;}
-  .empty-state h2{color:var(--ink);font-size:1.375rem;margin:6px 0 6px;}
-  .empty-state p{font-size:0.875rem;line-height:1.6;margin:0 0 18px;}
-  button.btn{
-    font-family:'Pretendard',sans-serif;
-    font-weight:600;
-    font-size:0.8438rem;
-    border:none;
-    border-radius:8px;
-    padding:10px 16px;
-    cursor:pointer;
-    background:var(--coral-deep);
-    color:#fff;
-    transition:opacity .12s ease;
-  }
-  button.btn:active{opacity:.85;}
-  button.btn.ghost{
-    background:var(--card);
-    color:var(--coral-deep);
-    border:1px solid var(--coral);
-  }
-  button.btn.coral{background:var(--coral-deep);}
-  button.btn.small{padding:6px 12px;font-size:0.7812rem;border-radius:7px;}
-  button.icon-btn{
-    background:none;border:none;cursor:pointer;
-    font-size:0.9375rem;color:var(--ink-soft);
-    padding:6px 10px;border-radius:7px;
-    font-family:inherit;
-  }
-  button.icon-btn:active{background:var(--bg-soft);}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>달빛 아래 강강술래 🌕</title>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="달빛 아래 강강술래 🌕" />
+  <meta property="og:description" content="손을 잡고 함께 원을 만들어 달빛 아래 덕담을 나눠요!" />
 
-  .date-nav{
-    display:flex;align-items:center;justify-content:space-between;
-    margin:6px 0 16px;
-  }
-  .date-nav .date-display{text-align:center;flex:1;}
-  .date-nav .date-display .weekday{
-    font-size:0.8125rem;color:var(--ink-soft);letter-spacing:1px;
-  }
-  .date-nav .date-display h1{
-    font-size:1.625rem;margin:0;line-height:1.15;color:var(--ink);
-  }
-  .date-nav .date-display .today-jump{
-    font-size:0.75rem;font-weight:600;color:var(--coral-deep);cursor:pointer;
-    display:inline-block;margin-top:6px;
-    background:var(--coral-bg);padding:4px 12px;border-radius:20px;
-  }
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
-  .card{
-    position:relative;
-    background:var(--card);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-    padding:16px 16px 14px;
-    margin-bottom:14px;
-    border:1px solid var(--line);
-    overflow:visible;
-  }
-  .card .card-head{
-    display:flex;align-items:center;justify-content:space-between;
-    margin-bottom:10px;
-  }
-  .period-tag{
-    font-size:0.7188rem;font-weight:600;color:var(--ink-soft);
-    background:var(--bg-soft);
-    padding:3px 8px;border-radius:6px;
-  }
-  .class-chip{
-    font-size:0.8438rem;font-weight:600;
-    padding:3px 10px;border-radius:6px;
-    color:var(--ink);
-    background:var(--bg-soft);
-  }
-  select, input[type=text], textarea{
-    font-family:'Pretendard',sans-serif;
-    font-size:0.875rem;
-    color:var(--ink);
-    background:var(--bg-soft);
-    border:1px solid var(--line);
-    border-radius:7px;
-    padding:9px 10px;
-    width:100%;
-    outline:none;
-  }
-  select:focus, input[type=text]:focus, textarea:focus{
-    border-color:var(--sage);
-  }
-  .field-row{margin-bottom:9px;}
-  .field-row label{
-    font-size:0.7188rem;color:var(--ink-soft);font-weight:600;
-    display:block;margin-bottom:4px;
-  }
-  .page-row{display:flex;gap:8px;}
-  .page-row input{flex:1;}
+  <style>
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: -apple-system, BlinkMacSystemFont, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Pretendard", sans-serif;
+      letter-spacing: normal !important; /* 글자 벌어짐 완전 방지 */
+      word-break: keep-all;
+    }
 
-  .check-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
-  .check{
-    display:flex;align-items:center;gap:7px;
-    font-size:0.8438rem;font-weight:600;color:var(--ink-soft);
-    cursor:pointer;user-select:none;
-    background:var(--bg-soft);
-    padding:7px 12px;border-radius:7px;
-    border:1px solid var(--line);
-    transition: all .15s ease;
-  }
-  .check input{display:none;}
-  .check .mark{
-    width:16px;height:16px;border-radius:4px;
-    border:1.5px solid var(--ink-faint);
-    background:#fff;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-  }
-  .check .mark::after{
-    content:'';width:8px;height:4px;
-    border-left:2px solid #fff;border-bottom:2px solid #fff;
-    transform:rotate(-45deg) translate(1px,-1px);
-    opacity:0;
-  }
-  .check.on{background:var(--coral-bg);border-color:var(--coral);color:var(--coral-deep);}
-  .check.on .mark{background:var(--coral-deep);border-color:var(--coral-deep);}
-  .check.progress.on{background:var(--coral-bg);border-color:var(--coral);color:var(--coral-deep);}
-  .check.progress.on .mark{background:var(--coral-deep);border-color:var(--coral-deep);}
-  .check.problem.on{background:var(--coral-bg);border-color:var(--coral);color:var(--coral-deep);}
-  .check.problem.on .mark{background:var(--coral-deep);border-color:var(--coral-deep);}
-  .check.on .mark::after{opacity:1;}
+    body {
+      background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+      color: #FFF; 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      padding: 16px; 
+      overflow-x: hidden;
+    }
 
+    header { text-align: center; margin-top: 10px; margin-bottom: 15px; }
+    h1 { font-size: 1.5rem; color: #FDE047; text-shadow: 0 0 15px rgba(253, 224, 71, 0.5); margin-bottom: 4px; }
+    p.subtitle { font-size: 0.82rem; color: #9CA3AF; }
 
+    /* 모바일 맞춤 원 크기 설정 */
+    .sullae-wrapper { 
+      position: relative; 
+      margin: 20px auto 15px; 
+      width: 280px; 
+      height: 280px; 
+    }
 
-  .status-seg{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:9px;}
-  .status-btn{
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
-    font-size:0.6875rem;font-weight:600;text-align:center;
-    padding:8px 2px;border-radius:7px;
-    border:1px solid var(--line);background:var(--bg-soft);
-    color:var(--ink-soft);cursor:pointer;
-  }
-  .status-btn .status-ico{display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  .status-btn.on{background:var(--coral-bg);border-color:var(--coral);color:var(--coral-deep);}
+    .owner-zodiac-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%); z-index: 25;
+      background: rgba(17, 24, 39, 0.9); border: 1.5px solid #FDE047;
+      backdrop-filter: blur(8px); padding: 6px 14px; border-radius: 30px;
+      display: none; align-items: center; gap: 6px;
+      box-shadow: 0 0 15px rgba(253, 224, 71, 0.3);
+      animation: floatBadge 3s ease-in-out infinite;
+      white-space: nowrap;
+    }
+    .owner-zodiac-badge .z-icon { font-size: 1.2rem; }
+    .owner-zodiac-badge .z-name { font-size: 0.8rem; font-weight: bold; color: #FDE047; }
 
-  .prev-progress{
-    font-size:0.75rem;color:var(--ink-soft);background:var(--bg-soft);
-    border-radius:7px;padding:7px 10px;margin-bottom:10px;line-height:1.5;
-  }
-  .prev-progress b{color:var(--ink);font-weight:600;}
+    @keyframes floatBadge {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -5px); }
+    }
 
-  .prev-hero{background:var(--coral-bg);border-radius:12px;padding:14px 16px;margin-bottom:14px;}
-  .prev-hero-label{font-size:0.6875rem;font-weight:700;color:var(--coral-deep);letter-spacing:.03em;margin-bottom:6px;}
-  .prev-hero-value{font-size:1.125rem;font-weight:800;color:var(--ink);line-height:1.35;word-break:keep-all;}
-  .prev-hero-meta{font-size:0.75rem;color:var(--ink-soft);margin-top:6px;display:flex;align-items:center;gap:4px;}
-  .prev-hero.empty .prev-hero-value{font-size:0.9375rem;font-weight:600;color:var(--ink-soft);}
-  .card-section-divider{
-    display:flex;align-items:center;gap:8px;margin:14px 0 10px;
-    font-size:0.6875rem;font-weight:700;color:var(--ink-faint);letter-spacing:.04em;
-  }
-  .card-section-divider::after{content:'';flex:1;height:1px;background:var(--line);}
+    .center-moon {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 120px; height: 120px;
+      background: radial-gradient(circle, #FEF08A 0%, #FDE047 70%, #EAB308 100%);
+      border-radius: 50%; box-shadow: 0 0 35px rgba(253, 224, 71, 0.5);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      z-index: 5; text-align: center; padding: 8px;
+    }
+    .moon-text-count { font-size: 1rem; font-weight: bold; color: #854D0E; }
+    .moon-text-sub { font-size: 0.7rem; color: #A16207; margin-top: 2px; }
 
-  .now-focus-badge{
-    display:inline-flex;align-items:center;gap:4px;font-size:0.6875rem;font-weight:700;
-    color:var(--coral-deep);background:var(--coral-bg);border-radius:20px;padding:3px 9px;margin-bottom:8px;
-  }
-  .card.is-focus{border:1.5px solid var(--coral);box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+    .sullae-circle { position: absolute; width: 100%; height: 100%; border-radius: 50%; z-index: 10; }
 
-  .card-folded{
-    display:flex;align-items:center;gap:8px;background:var(--bg-soft);
-    border-radius:10px;padding:9px 12px;margin-bottom:8px;cursor:pointer;
-    opacity:0.72;transition:opacity .2s ease;
-    animation:foldIn .6s ease;
-  }
-  .card-folded:hover{opacity:0.95;}
-  .card-folded .period-tag-mini{font-size:0.6875rem;color:var(--ink-faint);white-space:nowrap;}
-  .card-folded .class-chip{flex-shrink:0;}
-  .card-folded .folded-progress{flex:1;min-width:0;font-size:0.8125rem;color:var(--ink-soft);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  @keyframes foldIn{from{opacity:0;transform:translateY(-4px);}to{opacity:0.72;transform:translateY(0);}}
+    /* 아바타 고정 크기 */
+    .avatar-item {
+      position: absolute; top: 50%; left: 50%;
+      width: 44px; height: 44px;
+      cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      z-index: 15; user-select: none;
+    }
 
-  .completed-zone-label{
-    font-size:0.6875rem;font-weight:700;color:var(--ink-faint);letter-spacing:.04em;
-    margin:18px 0 8px;display:flex;align-items:center;gap:8px;
-  }
-  .completed-zone-label::after{content:'';flex:1;height:1px;background:var(--line);}
+    .avatar-inner {
+      display: flex; flex-direction: column; align-items: center;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .avatar-item:hover .avatar-inner { transform: scale(1.2); }
 
-  .memo-toggle{
-    font-size:0.75rem;color:var(--ink-soft);text-decoration:underline;
-    cursor:pointer;display:inline-block;margin-top:9px;
-  }
-  .memo-wrap{margin-top:8px;display:none;}
-  .memo-wrap.show{display:block;}
-  .memo-wrap .field-row:last-child{margin-bottom:0;}
+    .avatar-emoji-box {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid #FDE047;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 1.4rem; line-height: 1;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      pointer-events: none;
+    }
 
-  .extra-list{display:flex;flex-direction:column;gap:6px;margin-bottom:8px;}
-  .extra-item-row{
-    display:flex;align-items:center;gap:8px;
-    background:var(--bg-soft);border-radius:7px;padding:6px 8px;
-    font-size:0.8125rem;
-  }
-  .extra-item-row .grow{flex:1;}
-  .mini-status-group{display:flex;gap:2px;}
-  .mini-status-btn{
-    display:flex;align-items:center;justify-content:center;
-    padding:3px;border-radius:5px;cursor:pointer;color:var(--ink-faint);
-  }
-  .mini-status-btn.on{background:var(--coral-bg);}
-  .remove-extra{cursor:pointer;color:var(--rose-deep,#B3435C);font-size:0.875rem;padding:2px 4px;}
-  .extra-add-row{display:flex;gap:8px;align-items:center;}
-  .extra-add-row select{flex:1;}
+    .avatar-name {
+      font-size: 0.62rem; font-weight: bold; background: rgba(0, 0, 0, 0.85);
+      color: #FFF; padding: 2px 6px; border-radius: 8px; margin-top: 2px;
+      white-space: nowrap; border: 1px solid rgba(253, 224, 71, 0.4); pointer-events: none;
+    }
 
-  .excuse-toggle-row{
-    display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-top:12px;
-  }
-  .excuse-label{font-size:0.7188rem;color:var(--ink-faint);}
-  .excuse-btn{
-    font-size:0.7188rem;color:var(--ink-soft);cursor:pointer;
-    padding:4px 9px;border-radius:20px;background:var(--bg-soft);border:1px solid var(--line);
-  }
-  .excuse-btn:active{background:var(--coral-bg);color:var(--coral-deep);}
-  .excused-note{
-    font-size:0.8438rem;color:var(--ink-soft);background:var(--bg-soft);
-    border-radius:8px;padding:14px;text-align:center;margin-bottom:8px;
-  }
-  .excused-undo{
-    font-size:0.75rem;color:var(--coral-deep);text-decoration:underline;
-    cursor:pointer;text-align:center;
-  }
+    /* 폼 카드 스타일 수정 */
+    .form-card {
+      background: rgba(31, 41, 55, 0.75); backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px;
+      padding: 16px; width: 100%; max-width: 340px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    }
+    .form-group { margin-bottom: 12px; }
+    .form-row { display: flex; gap: 8px; }
+    label { display: block; font-size: 0.8rem; color: #FDE047; margin-bottom: 6px; font-weight: bold; }
+    
+    input[type="text"], input[type="password"], input[type="date"], textarea {
+      width: 100%; padding: 8px 10px; border-radius: 10px; 
+      border: 1px solid rgba(255, 255, 255, 0.15); outline: none; 
+      background: rgba(17, 24, 39, 0.85); color: #F9FAFB; font-size: 0.85rem;
+    }
+    textarea { resize: none; height: 55px; }
 
-  .today-bar-btn{
-    display:block; width:100%; margin-bottom:10px;
-    background:var(--coral-deep); color:#fff; border:none;
-    font-family:'Pretendard',sans-serif; font-weight:700; font-size:0.875rem;
-    padding:11px; border-radius:10px; cursor:pointer;
-  }
-  .today-bar-btn:active{opacity:.85;}
+    .zodiac-badge-info {
+      background: rgba(253, 224, 71, 0.1); border: 1px dashed #FDE047; border-radius: 10px;
+      padding: 8px; font-size: 0.78rem; color: #FDE047; text-align: center; margin-top: 8px; display: none; line-height: 1.35;
+    }
 
-  .card.exam-blocked{ background:var(--bg-soft); }
-  .card.exam-blocked .excused-note{ background:var(--holiday-bg); color:var(--coral-deep); margin-bottom:0; }
+    .submit-btn {
+      width: 100%; padding: 11px; background: #FDE047; color: #111827; font-weight: bold;
+      border: none; border-radius: 10px; font-size: 0.92rem; cursor: pointer; transition: opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+    
+    .btn-group { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .share-btn {
+      width: 100%; padding: 9px; background: rgba(255, 255, 255, 0.08); color: #E5E7EB;
+      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; font-size: 0.8rem; cursor: pointer;
+    }
+    .create-new-btn {
+      width: 100%; padding: 9px; background: rgba(253, 224, 71, 0.15); color: #FDE047; font-weight: bold;
+      border: 1px solid rgba(253, 224, 71, 0.3); border-radius: 10px; font-size: 0.8rem; cursor: pointer;
+    }
 
-  .modal-overlay{
-    position:fixed; inset:0; background:rgba(34,37,42,0.45);
-    display:flex; align-items:flex-end; justify-content:center;
-    z-index:1000;
-  }
-  .modal-box{
-    background:var(--card); width:100%; max-width:480px;
-    border-radius:16px 16px 0 0; padding:20px 18px calc(20px + env(safe-area-inset-bottom));
-    max-height:85vh; overflow-y:auto;
-  }
-  .modal-box h3{margin:0 0 14px;font-size:1.0625rem;}
-  .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;}
-
-  .undo-toast{
-    position:fixed; left:50%; bottom:78px; transform:translateX(-50%);
-    background:var(--ink); color:#fff; font-size:0.8125rem;
-    padding:10px 14px; border-radius:10px; display:flex; align-items:center; gap:14px;
-    z-index:999; box-shadow:0 4px 16px rgba(0,0,0,0.2);
-    max-width:90vw;
-  }
-  .undo-toast .undo-btn{color:var(--coral); font-weight:600; text-decoration:underline; cursor:pointer; white-space:nowrap;}
-
-  .stamp{
-    padding:3px 9px;
-    border-radius:6px;
-    border:1px solid var(--sage-deep);
-    color:var(--sage-deep);
-    font-weight:600;
-    font-size:0.7188rem;
-    letter-spacing:0.2px;
-    background: var(--sage-bg);
-    margin-left:auto;
-  }
-  .card-head{gap:8px;}
-
-  .bottom-nav{
-    position:sticky;bottom:0;left:0;right:0;
-    background:var(--card);
-    border-top:1px solid var(--line);
-    display:flex;
-    padding:8px 4px calc(8px + env(safe-area-inset-bottom));
-    max-width:520px;
-    margin:0 auto;
-    width:100%;
-  }
-  .nav-btn{
-    flex:1;
-    display:flex;flex-direction:column;align-items:center;gap:3px;
-    background:none;border:none;cursor:pointer;
-    color:var(--ink-faint);
-    font-family:'Pretendard',sans-serif;
-    font-size:0.6875rem;font-weight:600;
-    padding:6px 2px;
-    border-radius:12px;
-  }
-  .nav-btn .ico{display:flex;align-items:center;justify-content:center;}
-  .nav-btn .ico svg{display:block;}
-  .nav-btn.active{color:var(--coral-deep);background:var(--coral-bg);}
-
-  section.view{display:none;}
-  section.view.active{display:block;}
-
-  /* 달력 */
-  .cal-head{display:flex;align-items:center;justify-content:space-between;margin:6px 0 14px;}
-  .cal-head h2{margin:0;font-size:1.375rem;}
-  .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;}
-  .cal-dow{text-align:center;font-size:0.7188rem;color:var(--ink-soft);font-weight:600;padding-bottom:4px;min-width:0;}
-  .cal-cell{
-    aspect-ratio:auto;
-    border-radius:12px;
-    background:var(--card);
-    border:1px solid var(--line);
-    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
-    padding:6px 2px 4px;
-    cursor:pointer;
-    position:relative;
-    min-height:68px;
-    min-width:0;
-    overflow:hidden;
-  }
-  .cal-cell .event-label{
-    font-size:0.5312rem; color:var(--coral-deep); font-weight:600;
-    width:100%; max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
-    margin-top:2px; padding:0 2px; box-sizing:border-box;
-  }
-  .cal-cell.empty{background:transparent;border:none;cursor:default;}
-  .cal-cell.today{border-color:var(--coral);border-width:2px;}
-  .cal-cell.holiday{background:var(--holiday-bg);}
-  .cal-cell.selected{background:var(--sage-bg);border-color:var(--sage);}
-  .cal-cell .num{font-size:0.8125rem;font-weight:600;color:var(--ink);}
-  .cal-cell.holiday .num{color:var(--coral-deep);}
-  .cal-cell .dots{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;margin-top:3px;}
-  .cal-cell .dot{width:6px;height:6px;border-radius:50%;}
-  .cal-cell .exam-flag{position:absolute;top:3px;right:4px;width:5px;height:5px;border-radius:50%;background:var(--coral-deep);}
-  .cal-cell .stamp-mini{position:absolute;bottom:2px;right:3px;width:5px;height:5px;border-radius:50%;background:var(--sage-deep);}
-  .legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
-  .legend .item{display:flex;align-items:center;gap:5px;font-size:0.75rem;color:var(--ink-soft);}
-  .legend .sw{width:9px;height:9px;border-radius:50%;}
-
-  .day-panel{margin-top:18px;}
-  .day-panel h3{font-size:1rem;margin:0 0 8px;color:var(--ink);}
-
-  /* 반별 현황 */
-  .class-card{
-    background:var(--card);border-radius:var(--radius);
-    border:1px solid var(--line);box-shadow:var(--shadow-soft);
-    padding:14px 16px;margin-bottom:12px;
-    display:flex; gap:14px; align-items:flex-start;
-  }
-  .class-card .tree-wrap{
-    flex-shrink:0; width:60px; text-align:center;
-  }
-  .class-card .tree-label{
-    font-size:0.6562rem; color:var(--ink-soft); margin-top:2px;
-  }
-  .class-card .class-card-body{flex:1; min-width:0;}
-  .class-card .row1{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-  .class-card .badge{
-    font-size:0.6875rem;font-weight:600;padding:3px 9px;border-radius:6px;
-  }
-  .badge.slow{background:var(--coral-bg);color:var(--coral-deep);}
-  .badge.fast{background:var(--sage-bg);color:var(--sage-deep);}
-  .progress-bar-bg{
-    height:11px;background:var(--bg-soft);border-radius:20px;overflow:hidden;margin:8px 0;
-  }
-  .progress-bar-fill{height:100%;border-radius:20px;transition:width .3s ease;}
-  .class-card .meta{font-size:0.7812rem;color:var(--ink-soft);line-height:1.7;}
-  .class-card .meta b{color:var(--ink);}
-
-  /* D-day */
-  .exam-card{
-    background:var(--card);border-radius:var(--radius);
-    border:1px solid var(--line);box-shadow:var(--shadow-soft);
-    padding:16px;margin-bottom:14px;
-  }
-  .exam-card .exam-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:4px;}
-  .exam-card .exam-name{font-size:1rem;font-weight:600;}
-  .exam-card .dday{font-family:'Pretendard',sans-serif;font-size:1.375rem;font-weight:700;color:var(--coral-deep);letter-spacing:-0.3px;}
-  .exam-card .exam-date{font-size:0.75rem;color:var(--ink-soft);margin-bottom:10px;}
-  .pace-row{
-    display:flex;justify-content:space-between;align-items:center;
-    padding:9px 10px;background:var(--bg-soft);border-radius:10px;margin-bottom:6px;
-    font-size:0.8125rem;
-  }
-  .pace-row .cname{font-weight:600;}
-  .pace-tag{font-size:0.7188rem;font-weight:600;padding:2px 8px;border-radius:10px;}
-  .pace-tag.ok{background:var(--sage-bg);color:var(--sage-deep);}
-  .pace-tag.tight{background:var(--butter-bg);color:var(--butter-deep);}
-  .pace-tag.danger{background:var(--coral-bg);color:var(--coral-deep);}
-
-  /* 설정 */
-  .settings-section{
-    background:var(--card);border-radius:var(--radius);
-    border:1px solid var(--line);box-shadow:var(--shadow-soft);
-    padding:16px;margin-bottom:14px;
-  }
-  .settings-section h3{margin:0 0 12px;font-size:1.0625rem;display:flex;align-items:center;gap:6px;}
-  .class-list-item{
-    display:flex;align-items:center;gap:8px;margin-bottom:8px;
-  }
-  .class-list-item .swatch{width:20px;height:20px;border-radius:7px;flex-shrink:0;}
-  .class-list-item input{flex:1;}
-  .add-row{display:flex;gap:8px;margin-top:6px;}
-  .add-row input{flex:1;}
-
-  table.sched-table{width:100%;border-collapse:collapse;font-size:0.7812rem;}
-  table.sched-table th, table.sched-table td{padding:4px 3px;text-align:center;}
-  table.sched-table th{color:var(--ink-soft);font-weight:600;}
-  table.sched-table .lunch-row td{
-    background:var(--butter-bg); color:var(--butter-deep); font-weight:600;
-    font-size:0.6875rem; padding:5px 3px; border-radius:6px;
-  }
-  table.sched-table select{padding:5px 2px;font-size:0.7188rem;border-radius:7px;}
-  .sched-scroll{overflow-x:auto;margin:0 -4px;padding:0 4px;}
-
-  .list-row{
-    display:flex;align-items:center;gap:8px;
-    background:var(--bg-soft);border-radius:10px;padding:9px 10px;margin-bottom:7px;
-  }
-  .list-row .grow{flex:1;font-size:0.8438rem;}
-  .list-row .grow .sub{font-size:0.7188rem;color:var(--ink-soft);}
-  .list-row .del{color:var(--rose-deep);cursor:pointer;font-size:1rem;padding:2px 6px;}
-  .list-row .updown{display:flex;flex-direction:column;gap:1px;}
-  .list-row .updown span{cursor:pointer;font-size:0.6875rem;color:var(--ink-soft);line-height:1;padding:2px;}
-  .neis-event-row{flex-wrap:wrap;}
-  .neis-classify{display:flex;gap:4px;flex-shrink:0;}
-  .neis-classify-btn{
-    font-size:0.6875rem;font-weight:600;padding:4px 9px;border-radius:20px;
-    background:var(--bg-soft);color:var(--ink-soft);border:1px solid var(--line);cursor:pointer;
-  }
-  .neis-classify-btn.active{background:var(--coral-bg);color:var(--coral-deep);border-color:var(--coral);}
-  .plan-item-row.done{opacity:.55;}
-  .plan-item-row.done .grow{text-decoration:line-through;}
-
-  .tab-pills{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;padding-bottom:2px;}
-  .tab-pill{
-    flex-shrink:0;padding:7px 14px;border-radius:8px;
-    font-size:0.8125rem;font-weight:600;color:var(--ink-soft);
-    background:var(--bg-soft);cursor:pointer;border:1.5px solid transparent;
-  }
-  .tab-pill.active{background:var(--coral-bg);color:var(--coral-deep);border-color:var(--coral);}
-
-  .tab-pills.sub-pills{gap:0;border-bottom:1px solid var(--line);margin-bottom:16px;padding-bottom:0;}
-  .tab-pill.sub{
-    background:none;border:none;border-radius:0;
-    padding:8px 12px 9px;color:var(--ink-soft);
-    border-bottom:2px solid transparent;margin-bottom:-1px;
-  }
-  .tab-pill.sub.active{background:none;color:var(--coral-deep);border-bottom-color:var(--coral);}
-
-  .req{color:var(--coral-deep);font-weight:700;}
-
-  .fontsize-control{
-    display:flex;align-items:center;justify-content:space-between;
-    background:var(--card);border:1px solid var(--line);border-radius:10px;
-    padding:10px 14px;margin-bottom:14px;
-  }
-  .fontsize-control .fs-label{font-size:0.875rem;font-weight:600;color:var(--ink);}
-  .fontsize-control .fs-value{font-size:0.875rem;font-weight:700;color:var(--ink);min-width:42px;text-align:center;}
-  .fs-btn{
-    width:32px;height:32px;border-radius:8px;
-    background:var(--bg-soft);border:1px solid var(--line);
-    font-size:1.125rem;font-weight:700;color:var(--ink);
-    cursor:pointer;line-height:1;
-  }
-  .fs-btn:active{background:var(--coral-bg);color:var(--coral-deep);}
-
-  .pretty-timetable{
-    background:#FFFFFF; border:1px solid var(--line); border-radius:14px;
-    padding:16px; margin-bottom:6px;
-  }
-  .pt-title{font-family:'Pretendard',sans-serif;font-weight:700;font-size:1.0625rem;color:var(--ink);margin-bottom:12px;text-align:center;}
-  .pt-grid{display:grid; gap:4px;}
-  .pt-cell{
-    min-height:38px; border-radius:7px;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center; font-size:0.6875rem; line-height:1.25; padding:2px;
-  }
-  .pt-cell.pt-head{
-    font-weight:700; font-size:0.75rem; color:var(--ink-soft); min-height:auto; padding-bottom:4px;
-  }
-  .pt-cell.pt-period{
-    flex-direction:column; background:var(--bg-soft); color:var(--ink-soft);
-  }
-  .pt-period-num{font-weight:700; font-size:0.75rem; color:var(--ink);}
-  .pt-period-time{font-size:0.5938rem;}
-  .pt-cell.pt-class{
-    font-weight:700; border:1px solid; word-break:keep-all;
-  }
-  .pt-cell.pt-lunch{
-    background:var(--butter-bg); color:var(--butter-deep); font-weight:600;
-    min-height:24px; font-size:0.6875rem; margin:1px 0;
-  }
-
-  .small-note{font-size:0.75rem;color:var(--ink-soft);line-height:1.6;margin:6px 0 10px;}
-  .danger-zone{margin-top:20px;text-align:center;}
-  .danger-zone button{background:none;border:none;color:var(--ink-faint);font-size:0.75rem;text-decoration:underline;cursor:pointer;}
-
-  .transfer-row{display:flex;gap:10px;margin-top:10px;}
-  .transfer-col{flex:1;min-width:0;}
-  .transfer-code-box{
-    text-align:center; background:var(--coral-bg); border:1px solid var(--coral);
-    border-radius:10px; padding:12px; margin-top:8px;
-  }
-  .transfer-code-box .tc-label{font-size:0.75rem;color:var(--coral-deep);margin-bottom:4px;}
-  .transfer-code-box .tc-code{font-size:1.75rem;font-weight:700;letter-spacing:3px;color:var(--coral-deep);font-family:'Pretendard',sans-serif;}
-  .transfer-code-box .tc-note{font-size:0.6875rem;color:var(--ink-soft);margin-top:4px;}
-
-  #customSplash{
-    position:fixed;inset:0;background:#fff;z-index:99999;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    transition:opacity .4s ease;
-  }
-  #customSplash.fade-out{opacity:0;pointer-events:none;}
-  #customSplash svg{width:76px;height:76px;}
-  #customSplash .splash-check-path{
-    fill:none;stroke:var(--coral-deep);stroke-width:8;
-    stroke-linecap:round;stroke-linejoin:round;
-    stroke-dasharray:90;stroke-dashoffset:90;
-    animation:splashDrawCheck 1s cubic-bezier(.65,0,.35,1) forwards .2s;
-  }
-  #customSplash .splash-title{
-    margin-top:16px;font-size:1.0625rem;font-weight:700;color:var(--ink);
-    letter-spacing:.01em;opacity:0;animation:splashFadeInText .5s ease forwards 1.05s;
-  }
-  @keyframes splashDrawCheck{to{stroke-dashoffset:0;}}
-  @keyframes splashFadeInText{to{opacity:1;transform:translateY(0);}from{opacity:0;transform:translateY(4px);}}
-</style>
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(3, 7, 18, 0.85);
+      display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; z-index: 100;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal-content {
+      background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: #F9FAFB;
+      border: 1px solid rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 20px; max-width: 310px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+    .modal-avatar-box {
+      width: 60px; height: 60px; border-radius: 50%; border: 2px solid #FDE047;
+      margin: 0 auto 10px auto; display: flex; justify-content: center; align-items: center; font-size: 2rem;
+    }
+    .zodiac-tag { display: inline-block; padding: 5px 12px; border-radius: 16px; font-size: 0.78rem; font-weight: bold; color: #FFF; margin-bottom: 6px; }
+    
+    .modal-action-btns { display: flex; gap: 8px; justify-content: center; margin-top: 14px; }
+    .close-btn { background: #374151; color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
+    .delete-btn { background: #EF4444; color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
+  </style>
 </head>
 <body>
-<div id="customSplash">
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-    <path class="splash-check-path" d="M22,54 L42,74 L80,28"></path>
-  </svg>
-  <div class="splash-title">진도수첩</div>
-</div>
-<div id="app">
-  <div class="topbar">
-    <div class="logo"><span class="dot"></span>진도수첩</div>
-    <div class="save-badge" id="saveBadge">저장됐어요 ✓</div>
+
+  <header>
+    <h1 id="pageTitle">달빛 아래 강강술래 🌕</h1>
+    <p class="subtitle" id="pageSubtitle">손을 잡고 함께 원을 만들어 덕담을 나눠요!</p>
+  </header>
+
+  <div class="sullae-wrapper">
+    <div class="owner-zodiac-badge" id="ownerZodiacBadge">
+      <span class="z-icon" id="ownerZodiacIcon">✨</span>
+      <span class="z-name" id="ownerZodiacText">별자리</span>
+    </div>
+
+    <div class="center-moon">
+      <div class="moon-text-count" id="sullaeCount">0명</div>
+      <div class="moon-text-sub">함께 손잡는 중!</div>
+    </div>
+
+    <div class="sullae-circle" id="sullaeCircle"></div>
   </div>
 
-  <main>
-    <section class="view active" id="view-today"></section>
-    <section class="view" id="view-calendar"></section>
-    <section class="view" id="view-classes"></section>
-    <section class="view" id="view-exam"></section>
-    <section class="view" id="view-settings"></section>
-  </main>
+  <div class="form-card">
+    <form id="duckdamForm">
+      <div class="form-group">
+        <div class="form-row">
+          <div style="flex:1;">
+            <label for="username">보내는 사람</label>
+            <input type="text" id="username" placeholder="닉네임" maxlength="8" required />
+          </div>
+          <div style="flex:1.2;">
+            <label for="birthdate">내 생년월일</label>
+            <input type="date" id="birthdate" required />
+          </div>
+        </div>
+      </div>
 
-  <nav class="bottom-nav">
-    <button class="nav-btn active" data-view="today">
-      <span class="ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"></rect><path d="M9 3.5h6v2H9z" fill="currentColor" stroke="none"></path><path d="M8.5 13l2.3 2.3L16 10.3"></path></svg></span>
-      오늘
-    </button>
-    <button class="nav-btn" data-view="calendar">
-      <span class="ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 9.5h16"></path><path d="M8 3v3.5M16 3v3.5"></path></svg></span>
-      달력
-    </button>
-    <button class="nav-btn" data-view="classes">
-      <span class="ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="19" x2="6" y2="13"></line><line x1="12" y1="19" x2="12" y2="9"></line><line x1="18" y1="19" x2="18" y2="5"></line></svg></span>
-      반별현황
-    </button>
-    <button class="nav-btn" data-view="exam">
-      <span class="ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10"></path><path d="M7 21h10"></path><path d="M8 3c0 4.2 3 6 4 7 1-1 4-2.8 4-7"></path><path d="M8 21c0-4.2 3-6 4-7 1 1 4 2.8 4 7"></path></svg></span>
-      D-day
-    </button>
-    <button class="nav-btn" data-view="settings">
-      <span class="ico"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"></line><circle cx="14" cy="6" r="1.8" fill="var(--card)"></circle><line x1="4" y1="12" x2="20" y2="12"></line><circle cx="9" cy="12" r="1.8" fill="var(--card)"></circle><line x1="4" y1="18" x2="20" y2="18"></line><circle cx="16" cy="18" r="1.8" fill="var(--card)"></circle></svg></span>
-      설정
-    </button>
-  </nav>
-</div>
+      <div class="form-group">
+        <label for="userPassword">삭제용 비밀번호 (4자리)</label>
+        <input type="password" id="userPassword" placeholder="비밀번호 4자리 설정" maxlength="8" required />
+        <div id="zodiacBadge" class="zodiac-badge-info"></div>
+      </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script>
-(function(){
-"use strict";
+      <div class="form-group">
+        <label for="message">덕담 한마디</label>
+        <textarea id="message" placeholder="달빛 아래 함께 손잡고 밝은 한가위 보내자!" maxlength="60" required></textarea>
+      </div>
 
-var CLASS_COLORS = ['#D9B99B','#A8BFA0','#C9AFC4','#BFAF8C','#A7B8BF','#C7A6A0','#B0B79A','#C2AECB','#A3B79A','#CBB08A'];
-var DAYS = ['월','화','수','목','금'];
-var DOW_KOR = ['일','월','화','수','목','금','토'];
-var EXAM_TYPES = { mock:'모의고사', writtenExam:'지필평가', performance:'수행평가', event:'학교행사' };
-var RTDB_URL = 'https://jindo-transfer-default-rtdb.asia-southeast1.firebasedatabase.app';
-var NEIS_KEY = 'a588af37ac43467190d522f11817e616';
-var STATUS_ORDER = ['pending','inProgress','practicing','done'];
-var STATUS_META = {
-  pending:   { label:'수업 예정',      short:'예정' },
-  inProgress:{ label:'진도 진행 중',   short:'진행 중' },
-  practicing:{ label:'문제풀이/활동 중', short:'문제풀이' },
-  done:      { label:'진도 완료',      short:'완료' }
-};
-var EXCUSE_REASONS = ['연가','병가','출장','기타'];
+      <button type="submit" class="submit-btn">강강술래 손잡기 🤝</button>
+      
+      <div class="btn-group">
+        <button type="button" id="shareBtn" class="share-btn">🔗 이 강강술래 주소 복사하기</button>
+        <button type="button" id="createNewBtn" class="create-new-btn">🌕 나도 내 강강술래 만들기</button>
+      </div>
+    </form>
+  </div>
 
-// 진행 단계를 막대 4개(신호 세기 형태)로 표시하는 단순 아이콘. 채워진 막대 수 = 진행 단계.
-function statusIconSvg(status, size){
-  size = size || 16;
-  var idx = STATUS_ORDER.indexOf(status);
-  var colorMap = { pending:'var(--ink-faint)', inProgress:'var(--butter-deep)', practicing:'var(--lav-deep)', done:'var(--sage-deep)' };
-  var color = colorMap[status] || 'var(--ink-faint)';
-  var heights = [6,9.5,13,16.5];
-  var bars = '';
-  for(var i=0;i<4;i++){
-    var h = heights[i];
-    var x = 2 + i*4.3;
-    var y = 18 - h;
-    var filled = i <= idx;
-    bars += '<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="3.1" height="'+h+'" rx="1" '+
-      (filled ? ('fill="'+color+'"') : ('fill="none" stroke="var(--ink-faint)" stroke-width="1.2"'))+'></rect>';
-  }
-  return '<svg viewBox="0 0 20 20" width="'+size+'" height="'+size+'" xmlns="http://www.w3.org/2000/svg">'+bars+'</svg>';
-}
+  <!-- 주인 생성 모달 -->
+  <div class="modal-overlay" id="ownerModal">
+    <div class="modal-content">
+      <h3 style="margin-bottom:6px; color:#FDE047; font-size:1.1rem;">🌕 내 강강술래 원 개설하기</h3>
+      <p style="font-size:0.78rem; color:#9CA3AF; margin-bottom:14px;">닉네임과 생년월일을 입력하면 달빛 아래 모임이 시작됩니다!</p>
+      <div class="form-group" style="text-align:left;">
+        <label style="color:#D1D5DB;">주인 닉네임</label>
+        <input type="text" id="ownerNameInput" placeholder="예: 달빛초롱" required />
+      </div>
+      <div class="form-group" style="text-align:left;">
+        <label style="color:#D1D5DB;">주인 생년월일</label>
+        <input type="date" id="ownerBirthInput" required />
+      </div>
+      <button class="submit-btn" id="saveOwnerBtn">강강술래 시작하기 🚀</button>
+    </div>
+  </div>
 
-var LEGAL_HOLIDAYS = [
-  {date:'2025-01-01', name:'신정'},
-  {date:'2025-01-27', name:'임시공휴일'},
-  {date:'2025-01-28', name:'설날 연휴'},
-  {date:'2025-01-29', name:'설날'},
-  {date:'2025-01-30', name:'설날 연휴'},
-  {date:'2025-03-01', name:'삼일절'},
-  {date:'2025-03-03', name:'대체공휴일(삼일절)'},
-  {date:'2025-05-05', name:'어린이날·부처님오신날'},
-  {date:'2025-05-06', name:'대체공휴일(어린이날)'},
-  {date:'2025-06-06', name:'현충일'},
-  {date:'2025-08-15', name:'광복절'},
-  {date:'2025-10-03', name:'개천절'},
-  {date:'2025-10-05', name:'추석 연휴'},
-  {date:'2025-10-06', name:'추석'},
-  {date:'2025-10-07', name:'추석 연휴'},
-  {date:'2025-10-08', name:'대체공휴일(추석)'},
-  {date:'2025-10-09', name:'한글날'},
-  {date:'2025-12-25', name:'성탄절'},
+  <!-- 덕담 확인 & 삭제 모달 -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <div class="modal-avatar-box" id="modalAvatarBox">🐰</div>
+      <div><span class="zodiac-tag" id="modalTag">✨ 별자리 케미</span></div>
+      <div style="font-weight:bold; color:#F9FAFB; font-size:1rem; margin-top: 4px;" id="modalName">홍길동</div>
+      <div style="font-size:0.9rem; line-height:1.45; color:#D1D5DB; margin-top:8px; margin-bottom:14px;" id="modalText">덕담 내용</div>
+      
+      <div class="modal-action-btns">
+        <button class="close-btn" id="closeModal">닫기</button>
+        <button class="delete-btn" id="deleteDuckdamBtn">🗑️ 손놓기 (삭제)</button>
+      </div>
+    </div>
+  </div>
 
-  {date:'2026-01-01', name:'신정'},
-  {date:'2026-02-14', name:'설날 연휴'},
-  {date:'2026-02-15', name:'설날 연휴'},
-  {date:'2026-02-16', name:'설날 연휴'},
-  {date:'2026-02-17', name:'설날'},
-  {date:'2026-02-18', name:'설날 연휴'},
-  {date:'2026-03-01', name:'삼일절'},
-  {date:'2026-03-02', name:'대체공휴일(삼일절)'},
-  {date:'2026-05-01', name:'노동절'},
-  {date:'2026-05-05', name:'어린이날'},
-  {date:'2026-05-24', name:'부처님오신날'},
-  {date:'2026-05-25', name:'대체공휴일(부처님오신날)'},
-  {date:'2026-06-06', name:'현충일'},
-  {date:'2026-07-17', name:'제헌절'},
-  {date:'2026-08-15', name:'광복절'},
-  {date:'2026-08-17', name:'대체공휴일(광복절)'},
-  {date:'2026-09-24', name:'추석 연휴'},
-  {date:'2026-09-25', name:'추석'},
-  {date:'2026-09-26', name:'추석 연휴'},
-  {date:'2026-10-03', name:'개천절'},
-  {date:'2026-10-05', name:'대체공휴일(개천절)'},
-  {date:'2026-10-09', name:'한글날'},
-  {date:'2026-12-25', name:'성탄절'},
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyB6Gl5fByMl2EEvu3PO2ja_H20dllTliM0",
+      authDomain: "moon-wishes.firebaseapp.com",
+      databaseURL: "https://moon-wishes-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "moon-wishes",
+      storageBucket: "moon-wishes.firebasestorage.app",
+      messagingSenderId: "337988318732",
+      appId: "1:337988318732:web:31ef9f89d85f07ffa5a029",
+      measurementId: "G-818HYR468B"
+    };
 
-  {date:'2027-01-01', name:'신정'},
-  {date:'2027-02-06', name:'설날 연휴'},
-  {date:'2027-02-07', name:'설날'},
-  {date:'2027-02-08', name:'설날 연휴'},
-  {date:'2027-02-09', name:'대체공휴일(설날)'},
-  {date:'2027-03-01', name:'삼일절'},
-  {date:'2027-05-01', name:'노동절'},
-  {date:'2027-05-03', name:'대체공휴일(노동절)'},
-  {date:'2027-05-05', name:'어린이날'},
-  {date:'2027-05-13', name:'부처님오신날'},
-  {date:'2027-06-06', name:'현충일'},
-  {date:'2027-07-17', name:'제헌절'},
-  {date:'2027-07-19', name:'대체공휴일(제헌절)'},
-  {date:'2027-08-15', name:'광복절'},
-  {date:'2027-08-16', name:'대체공휴일(광복절)'},
-  {date:'2027-09-14', name:'추석 연휴'},
-  {date:'2027-09-15', name:'추석'},
-  {date:'2027-09-16', name:'추석 연휴'},
-  {date:'2027-10-03', name:'개천절'},
-  {date:'2027-10-04', name:'대체공휴일(개천절)'},
-  {date:'2027-10-09', name:'한글날'},
-  {date:'2027-10-11', name:'대체공휴일(한글날)'},
-  {date:'2027-12-25', name:'성탄절'}
-];
-function findAutoHoliday(dateStr){
-  return LEGAL_HOLIDAYS.find(function(h){ return h.date===dateStr; }) || null;
-}
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
 
-function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
-function pad2(n){ return String(n).padStart(2,'0'); }
-function fmtDate(d){ return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate()); }
-function parseDate(s){ var p=s.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]); }
-function addDays(dateStr, n){ var d=parseDate(dateStr); d.setDate(d.getDate()+n); return fmtDate(d); }
-function ymOf(dateStr){ return dateStr.slice(0,7); }
-function dayKorOf(dateStr){ return DOW_KOR[parseDate(dateStr).getDay()]; }
-function todayStr(){ return fmtDate(new Date()); }
-function niceDate(dateStr){
-  var d = parseDate(dateStr);
-  return (d.getMonth()+1)+'월 '+d.getDate()+'일';
-}
-function darken(hex, amt){
-  hex = hex.replace('#','');
-  var r = parseInt(hex.substring(0,2),16), g = parseInt(hex.substring(2,4),16), b = parseInt(hex.substring(4,6),16);
-  r = Math.max(0, Math.round(r*(1-amt))); g = Math.max(0, Math.round(g*(1-amt))); b = Math.max(0, Math.round(b*(1-amt)));
-  return 'rgb('+r+','+g+','+b+')';
-}
-function escapeHtml(s){
-  return String(s==null?'':s).replace(/[&<>"']/g, function(c){
-    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
-  });
-}
+    const emojiList = ['🐰', '🐱', '🐶', '🦊', '🐻', '🐼', '🐥', '🐹', '🐨', '🐯', '👧🏻', '👦🏻', '🧙🏻‍♀️', '🧚🏻‍♀️', '👧🏽', '🏼‍♂️'];
+    const bgColors = ['#FEF08A', '#FBCFE8', '#BFDBFE', '#BBF7D0', '#FED7AA', '#E9D5FF'];
 
-function defaultSettings(){
-  var schedule = {};
-  DAYS.forEach(function(d){ schedule[d] = new Array(7).fill(null); });
-  return { classes: [], periodsPerDay: 7, schedule: schedule, exams: [], holidays: [], semesters: [], autoHolidaysEnabled: true, holidayExceptions: [], autoSuneungEnabled: true, customDdays: [], neisOfcdc:'', neisSchul:'', neisSchoolName:'', neisHolidays: [], fontScale: 1, schoolLevel:'high', classDuration:50, breakDuration:10, firstPeriodStart:'09:00', lunchAfterPeriod:4, lunchDuration:50 };
-}
-var SCHOOL_LEVEL_DURATION = { elementary:40, middle:45, high:50 };
-function computePeriodTime(periodIndex){
-  var classDur = state.settings.classDuration||50;
-  var breakDur = state.settings.breakDuration||10;
-  var lunchAfter = state.settings.lunchAfterPeriod||0;
-  var lunchDur = state.settings.lunchDuration||50;
-  var mins = timeToMinutes(state.settings.firstPeriodStart||'09:00');
-  for(var i=0; i<periodIndex; i++){
-    mins += classDur;
-    mins += ((i+1)===lunchAfter) ? lunchDur : breakDur;
-  }
-  var start = minutesToTime(mins);
-  var end = minutesToTime(mins + classDur);
-  return { start:start, end:end };
-}
-function timeToMinutes(t){
-  var p = (t||'09:00').split(':').map(Number);
-  return p[0]*60+(p[1]||0);
-}
-function minutesToTime(mins){
-  mins = ((mins%1440)+1440)%1440;
-  var h = Math.floor(mins/60), m = mins%60;
-  return pad2(h)+':'+pad2(m);
-}
-function periodTagLabel(period){
-  var pt = computePeriodTime(period-1);
-  return period+'교시 · '+pt.start+'~'+pt.end;
-}
-
-// 오늘 시간표 중 '지금 진행 중'이거나 '바로 다음에 들어갈' 교시를 찾는다. (오늘 볼 때만 의미가 있음)
-function findFocusPeriod(sched){
-  if(!sched || !sched.length) return null;
-  var now = new Date();
-  var nowMins = now.getHours()*60 + now.getMinutes();
-  var inProgress = null, next = null, nextStart = Infinity;
-  sched.forEach(function(s){
-    var pt = computePeriodTime(s.period-1);
-    var startMins = timeToMinutes(pt.start), endMins = timeToMinutes(pt.end);
-    if(nowMins >= startMins && nowMins < endMins){ inProgress = s; }
-    else if(startMins > nowMins && startMins < nextStart){ next = s; nextStart = startMins; }
-  });
-  return inProgress || next || null;
-}
-
-// 진도 입력이 끝난(완료/개인사정) 카드는 하단에 접어서 보여준다. 눌러서 펼치면 renderDayCard로 대체된다.
-function renderFoldedCard(dateStr, period, classId){
-  var cls = getClass(classId);
-  if(!cls) return '';
-  var rec = getRecords(dateStr).find(function(r){ return r.period===period; }) || {};
-  var summary;
-  if(rec.excused){
-    summary = (rec.reason||'개인 사정')+'로 수업 없음';
-  } else {
-    var items = state.plans[classId] || [];
-    var mainItemId = recMainItemId(rec);
-    var idx = items.findIndex(function(i){ return i.id===mainItemId; });
-    var it = idx!==-1 ? items[idx] : null;
-    summary = it ? ((idx+1)+'. '+it.title+(rec.pageText?(' · '+rec.pageText):'')) : '진도 기록 완료';
-  }
-  var status = rec.excused ? 'done' : (rec.status||'done');
-  return '<div class="card-folded" data-period="'+period+'" data-class="'+classId+'">'+
-    '<span class="period-tag-mini">'+period+'교시</span>'+
-    '<span class="class-chip" style="background:'+cls.color+';font-size:0.6875rem;padding:2px 7px;">'+escapeHtml(cls.name)+'</span>'+
-    '<span class="folded-progress">'+escapeHtml(summary)+'</span>'+
-    statusIconSvg(status,14)+
-  '</div>';
-}
-var FONT_SCALE_STEPS = [0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.3];
-function applyFontScale(){
-  var scale = (state.settings && state.settings.fontScale) || 1;
-  document.documentElement.style.fontSize = (100*scale)+'%';
-}
-function closestScaleIndex(scale){
-  var best = 0, bestDiff = Infinity;
-  FONT_SCALE_STEPS.forEach(function(s,i){
-    var diff = Math.abs(s-scale);
-    if(diff < bestDiff){ bestDiff = diff; best = i; }
-  });
-  return best;
-}
-function suneungDate(year){
-  // 매년 11월 셋째 주(달력 주차 기준) 목요일
-  var d = new Date(year, 10, 1);
-  var dow = d.getDay();
-  var target = new Date(year, 10, 1 - dow + 18);
-  return fmtDate(target);
-}
-function isSuneungDate(dateStr){
-  if(!state.settings.autoSuneungEnabled) return false;
-  if(state.settings.holidayExceptions.indexOf(dateStr) !== -1) return false;
-  var year = parseInt(dateStr.slice(0,4),10);
-  return dateStr === suneungDate(year);
-}
-function isAutoHolidayActive(dateStr){
-  return state.settings.autoHolidaysEnabled && !!findAutoHoliday(dateStr) && state.settings.holidayExceptions.indexOf(dateStr)===-1;
-}
-function isHolidayEffective(dateStr){
-  return state.settings.holidays.indexOf(dateStr) !== -1 || isAutoHolidayActive(dateStr) || isSuneungDate(dateStr) ||
-    (state.settings.neisHolidays||[]).some(function(h){ return h.date===dateStr && h.classified==='holiday'; });
-}
-function findNeisEvent(dateStr){
-  return (state.settings.neisHolidays||[]).find(function(h){ return h.date===dateStr; }) || null;
-}
-function inAnySemester(dateStr){
-  if(!state.settings.semesters.length) return true;
-  return state.settings.semesters.some(function(s){ return s.start && s.end && dateStr >= s.start && dateStr <= s.end; });
-}
-function dayStatus(dateStr){
-  if(DAYS.indexOf(dayKorOf(dateStr)) === -1) return 'weekend';
-  if(isHolidayEffective(dateStr)) return 'holiday';
-  if(!inAnySemester(dateStr)) return 'vacation';
-  return 'school';
-}
-
-var state = {
-  settings: null,
-  plans: {},
-  monthCache: {},
-  currentView: 'today',
-  currentDate: todayStr(),
-  calYm: ymOf(todayStr()),
-  calSelected: null,
-  settingsTab: 'classes',
-  planClassId: null,
-  uiExpanded: {} // '날짜-교시' 형태로, 완료돼서 접힌 카드를 펼쳐봤는지 기억(새로고침하면 초기화됨)
-};
-
-// ---------- storage (localStorage 기반) ----------
-var STORE_PREFIX = 'jindosucheop:';
-function loadJSON(key, fallback){
-  try{
-    var v = localStorage.getItem(STORE_PREFIX+key);
-    if(v==null) return Promise.resolve(fallback);
-    return Promise.resolve(JSON.parse(v));
-  }catch(e){
-    console.error('불러오기 실패', key, e);
-    return Promise.resolve(fallback);
-  }
-}
-function saveJSON(key, obj){
-  try{
-    localStorage.setItem(STORE_PREFIX+key, JSON.stringify(obj));
-    return Promise.resolve(true);
-  }catch(e){
-    console.error('저장 실패', key, e);
-    return Promise.resolve(null);
-  }
-}
-function listStoredKeys(prefix){
-  var keys = [];
-  try{
-    for(var i=0; i<localStorage.length; i++){
-      var k = localStorage.key(i);
-      if(k && k.indexOf(STORE_PREFIX+prefix) === 0) keys.push(k.slice(STORE_PREFIX.length));
-    }
-  }catch(e){ console.error('목록 조회 실패', e); }
-  return Promise.resolve(keys);
-}
-function flashSaved(){
-  var b = document.getElementById('saveBadge');
-  b.classList.add('show');
-  clearTimeout(flashSaved._t);
-  flashSaved._t = setTimeout(function(){ b.classList.remove('show'); }, 1200);
-}
-
-function showUndoToast(message, undoFn){
-  var existing = document.getElementById('undoToast');
-  if(existing) existing.remove();
-  var toast = document.createElement('div');
-  toast.id = 'undoToast';
-  toast.className = 'undo-toast';
-  toast.innerHTML = '<span>'+message+'</span><span class="undo-btn">되돌리기</span>';
-  document.body.appendChild(toast);
-  var timer = setTimeout(function(){ if(toast.parentNode) toast.remove(); }, 6000);
-  toast.querySelector('.undo-btn').addEventListener('click', function(){
-    clearTimeout(timer);
-    toast.remove();
-    undoFn();
-  });
-}
-
-function ensureMonth(ym){
-  if(state.monthCache[ym]) return Promise.resolve(state.monthCache[ym]);
-  return loadJSON('records:'+ym, {}).then(function(data){
-    Object.keys(data).forEach(function(dateStr){
-      if(dateStr==='__extras') return;
-      (data[dateStr]||[]).forEach(function(r){
-        if(!r.status){
-          r.status = (r.progressDone && r.problemDone) ? 'done' : (r.progressDone ? 'inProgress' : (r.problemDone ? 'practicing' : 'pending'));
-        }
-        if(r.presenter === undefined) r.presenter = '';
-      });
-    });
-    state.monthCache[ym] = data;
-    return data;
-  });
-}
-function saveMonth(ym){
-  return saveJSON('records:'+ym, state.monthCache[ym] || {});
-}
-function getRecords(dateStr){
-  var ym = ymOf(dateStr);
-  var m = state.monthCache[ym] || {};
-  return m[dateStr] || [];
-}
-function setRecord(dateStr, period, entry){
-  var ym = ymOf(dateStr);
-  if(!state.monthCache[ym]) state.monthCache[ym] = {};
-  var m = state.monthCache[ym];
-  if(!m[dateStr]) m[dateStr] = [];
-  var arr = m[dateStr];
-  var idx = arr.findIndex(function(r){ return r.period === period; });
-  if(idx >= 0) arr[idx] = entry; else arr.push(entry);
-  arr.sort(function(a,b){ return a.period-b.period; });
-  return saveMonth(ym).then(flashSaved);
-}
-function getExtras(dateStr){
-  var ym = ymOf(dateStr);
-  var m = state.monthCache[ym] || {};
-  var ext = m.__extras || {};
-  return ext[dateStr] || [];
-}
-function addExtra(dateStr, entry){
-  var ym = ymOf(dateStr);
-  if(!state.monthCache[ym]) state.monthCache[ym] = {};
-  var m = state.monthCache[ym];
-  if(!m.__extras) m.__extras = {};
-  if(!m.__extras[dateStr]) m.__extras[dateStr] = [];
-  m.__extras[dateStr].push(entry);
-  return saveMonth(ym).then(flashSaved);
-}
-function removeExtra(dateStr, id){
-  var ym = ymOf(dateStr);
-  var m = state.monthCache[ym];
-  if(!m || !m.__extras || !m.__extras[dateStr]) return Promise.resolve();
-  m.__extras[dateStr] = m.__extras[dateStr].filter(function(e){ return e.id!==id; });
-  return saveMonth(ym).then(flashSaved);
-}
-
-function saveSettings(){ return saveJSON('settings', state.settings); }
-function savePlans(){ return saveJSON('plans', state.plans); }
-
-function getClass(id){ return state.settings.classes.find(function(c){ return c.id===id; }); }
-function scheduleFor(dateStr){
-  var dk = dayKorOf(dateStr);
-  if(DAYS.indexOf(dk) === -1) return [];
-  var arr = state.settings.schedule[dk] || [];
-  var out = [];
-  arr.forEach(function(classId, i){
-    if(classId) out.push({ period:i+1, classId:classId });
-  });
-  return out;
-}
-
-// 교시 기록은 "메인 진도 항목" 하나(itemId)와, 그 날 추가로 더 나간 진도가 있으면
-// 각자 자기 상태를 가지는 "추가 진도" 목록(extraItems)을 따로 관리한다.
-// 예전 버전 기록(itemId 하나만 있던 것, 혹은 한때 썼던 itemIds 다중선택)도 함께 지원한다.
-function recMainItemId(rec){
-  if(!rec) return '';
-  if(rec.itemId) return rec.itemId;
-  if(rec.itemIds && rec.itemIds.length) return rec.itemIds[0];
-  return '';
-}
-function recExtraItems(rec){
-  if(!rec) return [];
-  if(rec.extraItems) return rec.extraItems;
-  if(rec.itemIds && rec.itemIds.length>1){
-    return rec.itemIds.slice(1).map(function(id){ return { itemId:id, status: rec.status||'done' }; });
-  }
-  return [];
-}
-function recItemIds(rec){
-  var out = [];
-  var main = recMainItemId(rec);
-  if(main) out.push(main);
-  recExtraItems(rec).forEach(function(e){ if(e.itemId) out.push(e.itemId); });
-  return out;
-}
-
-function classStats(classId){
-  var items = state.plans[classId] || [];
-  var total = items.length;
-  var done = items.filter(function(i){ return i.done; }).length;
-  var touchedItems = items.filter(function(i){ return i.doneDate; });
-  touchedItems.sort(function(a,b){ return a.doneDate < b.doneDate ? 1 : -1; });
-  var last = touchedItems[0] || null;
-  var next = items.find(function(i){ return !i.done; }) || null;
-  return { total:total, done:done, ratio: total? done/total : 0, last:last, next:next };
-}
-
-// 시험(주로 지필평가)마다 "이 시험까지 몇 번째 진도 항목까지 나가야 하는지"를 하나의 순번으로 지정해두면
-// 전체 진도계획이 아니라 그 범위만 기준으로 남은 진도를 계산한다. 반마다 세부 내용은 달라도 진도 순서는
-// 보통 같이 가기 때문에, 반별로 따로 지정하지 않고 시험 하나에 순번 하나만 지정한다.
-// exam.examTargetOrder = 몇 번째 항목까지 (1부터 시작). 지정이 없으면 기존처럼 전체 진도계획 기준.
-// (예전 버전에서 쓰던 반별 exam.examTargets 필드가 있으면 호환을 위해 함께 확인한다.)
-function referencePlanItems(){
-  // 진도 목표 선택지에 쓸 기준 반 — 진도 항목이 가장 많이 등록된 반을 기준으로 번호를 매긴다.
-  var best = null, bestLen = -1;
-  state.settings.classes.forEach(function(c){
-    var items = state.plans[c.id] || [];
-    if(items.length > bestLen){ best = c; bestLen = items.length; }
-  });
-  return best ? (state.plans[best.id] || []) : [];
-}
-// startOrder: 이 시험 바로 이전 지필평가의 목표 순번(있으면). 그 다음 항목부터 이 시험의 목표까지가
-// 이 시험의 진도 범위가 된다. (예: 중간고사 목표 5번 → 1~5번, 기말고사 목표 10번 → 6~10번)
-function examTargetStats(classId, exam, startOrder){
-  var items = state.plans[classId] || [];
-  var endIdx = items.length - 1;
-  var legacyTargetId = exam && exam.examTargets && exam.examTargets[classId];
-  if(exam && exam.examTargetOrder){
-    endIdx = Math.min(exam.examTargetOrder, items.length) - 1;
-  } else if(legacyTargetId){
-    var idx = items.findIndex(function(i){ return i.id===legacyTargetId; });
-    if(idx !== -1) endIdx = idx;
-  }
-  var startIdx = startOrder ? Math.min(startOrder, items.length) : 0;
-  if(startIdx > endIdx + 1) startIdx = endIdx + 1;
-  var slice = items.slice(Math.max(startIdx,0), Math.max(endIdx+1,0));
-  var total = slice.length;
-  var done = slice.filter(function(i){ return i.done; }).length;
-  var rangeLabel = items.length ? ((Math.max(startIdx,0)+1)+'~'+Math.max(endIdx+1,startIdx)+'번') : '';
-  return { total: total, done: done, remain: total - done, hasCustomTarget: !!((exam && exam.examTargetOrder) || legacyTargetId), rangeLabel: rangeLabel };
-}
-
-function findBlockingExam(dateStr, classId, period){
-  var cls = getClass(classId);
-  var grade = cls ? (cls.grade||'') : '';
-  return state.settings.exams.find(function(e){
-    if(e.type==='performance' && e.slots && e.slots.length){
-      return e.slots.some(function(s){
-        if(s.classId !== classId || s.date !== dateStr) return false;
-        if(s.period != null){
-          if(period == null) return true; // period unknown at call site: err toward blocking
-          return s.period === period;
-        }
-        return true;
-      });
-    }
-    if(dateStr < e.startDate || dateStr > e.endDate) return false;
-    if(e.type==='event'){
-      if(!e.grades || !e.grades.length) return true;
-      return grade && e.grades.indexOf(grade) !== -1;
-    }
-    if(!e.classIds || !e.classIds.length) return true;
-    if(e.classIds.indexOf(classId) === -1) return false;
-    if(e.periodsByClass && e.periodsByClass[classId] != null){
-      if(period == null) return true; // period unknown at call site: err toward blocking so it isn't missed
-      return e.periodsByClass[classId] === period;
-    }
-    return true;
-  }) || null;
-}
-function examBlocksDate(dateStr, classId, period){
-  return !!findBlockingExam(dateStr, classId, period);
-}
-function countSessions(classId, fromExclusive, toInclusive){
-  if(fromExclusive >= toInclusive) return 0;
-  var count = 0;
-  var d = addDays(fromExclusive, 1);
-  var guard = 0;
-  while(d <= toInclusive && guard < 3660){
-    guard++;
-    var dk = dayKorOf(d);
-    if(DAYS.indexOf(dk) !== -1 && !isHolidayEffective(d) && inAnySemester(d)){
-      var arr = state.settings.schedule[dk] || [];
-      var recs = getRecords(d);
-      arr.forEach(function(cid, idx){
-        if(cid!==classId) return;
-        var period = idx+1;
-        if(examBlocksDate(d, classId, period)) return;
-        var rec = recs.find(function(r){ return r.period===period; });
-        if(rec && rec.excused) return;
-        count++;
-      });
-    }
-    d = addDays(d, 1);
-  }
-  return count;
-}
-
-function exportExcel(btn){
-  var origText = btn.textContent;
-  btn.textContent = '내보내는 중...';
-  btn.disabled = true;
-  listStoredKeys('records:').then(function(keys){
-    return Promise.all(keys.map(function(k){ return loadJSON(k, {}); }));
-  }).then(function(monthObjs){
-    var rows = [];
-    monthObjs.forEach(function(m){
-      Object.keys(m).forEach(function(dateStr){
-        if(dateStr==='__extras') return;
-        m[dateStr].forEach(function(r){
-          var cls = getClass(r.classId);
-          if(r.excused){
-            rows.push({
-              '날짜': dateStr, '요일': dayKorOf(dateStr), '교시': r.period,
-              '반': cls ? cls.name : '', '진도항목': '', '쪽수': '',
-              '상태': (r.reason||'개인 사정')+' (휴강)', '발표자': '', '메모': ''
-            });
-            return;
-          }
-          var itemTitle = '';
-          var recIds = recItemIds(r);
-          if(recIds.length){
-            var items = state.plans[r.classId] || [];
-            itemTitle = recIds.map(function(id){
-              var it = items.find(function(x){ return x.id===id; });
-              return it ? it.title : '';
-            }).filter(Boolean).join(', ');
-          }
-          var st = r.status || (r.progressDone && r.problemDone ? 'done' : r.progressDone ? 'inProgress' : r.problemDone ? 'practicing' : 'pending');
-          rows.push({
-            '날짜': dateStr,
-            '요일': dayKorOf(dateStr),
-            '교시': r.period,
-            '반': cls ? cls.name : '',
-            '진도항목': itemTitle,
-            '쪽수': r.pageText || '',
-            '상태': STATUS_META[st] ? STATUS_META[st].label : st,
-            '발표자': r.presenter || '',
-            '메모': r.memo || ''
-          });
-        });
-      });
-    });
-    rows.sort(function(a,b){
-      if(a['날짜'] !== b['날짜']) return a['날짜'] < b['날짜'] ? -1 : 1;
-      return a['교시'] - b['교시'];
-    });
-
-    var planRows = [];
-    state.settings.classes.forEach(function(c){
-      (state.plans[c.id] || []).forEach(function(it, idx){
-        planRows.push({
-          '반': c.name,
-          '순서': idx+1,
-          '항목': it.title,
-          '목표쪽수': it.targetPage || '',
-          '완료여부': it.done ? 'O' : 'X',
-          '완료날짜': it.doneDate || '',
-          '완료쪽수': it.donePage || ''
-        });
-      });
-    });
-
-    var schedRows = [];
-    for(var p=0; p<state.settings.periodsPerDay; p++){
-      var row = { '교시': p+1 };
-      DAYS.forEach(function(d){
-        var cid = state.settings.schedule[d][p];
-        var c = cid ? getClass(cid) : null;
-        row[d] = c ? c.name : '';
-      });
-      schedRows.push(row);
-    }
-
-    var examRows = state.settings.exams.map(function(e){
-      return { '종류': EXAM_TYPES[e.type] || e.type, '이름': e.name, '시작일': e.startDate, '종료일': e.endDate };
-    });
-    var holidayRows = state.settings.holidays.map(function(h){
-      return { '날짜': h, '요일': dayKorOf(h), '종류': '직접 등록' };
-    });
-    LEGAL_HOLIDAYS.forEach(function(h){
-      if(isAutoHolidayActive(h.date)) holidayRows.push({ '날짜': h.date, '요일': dayKorOf(h.date), '종류': h.name+' (자동)' });
-    });
-    holidayRows.sort(function(a,b){ return a['날짜']<b['날짜']?-1:1; });
-    var semesterRows = state.settings.semesters.map(function(s){
-      return { '학기': s.name, '시작일': s.start, '종료일': s.end };
-    });
-
-    var wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(rows.length?rows:[{'날짜':'','요일':'','교시':'','반':'','진도항목':'','쪽수':'','상태':'','발표자':'','메모':''}]), '일별기록');
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(planRows.length?planRows:[{'반':'','순서':'','항목':'','목표쪽수':'','완료여부':'','완료날짜':'','완료쪽수':''}]), '진도계획');
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(schedRows), '시간표');
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(examRows.length?examRows:[{'종류':'','이름':'','시작일':'','종료일':''}]), '시험일정');
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(semesterRows.length?semesterRows:[{'학기':'','시작일':'','종료일':''}]), '학기');
-    XLSX.utils.book_append_sheet(wb, XLSX.utils.json_to_sheet(holidayRows.length?holidayRows:[{'날짜':'','요일':'','종류':''}]), '휴업일');
-
-    XLSX.writeFile(wb, '진도수첩_'+todayStr()+'.xlsx');
-    btn.textContent = origText;
-    btn.disabled = false;
-  }).catch(function(e){
-    console.error('내보내기 실패', e);
-    alert('엑셀 내보내기에 실패했어요. 다시 시도해주세요.');
-    btn.textContent = origText;
-    btn.disabled = false;
-  });
-}
-
-function buildBackupObject(){
-  return listStoredKeys('records:').then(function(keys){
-    return Promise.all(keys.map(function(k){
-      return loadJSON(k, {}).then(function(v){ return [k, v]; });
-    }));
-  }).then(function(pairs){
-    var records = {};
-    pairs.forEach(function(p){ records[p[0].replace('records:','')] = p[1]; });
-    return { app:'jindosucheop', version:1, exportedAt: todayStr(), settings: state.settings, plans: state.plans, records: records };
-  });
-}
-
-function restoreBackupObject(data){
-  if(!data || !data.settings) return Promise.reject(new Error('올바른 백업 데이터가 아니에요.'));
-  state.settings = data.settings;
-  state.plans = data.plans || {};
-  state.monthCache = {};
-  var writes = [saveSettings(), savePlans()];
-  Object.keys(data.records || {}).forEach(function(ym){
-    state.monthCache[ym] = data.records[ym];
-    writes.push(saveJSON('records:'+ym, data.records[ym]));
-  });
-  return Promise.all(writes).then(function(){
-    state.currentDate = todayStr();
-    renderAll();
-    flashSaved();
-  });
-}
-
-function exportJSONBackup(btn){
-  var origText = btn.textContent;
-  btn.textContent = '내보내는 중...';
-  btn.disabled = true;
-  buildBackupObject().then(function(backup){
-    var blob = new Blob([JSON.stringify(backup)], { type:'application/json' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url; a.download = '진도수첩_백업_'+todayStr()+'.json';
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    btn.textContent = origText;
-    btn.disabled = false;
-  }).catch(function(e){
-    console.error('백업 내보내기 실패', e);
-    alert('백업 내보내기에 실패했어요.');
-    btn.textContent = origText;
-    btn.disabled = false;
-  });
-}
-
-function importJSONBackup(file){
-  if(!confirm('백업 파일을 불러오면 지금 기기에 있는 데이터를 덮어써요. 계속할까요?')) return;
-  var reader = new FileReader();
-  reader.onload = function(e){
-    try{
-      var data = JSON.parse(e.target.result);
-      restoreBackupObject(data).catch(function(err){
-        console.error(err);
-        alert('올바른 백업 파일이 아니에요.');
-      });
-    }catch(err){
-      console.error('백업 불러오기 실패', err);
-      alert('파일을 읽는 데 실패했어요. 올바른 백업 파일인지 확인해주세요.');
-    }
-  };
-  reader.readAsText(file);
-}
-
-function ymd8(dateStr){ return dateStr.replace(/-/g,''); }
-function fromYmd8(s){ return s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8); }
-
-function generateTransferCode(){
-  return String(Math.floor(100000 + Math.random()*900000));
-}
-
-function exportViaCode(btn, resultEl){
-  var rtdbUrl = RTDB_URL;
-  var origText = btn.textContent;
-  btn.textContent = '올리는 중...';
-  btn.disabled = true;
-  resultEl.innerHTML = '';
-  buildBackupObject().then(function(backup){
-    var code = generateTransferCode();
-    var jsonStr = JSON.stringify(backup);
-    return fetch(rtdbUrl+'/transfers/'+code+'.json', {
-      method:'PUT',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ data: jsonStr, createdAt: Date.now() })
-    }).then(function(r){
-      if(!r.ok) throw new Error('업로드 실패 ('+r.status+')');
-      return code;
-    });
-  }).then(function(code){
-    resultEl.innerHTML = '<div class="transfer-code-box">'+
-      '<div class="tc-label">이 번호를 새 기기에 입력하세요</div>'+
-      '<div class="tc-code">'+code+'</div>'+
-      '<div class="tc-note">30분 정도만 유효해요. 다른 사람에게 알려주지 마세요.</div></div>';
-    btn.textContent = origText;
-    btn.disabled = false;
-  }).catch(function(err){
-    console.error('코드 내보내기 실패', err);
-    resultEl.innerHTML = '<p class="small-note">업로드에 실패했어요. Firebase 주소와 규칙 설정을 확인해주세요. ('+escapeHtml(err.message||'')+')</p>';
-    btn.textContent = origText;
-    btn.disabled = false;
-  });
-}
-
-function importViaCode(btn, code, resultEl){
-  var rtdbUrl = RTDB_URL;
-  code = (code||'').trim();
-  if(!/^[0-9]{6}$/.test(code)){
-    resultEl.innerHTML = '<p class="small-note">6자리 숫자 코드를 입력해주세요.</p>';
-    return;
-  }
-  if(!confirm('코드로 데이터를 불러오면 지금 기기에 있는 데이터를 덮어써요. 계속할까요?')) return;
-  var origText = btn.textContent;
-  btn.textContent = '가져오는 중...';
-  btn.disabled = true;
-  var path = rtdbUrl+'/transfers/'+code+'.json';
-  fetch(path).then(function(r){ return r.json(); }).then(function(entry){
-    if(!entry || !entry.data) throw new Error('해당 코드를 찾을 수 없어요. 코드나 유효시간을 확인해주세요.');
-    var ageMs = Date.now() - (entry.createdAt||0);
-    if(ageMs > 30*60*1000){
-      fetch(path, { method:'DELETE' });
-      throw new Error('코드가 만료됐어요(30분 경과). 다시 내보내기 해주세요.');
-    }
-    var backup = JSON.parse(entry.data);
-    return restoreBackupObject(backup).then(function(){
-      return fetch(path, { method:'DELETE' });
-    });
-  }).then(function(){
-    resultEl.innerHTML = '<p class="small-note">불러오기 완료! 이 코드는 이제 사용할 수 없어요.</p>';
-    btn.textContent = origText;
-    btn.disabled = false;
-  }).catch(function(err){
-    console.error('코드 가져오기 실패', err);
-    resultEl.innerHTML = '<p class="small-note">'+escapeHtml(err.message||'불러오기에 실패했어요.')+'</p>';
-    btn.textContent = origText;
-    btn.disabled = false;
-  });
-}
-
-function searchNeisSchool(key, name, body){
-  var resultsEl = document.getElementById('neisSearchResults');
-  if(!key || !name){
-    resultsEl.innerHTML = '<p class="small-note">인증키와 학교 이름을 모두 입력해주세요.</p>';
-    return;
-  }
-  resultsEl.innerHTML = '<p class="small-note">검색 중...</p>';
-  var url = 'https://open.neis.go.kr/hub/schoolInfo?KEY='+encodeURIComponent(key)+
-    '&Type=json&pIndex=1&pSize=20&SCHUL_NM='+encodeURIComponent(name);
-  fetch(url).then(function(r){ return r.json(); }).then(function(data){
-    if(data.RESULT){
-      resultsEl.innerHTML = '<p class="small-note">검색 실패: '+escapeHtml(data.RESULT.MESSAGE||'알 수 없는 오류')+'</p>';
-      return;
-    }
-    var rows = (data.schoolInfo && data.schoolInfo[1] && data.schoolInfo[1].row) || [];
-    if(!rows.length){
-      resultsEl.innerHTML = '<p class="small-note">검색 결과가 없어요. 학교 이름을 다시 확인해주세요.</p>';
-      return;
-    }
-    var html = '';
-    rows.forEach(function(r, i){
-      html += '<div class="list-row neis-school-result" data-idx="'+i+'" style="cursor:pointer;">'+
-        '<div class="grow">'+escapeHtml(r.SCHUL_NM)+'<div class="sub">'+escapeHtml(r.ATPT_OFCDC_SC_NM||'')+(r.ORG_RDNMA?(' · '+escapeHtml(r.ORG_RDNMA)):'')+'</div></div>'+
-        '<span style="color:var(--coral-deep);font-size:0.75rem;">선택</span></div>';
-    });
-    resultsEl.innerHTML = html;
-    resultsEl.querySelectorAll('.neis-school-result').forEach(function(x){
-      x.addEventListener('click', function(){
-        var r = rows[parseInt(x.getAttribute('data-idx'),10)];
-        state.settings.neisOfcdc = r.ATPT_OFCDC_SC_CODE;
-        state.settings.neisSchul = r.SD_SCHUL_CODE;
-        state.settings.neisSchoolName = r.SCHUL_NM+' ('+(r.ATPT_OFCDC_SC_NM||'')+')';
-        saveSettings().then(function(){ renderSettingsSemesterHoliday(body); flashSaved(); });
-      });
-    });
-  }).catch(function(err){
-    console.error('학교 검색 실패', err);
-    resultsEl.innerHTML = '<p class="small-note">검색에 실패했어요. 인증키를 확인하거나 잠시 후 다시 시도해주세요.</p>';
-  });
-}
-
-function fetchNeisSchedule(key, ofcdc, schul, statusEl, body){
-  if(!key || !ofcdc || !schul){
-    statusEl.textContent = '인증키를 입력하고, 학교를 먼저 검색해서 선택해주세요.';
-    return;
-  }
-  statusEl.textContent = '불러오는 중...';
-  var from = todayStr();
-  var to = addDays(from, 365);
-  var url = 'https://open.neis.go.kr/hub/SchoolSchedule?KEY='+encodeURIComponent(key)+
-    '&Type=json&pIndex=1&pSize=1000&ATPT_OFCDC_SC_CODE='+encodeURIComponent(ofcdc)+
-    '&SD_SCHUL_CODE='+encodeURIComponent(schul)+
-    '&AA_FROM_YMD='+ymd8(from)+'&AA_TO_YMD='+ymd8(to);
-  fetch(url).then(function(r){ return r.json(); }).then(function(data){
-    if(data.RESULT){
-      statusEl.textContent = '불러오기 실패: '+(data.RESULT.MESSAGE||'알 수 없는 오류');
-      return;
-    }
-    var rows = (data.SchoolSchedule && data.SchoolSchedule[1] && data.SchoolSchedule[1].row) || [];
-    var imported = rows.filter(function(r){ return r.EVENT_NM && r.EVENT_NM.trim(); })
-      .map(function(r){
-        var grades = [];
-        if(r.ONE_GRADE_EVENT_YN==='Y') grades.push('1학년');
-        if(r.TW_GRADE_EVENT_YN==='Y') grades.push('2학년');
-        if(r.THREE_GRADE_EVENT_YN==='Y') grades.push('3학년');
-        return { date: fromYmd8(r.AA_YMD), name: r.EVENT_NM, sbtr: r.SBTR_DD_SC_NM||'', grades: grades, classified:'event' };
-      });
-    state.settings.neisHolidays = imported;
-    saveSettings().then(function(){
-      statusEl.textContent = imported.length+'개 일정을 불러왔어요.';
-      renderSettingsSemesterHoliday(body);
-      flashSaved();
-    });
-  }).catch(function(err){
-    console.error('NEIS 조회 실패', err);
-    statusEl.textContent = '불러오기에 실패했어요. 키/코드를 확인하시거나, 잠시 후 다시 시도해주세요.';
-  });
-}
-
-// ---------- render: TODAY ----------
-function renderPrettyTimetable(){
-  var n = state.settings.periodsPerDay;
-  var html = '<div class="pretty-timetable" id="prettyTimetableCard">';
-  html += '<div class="pt-title">시간표</div>';
-  html += '<div class="pt-grid" style="grid-template-columns:44px repeat('+DAYS.length+',1fr);">';
-  html += '<div class="pt-cell pt-head"></div>';
-  DAYS.forEach(function(d){ html += '<div class="pt-cell pt-head">'+d+'</div>'; });
-  for(var p=0; p<n; p++){
-    var pt = computePeriodTime(p);
-    html += '<div class="pt-cell pt-period"><div class="pt-period-num">'+(p+1)+'</div><div class="pt-period-time">'+pt.start+'</div></div>';
-    DAYS.forEach(function(d){
-      var cid = state.settings.schedule[d][p];
-      var c = cid ? getClass(cid) : null;
-      if(c){
-        html += '<div class="pt-cell pt-class" style="background:'+c.color+'22;color:'+darken(c.color,0.35)+';border-color:'+c.color+';">'+escapeHtml(c.name)+'</div>';
-      } else {
-        html += '<div class="pt-cell"></div>';
+    function getRandomEmojiProfile(name) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
       }
-    });
-    if(state.settings.lunchAfterPeriod===(p+1)){
-      html += '<div class="pt-cell pt-lunch" style="grid-column:1 / -1;">점심시간</div>';
+      const emoji = emojiList[Math.abs(hash) % emojiList.length];
+      const bg = bgColors[Math.abs(hash) % bgColors.length];
+      return { emoji, bg };
     }
-  }
-  html += '</div></div>';
-  html += '<button class="btn ghost small" id="saveTimetableImgBtn" style="width:100%;margin-top:10px;">이미지로 저장</button>';
-  return html;
-}
 
-function saveTimetableImage(){
-  var node = document.getElementById('prettyTimetableCard');
-  if(!node || typeof html2canvas === 'undefined'){
-    alert('이미지 저장 기능을 불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해주세요.');
-    return;
-  }
-  html2canvas(node, { scale:3, backgroundColor:'#FFFFFF' }).then(function(canvas){
-    canvas.toBlob(function(blob){
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url; a.download = '시간표.png';
-      document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-  }).catch(function(err){
-    console.error('이미지 저장 실패', err);
-    alert('이미지 저장에 실패했어요.');
-  });
-}
+    const zodiacList = [
+      { name: "염소자리", symbol: "♑", element: "earth", tagColor: "#78350F", start: [12, 22], end: [1, 19] },
+      { name: "물병자리", symbol: "♒", element: "air",   tagColor: "#D97706", start: [1, 20], end: [2, 18] },
+      { name: "물고기자리", symbol: "♓", element: "water", tagColor: "#2563EB", start: [2, 19], end: [3, 20] },
+      { name: "양자리",   symbol: "♈", element: "fire",  tagColor: "#DC2626", start: [3, 21], end: [4, 19] },
+      { name: "황소자리", symbol: "♉", element: "earth", tagColor: "#78350F", start: [4, 20], end: [5, 20] },
+      { name: "쌍둥이자리", symbol: "♊", element: "air",   tagColor: "#D97706", start: [5, 21], end: [6, 21] },
+      { name: "게자리",   symbol: "♋", element: "water", tagColor: "#2563EB", start: [6, 22], end: [7, 22] },
+      { name: "사자자리", symbol: "♌", element: "fire",  tagColor: "#DC2626", start: [7, 23], end: [8, 22] },
+      { name: "처녀자리", symbol: "♍", element: "earth", tagColor: "#78350F", start: [8, 23], end: [9, 22] },
+      { name: "천칭자리", symbol: "♎", element: "air",   tagColor: "#D97706", start: [9, 23], end: [10, 23] },
+      { name: "전갈자리", symbol: "♏", element: "water", tagColor: "#2563EB", start: [10, 24], end: [11, 22] },
+      { name: "사수자리", symbol: "♐", element: "fire",  tagColor: "#DC2626", start: [11, 23], end: [12, 21] }
+    ];
 
-function renderToday(){
-  var el = document.getElementById('view-today');
-  var d = state.currentDate;
-  var dk = dayKorOf(d);
-  var isToday = d === todayStr();
-  var status = dayStatus(d);
-  var sched = status==='school' ? scheduleFor(d) : [];
-  var autoH = findAutoHoliday(d);
-  var weekdayLabel = dk+'요일'+(status==='holiday'?(' · '+(autoH&&isAutoHolidayActive(d)?autoH.name:'휴업일')):(status==='vacation'?' · 방학':''));
+    function getZodiacByDate(dateString) {
+      if (!dateString) return zodiacList[0];
+      const date = new Date(dateString);
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
 
-  var html = '';
-  if(!isToday) html += '<button class="today-bar-btn" id="jumpTodayTop">오늘로 돌아가기</button>';
-  html += '<div class="date-nav">';
-  html += '<button class="icon-btn" id="prevDay">◀</button>';
-  html += '<div class="date-display"><div class="weekday">'+weekdayLabel+'</div>';
-  html += '<h1>'+niceDate(d)+'</h1>';
-  html += '</div>';
-  html += '<button class="icon-btn" id="nextDay">▶</button>';
-  html += '</div>';
-
-  if(state.settings.classes.length === 0){
-    html += emptyStateHtml('🏫','아직 반이 없어요','설정에서 반과 시간표를 먼저 만들어주세요.','settings');
-  } else {
-    if(status==='vacation'){
-      html += '<div class="empty-state"><h2>방학 기간이에요</h2><p>설정 &gt; 학사일정에서 학기 기간을 확인해보세요.</p></div>';
-    } else if(status==='holiday'){
-      html += '<div class="empty-state"><h2>'+(autoH?autoH.name:'휴업일')+'이에요</h2><p>이 날은 수업이 없는 날로 등록되어 있어요.</p></div>';
-    } else if(sched.length === 0){
-      html += '<div class="empty-state"><h2>수업이 없는 날</h2><p>이 날엔 시간표에 등록된 수업이 없어요.</p></div>';
-    } else {
-      var focus = isToday ? findFocusPeriod(sched) : null;
-      var activeEntries = [], completedPeriods = [], focusEntry = null;
-      sched.forEach(function(s){
-        var blockingExam = findBlockingExam(d, s.classId, s.period);
-        var isFoc = !!(focus && focus.period===s.period && focus.classId===s.classId);
-        if(blockingExam){
-          var entry = { s:s, blockingExam:blockingExam, isFoc:isFoc };
-          if(isFoc) focusEntry = entry; else activeEntries.push(entry);
-          return;
-        }
-        var rec = getRecords(d).find(function(r){ return r.period===s.period; });
-        var isDone = !!(rec && (rec.excused || rec.status==='done'));
-        var key = d+'-'+s.period;
-        if(isFoc){
-          focusEntry = { s:s, isFoc:true };
-        } else if(isDone && !state.uiExpanded[key]){
-          completedPeriods.push(s);
+      for (let z of zodiacList) {
+        if (z.name === "염소자리") {
+          if ((m === 12 && d >= 22) || (m === 1 && d <= 19)) return z;
         } else {
-          activeEntries.push({ s:s, isFoc:false });
-        }
-      });
-      var orderedActive = focusEntry ? [focusEntry].concat(activeEntries) : activeEntries;
-      orderedActive.forEach(function(e){
-        html += e.blockingExam ? renderExamBlockedCard(e.s.period, e.s.classId, e.blockingExam) : renderDayCard(d, e.s.period, e.s.classId, e.isFoc);
-      });
-      if(completedPeriods.length){
-        html += '<div class="completed-zone-label">완료된 수업</div>';
-        completedPeriods.forEach(function(s){
-          html += renderFoldedCard(d, s.period, s.classId);
-        });
-      }
-    }
-    html += renderExtrasSection(d);
-  }
-  el.innerHTML = html;
-
-  document.getElementById('prevDay').onclick = function(){ state.currentDate = addDays(state.currentDate,-1); goToDate(state.currentDate); };
-  document.getElementById('nextDay').onclick = function(){ state.currentDate = addDays(state.currentDate,1); goToDate(state.currentDate); };
-  var jt = document.getElementById('jumpTodayTop');
-  if(jt) jt.onclick = function(){ state.currentDate = todayStr(); goToDate(state.currentDate); };
-  bindExtrasEvents(el, d, function(){ renderToday(); });
-
-  el.querySelectorAll('.card-folded').forEach(function(fc){
-    fc.addEventListener('click', function(){
-      var period = parseInt(fc.getAttribute('data-period'),10);
-      state.uiExpanded[d+'-'+period] = true;
-      renderToday();
-    });
-  });
-
-  bindDayCardEvents(el, d);
-}
-
-function emptyStateHtml(emoji,title,desc,goto){
-  return '<div class="empty-state"><h2>'+title+'</h2><p>'+desc+'</p>'+
-    '<button class="btn" onclick="window.__gotoView(\''+goto+'\')">설정하러 가기</button></div>';
-}
-
-function renderExtraCard(dateStr, extra){
-  var clsNames = (extra.classIds||[]).map(function(id){ var c=getClass(id); return c?c.name:''; }).filter(Boolean).join(', ');
-  return '<div class="card extra-card">'+
-    '<div class="card-head"><span class="period-tag">추가 수업</span>'+
-    '<span class="class-chip" style="background:var(--butter-bg)">'+escapeHtml(extra.subject)+'</span></div>'+
-    (clsNames?('<div class="small-note" style="margin:0 0 4px;">통합 학급: '+escapeHtml(clsNames)+'</div>'):'')+
-    (extra.place?('<div class="small-note" style="margin:0 0 4px;">장소: '+escapeHtml(extra.place)+'</div>'):'')+
-    (extra.note?('<div class="small-note" style="margin:0 0 8px;">'+escapeHtml(extra.note)+'</div>'):'')+
-    '<span class="del-extra" data-id="'+extra.id+'" style="font-size:0.75rem;color:var(--rose-deep);cursor:pointer;text-decoration:underline;">삭제</span>'+
-  '</div>';
-}
-
-function renderExtrasSection(dateStr){
-  var html = '';
-  getExtras(dateStr).forEach(function(ex){ html += renderExtraCard(dateStr, ex); });
-  html += '<button class="btn ghost small add-extra-btn" data-date="'+dateStr+'" style="width:100%;margin-top:4px;">+ 수업 추가</button>';
-  return html;
-}
-
-function bindExtrasEvents(container, dateStr, onChange){
-  container.querySelectorAll('.del-extra').forEach(function(x){
-    x.addEventListener('click', function(){
-      if(!confirm('이 항목을 삭제할까요?')) return;
-      removeExtra(dateStr, x.getAttribute('data-id')).then(onChange);
-    });
-  });
-  var addBtn = container.querySelector('.add-extra-btn');
-  if(addBtn) addBtn.addEventListener('click', function(){ openAddClassModal(dateStr, onChange); });
-}
-
-function openAddClassModal(dateStr, onDone){
-  var overlay = document.createElement('div');
-  overlay.className = 'modal-overlay';
-  var classChecks = state.settings.classes.map(function(c){
-    return '<label class="check" style="font-size:0.7812rem;padding:6px 10px;"><input type="checkbox" class="modal-cls-chk" value="'+c.id+'"><span class="mark"></span>'+escapeHtml(c.name)+'</label>';
-  }).join('');
-  overlay.innerHTML = '<div class="modal-box">'+
-    '<h3>수업 추가</h3>'+
-    (state.settings.classes.length ? ('<div class="field-row"><label>통합 학급 (선택, 여러 반 합반이면 여러 개 선택)</label><div style="display:flex;flex-wrap:wrap;gap:6px;">'+classChecks+'</div></div>') : '')+
-    '<div class="field-row"><label>장소 (선택)</label><input type="text" id="modalPlace" placeholder="예: 과학실, 음악실"></div>'+
-    '<div class="field-row"><label>과목 <span class="req">*</span></label><input type="text" id="modalSubject" placeholder="예: 수학"></div>'+
-    '<div class="field-row"><label>특이사항/비고 (선택)</label><textarea id="modalNote" rows="2"></textarea></div>'+
-    '<div class="modal-actions"><button class="btn ghost small" id="modalCancel">취소</button><button class="btn small" id="modalSave">추가</button></div>'+
-  '</div>';
-  document.body.appendChild(overlay);
-  overlay.querySelectorAll('.modal-cls-chk').forEach(function(chk){
-    chk.addEventListener('change', function(){ chk.closest('.check').classList.toggle('on', chk.checked); });
-  });
-  overlay.querySelector('#modalCancel').addEventListener('click', function(){ overlay.remove(); });
-  overlay.addEventListener('click', function(e){ if(e.target===overlay) overlay.remove(); });
-  overlay.querySelector('#modalSave').addEventListener('click', function(){
-    var subject = document.getElementById('modalSubject').value.trim();
-    if(!subject){ alert('과목을 입력해주세요.'); return; }
-    var classIds = Array.prototype.slice.call(overlay.querySelectorAll('.modal-cls-chk:checked')).map(function(c){ return c.value; });
-    var place = document.getElementById('modalPlace').value.trim();
-    var note = document.getElementById('modalNote').value.trim();
-    var entry = { id:uid(), classIds:classIds, place:place, subject:subject, note:note };
-    addExtra(dateStr, entry).then(function(){
-      overlay.remove();
-      onDone();
-    });
-  });
-}
-
-function renderExamBlockedCard(period, classId, exam){
-  var cls = getClass(classId);
-  if(!cls) return '';
-  return '<div class="card exam-blocked"><div class="card-head"><span class="period-tag">'+periodTagLabel(period)+'</span>'+
-    '<span class="class-chip" style="background:'+cls.color+'">'+escapeHtml(cls.name)+'</span></div>'+
-    '<div class="excused-note">'+escapeHtml(exam.name)+' 기간이라 진도 기록이 없어요.</div></div>';
-}
-
-function renderDayCard(dateStr, period, classId, isFocus){
-  var cls = getClass(classId);
-  if(!cls) return '';
-  var rec = getRecords(dateStr).find(function(r){ return r.period===period; }) || {};
-  var items = state.plans[classId] || [];
-  var status = rec.status || 'pending';
-  var mainItemId = recMainItemId(rec);
-  var extraItems = recExtraItems(rec);
-
-  if(rec.excused){
-    var reasonLabel = rec.reason || '개인 사정';
-    return '<div class="card" data-period="'+period+'" data-class="'+classId+'">'+
-      '<div class="card-head"><span class="period-tag">'+periodTagLabel(period)+'</span>'+
-      '<span class="class-chip" style="background:'+cls.color+'">'+escapeHtml(cls.name)+'</span></div>'+
-      '<div class="excused-note">'+escapeHtml(reasonLabel)+'로 수업이 없었어요.</div>'+
-      '<div class="excused-undo">기록 취소하고 되돌리기</div>'+
-    '</div>';
-  }
-
-  var opts = '<option value="">— 항목 선택 (직접 입력) —</option>';
-  items.forEach(function(it,i){
-    var label = (i+1)+'. '+escapeHtml(it.title)+(it.targetPage?(' ('+escapeHtml(it.targetPage)+')'):'')+(it.done?' ✓':'');
-    opts += '<option value="'+it.id+'"'+(mainItemId===it.id?' selected':'')+'>'+label+'</option>';
-  });
-
-  var stamp = (status==='done') ? '<span class="stamp" data-fold="'+period+'" title="눌러서 접기">완료</span>' : '';
-  var memo = rec.memo || '';
-  var presenter = rec.presenter || '';
-
-  // '지난 진도' 조회 영역: 교사가 수업 직전 가장 먼저 확인하는 정보라 카드 맨 위에
-  // 크고 굵은 하이라이트 블록(Hero)으로 따로 분리해서 보여준다.
-  var cst = classStats(classId);
-  var prevHtml;
-  if(cst.last && cst.last.doneDate && cst.last.doneDate < dateStr){
-    var lm = STATUS_META[cst.last.status||'done'];
-    prevHtml = '<div class="prev-hero"><div class="prev-hero-label">지난 진도</div>'+
-      '<div class="prev-hero-value">'+escapeHtml(cst.last.title)+(cst.last.donePage?('<br>'+escapeHtml(cst.last.donePage)):'')+'</div>'+
-      '<div class="prev-hero-meta">'+statusIconSvg(cst.last.status||'done',13)+'<span>'+(lm?lm.short:'')+' · '+niceDate(cst.last.doneDate)+'</span></div>'+
-    '</div>';
-  } else {
-    prevHtml = '<div class="prev-hero empty"><div class="prev-hero-label">지난 진도</div>'+
-      '<div class="prev-hero-value">아직 기록된 진도가 없어요</div></div>';
-  }
-
-  var statusBtns = STATUS_ORDER.map(function(s){
-    return '<div class="status-btn st-'+s+(status===s?' on':'')+'" data-status="'+s+'">'+
-      '<span class="status-ico">'+statusIconSvg(s,18)+'</span>'+
-      '<span class="status-label">'+STATUS_META[s].short+'</span>'+
-    '</div>';
-  }).join('');
-
-  // 오늘 원래 나갈 항목(메인) 말고 추가로 더 나간 진도가 있으면 따로 기록한다.
-  // 메인 항목과 상태가 섞이지 않도록, 추가 항목은 각자 자기 상태를 따로 갖는다.
-  var extraListHtml = extraItems.map(function(ex){
-    var idx = items.findIndex(function(x){ return x.id===ex.itemId; });
-    var it = idx!==-1 ? items[idx] : null;
-    var title = it ? ((idx+1)+'. '+escapeHtml(it.title)) : '(삭제된 항목)';
-    var miniBtns = STATUS_ORDER.map(function(s){
-      return '<span class="mini-status-btn'+(ex.status===s?' on':'')+'" data-itemid="'+ex.itemId+'" data-status="'+s+'" title="'+STATUS_META[s].short+'">'+statusIconSvg(s,14)+'</span>';
-    }).join('');
-    return '<div class="extra-item-row" data-itemid="'+ex.itemId+'"><span class="grow">'+title+'</span>'+
-      '<span class="mini-status-group">'+miniBtns+'</span>'+
-      '<span class="remove-extra" data-itemid="'+ex.itemId+'">✕</span></div>';
-  }).join('');
-
-  var usedIds = {};
-  if(mainItemId) usedIds[mainItemId] = true;
-  extraItems.forEach(function(e){ usedIds[e.itemId] = true; });
-  var addableItems = items.filter(function(it){ return !usedIds[it.id]; });
-  var extraAddHtml = addableItems.length ?
-    ('<div class="extra-add-row"><select class="extra-item-select">'+
-      addableItems.map(function(it){ var i=items.indexOf(it); return '<option value="'+it.id+'">'+(i+1)+'. '+escapeHtml(it.title)+'</option>'; }).join('')+
-      '</select><button type="button" class="btn ghost small add-extra-btn">추가</button></div>')
-    : (items.length ? '<p class="small-note" style="margin:4px 0 0;">추가할 수 있는 진도 항목이 없어요.</p>' : '');
-  var hasExtra = extraItems.length>0;
-  var focusBadge = isFocus ? '<div class="now-focus-badge">'+statusIconSvg('inProgress',12)+' 지금 이 시간</div>' : '';
-
-  return '<div class="card'+(isFocus?' is-focus':'')+'" data-period="'+period+'" data-class="'+classId+'">'+
-    '<div class="card-head"><span class="period-tag">'+periodTagLabel(period)+'</span>'+
-    '<span class="class-chip" style="background:'+cls.color+'">'+escapeHtml(cls.name)+'</span>'+stamp+'</div>'+
-    focusBadge+
-    prevHtml+
-    '<div class="card-section-divider">오늘 진도 입력</div>'+
-    '<div class="field-row"><label>진도 항목</label><select class="f-item">'+opts+'</select></div>'+
-    '<div class="field-row"><label>오늘 어디까지 (쪽/문단/번호)</label><div class="page-row">'+
-      '<input type="text" class="f-page" placeholder="예: 45쪽까지" value="'+escapeHtml(rec.pageText||'')+'">'+
-    '</div></div>'+
-    '<div class="field-row"><label>진행 상태</label><div class="status-seg">'+statusBtns+'</div></div>'+
-    '<div class="memo-toggle extra-toggle">추가 진도 기록 '+(hasExtra?'수정':'추가')+'</div>'+
-    '<div class="memo-wrap extra-wrap'+(hasExtra?' show':'')+'">'+
-      '<p class="small-note" style="margin:2px 0 8px;">오늘 원래 나갈 진도 말고 추가로 더 나간 항목이 있으면 여기서 따로 기록하세요. 메인 항목 상태와는 별개로 관리돼요.</p>'+
-      '<div class="extra-list">'+extraListHtml+'</div>'+
-      extraAddHtml+
-    '</div>'+
-    '<div class="memo-toggle">발표/메모 '+((memo||presenter)?'수정':'추가')+'</div>'+
-    '<div class="memo-wrap'+((memo||presenter)?' show':'')+'">'+
-      '<div class="field-row"><label>오늘 발표자 (있으면)</label><input type="text" class="f-presenter" placeholder="예: 김OO, 박OO" value="'+escapeHtml(presenter)+'"></div>'+
-      '<div class="field-row"><label>메모 (발표 내용, 특이사항 등)</label><textarea class="f-memo" rows="2" placeholder="예: 김OO 이차방정식 풀이 발표">'+escapeHtml(memo)+'</textarea></div>'+
-    '</div>'+
-    '<div class="excuse-toggle-row"><span class="excuse-label">개인 사정으로 수업 없음:</span>'+
-      EXCUSE_REASONS.map(function(r){ return '<span class="excuse-btn" data-reason="'+r+'">'+r+'</span>'; }).join('')+
-    '</div>'+
-  '</div>';
-}
-
-function bindDayCardEvents(container, dateStr){
-  container.querySelectorAll('.card[data-period]').forEach(function(card){
-    bindOneCard(card, dateStr, card.classList.contains('is-focus'));
-  });
-}
-
-// 카드 하나의 상태가 바뀐 뒤(특히 완료 처리), 잠깐 뒤에 오늘 화면 전체를 다시 그려서
-// 완료된 카드는 접어서 아래로, 남은 카드는 위로 정렬한다. (여러 번 눌러도 마지막 한 번만 실행)
-var reorderTimer = null;
-function scheduleReorder(){
-  clearTimeout(reorderTimer);
-  reorderTimer = setTimeout(function(){ renderToday(); }, 500);
-}
-
-function bindOneCard(card, dateStr, isFocus){
-  var period = parseInt(card.getAttribute('data-period'),10);
-  var classId = card.getAttribute('data-class');
-
-  function rerenderCard(){
-    var newHtml = renderDayCard(dateStr, period, classId, isFocus);
-    var tmp = document.createElement('div');
-    tmp.innerHTML = newHtml;
-    var newCard = tmp.firstElementChild;
-    card.replaceWith(newCard);
-    bindOneCard(newCard, dateStr, isFocus);
-  }
-
-  if(card.querySelector('.excused-undo')){
-    card.querySelector('.excused-undo').addEventListener('click', function(){
-      var rec = getRecords(dateStr).find(function(r){ return r.period===period; }) || { period:period, classId:classId, status:'pending', itemId:'', extraItems:[], pageText:'', presenter:'', memo:'' };
-      rec.excused = false;
-      setRecord(dateStr, period, rec).then(rerenderCard);
-    });
-    return;
-  }
-
-  var curStatus = (getRecords(dateStr).find(function(r){ return r.period===period; }) || {}).status || 'pending';
-  var curExtraItems = recExtraItems(getRecords(dateStr).find(function(r){ return r.period===period; }) || {}).map(function(e){ return { itemId:e.itemId, status:e.status }; });
-
-  function currentEntry(){
-    return {
-      period: period,
-      classId: classId,
-      itemId: card.querySelector('.f-item').value || '',
-      extraItems: curExtraItems,
-      pageText: card.querySelector('.f-page').value,
-      status: curStatus,
-      presenter: card.querySelector('.f-presenter').value,
-      memo: card.querySelector('.f-memo').value
-    };
-  }
-  function refreshCardAfterSave(entry){
-    var oldStamp = card.querySelector('.stamp');
-    if(oldStamp) oldStamp.remove();
-    if(entry.status==='done') card.querySelector('.card-head').insertAdjacentHTML('beforeend', '<span class="stamp" data-fold="'+period+'" title="눌러서 접기">완료</span>');
-  }
-  function persist(){
-    var entry = currentEntry();
-    var items = state.plans[classId] || [];
-    if(entry.itemId){
-      var it = items.find(function(i){ return i.id===entry.itemId; });
-      if(it){
-        it.status = entry.status;
-        it.done = (entry.status==='done');
-        if(entry.status!=='pending'){
-          it.doneDate = dateStr;
-          if(entry.pageText) it.donePage = entry.pageText;
+          if ((m === z.start[0] && d >= z.start[1]) || (m === z.end[0] && d <= z.end[1])) return z;
         }
       }
+      return zodiacList[0];
     }
-    entry.extraItems.forEach(function(ex){
-      var it = items.find(function(i){ return i.id===ex.itemId; });
-      if(it){
-        it.status = ex.status;
-        it.done = (ex.status==='done');
-        if(ex.status!=='pending') it.doneDate = dateStr;
+
+    function getZodiacRelation(ownerZodiac, friendZodiac, ownerName) {
+      if (ownerZodiac.name === friendZodiac.name) {
+        return `💖 ${ownerName}님과 시너지 폭발하는 '데칼코마니 찰떡 파트너'`;
       }
-    });
-    Promise.all([ setRecord(dateStr, period, entry), savePlans() ]).then(function(){
-      refreshCardAfterSave(entry);
-      bindFoldTrigger();
-    });
-  }
-  var debTimer=null;
-  function debPersist(){ clearTimeout(debTimer); debTimer=setTimeout(persist, 400); }
-
-  function bindFoldTrigger(){
-    var st = card.querySelector('.stamp[data-fold]');
-    if(st) st.onclick = function(e){
-      e.stopPropagation();
-      delete state.uiExpanded[dateStr+'-'+period];
-      renderToday();
-    };
-  }
-  bindFoldTrigger();
-
-  card.querySelector('.f-item').addEventListener('change', function(){
-    var it = (state.plans[classId]||[]).find(function(x){ return x.id===this.value; }.bind(this));
-    if(it && it.targetPage && !card.querySelector('.f-page').value){
-      card.querySelector('.f-page').value = it.targetPage;
-    }
-    persist();
-    rerenderCard(); // 메인 항목이 바뀌면 추가 진도 목록에서 고를 수 있는 항목도 달라지므로 다시 그린다
-  });
-  card.querySelector('.f-page').addEventListener('input', debPersist);
-  card.querySelector('.f-memo').addEventListener('input', debPersist);
-  card.querySelector('.f-presenter').addEventListener('input', debPersist);
-  card.querySelectorAll('.status-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      curStatus = btn.getAttribute('data-status');
-      card.querySelectorAll('.status-btn').forEach(function(b){ b.classList.toggle('on', b===btn); });
-      persist();
-      scheduleReorder(); // 완료로 바뀌면 잠깐 뒤 아래로 접혀 이동, 되돌리면 다시 위로 올라옴
-    });
-  });
-
-  var addExtraBtn = card.querySelector('.add-extra-btn');
-  if(addExtraBtn){
-    addExtraBtn.addEventListener('click', function(){
-      var sel = card.querySelector('.extra-item-select');
-      if(!sel || !sel.value) return;
-      curExtraItems.push({ itemId: sel.value, status: 'done' });
-      persist();
-      rerenderCard();
-    });
-  }
-  card.querySelectorAll('.remove-extra').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var id = btn.getAttribute('data-itemid');
-      curExtraItems = curExtraItems.filter(function(e){ return e.itemId!==id; });
-      persist();
-      rerenderCard();
-    });
-  });
-  card.querySelectorAll('.mini-status-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var id = btn.getAttribute('data-itemid');
-      var s = btn.getAttribute('data-status');
-      curExtraItems.forEach(function(e){ if(e.itemId===id) e.status = s; });
-      persist();
-      rerenderCard();
-    });
-  });
-
-  card.querySelectorAll('.memo-toggle').forEach(function(toggle){
-    toggle.addEventListener('click', function(){
-      var wrap = toggle.nextElementSibling;
-      if(wrap && wrap.classList.contains('memo-wrap')) wrap.classList.toggle('show');
-    });
-  });
-  card.querySelectorAll('.excuse-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var reason = btn.getAttribute('data-reason');
-      if(!confirm(reason+'로 이 시간을 표시할까요? 입력한 진도 기록은 지워져요.')) return;
-      var rec = { period:period, classId:classId, excused:true, reason:reason };
-      setRecord(dateStr, period, rec).then(function(){ scheduleReorder(); rerenderCard(); });
-    });
-  });
-}
-
-function goToDate(dateStr){
-  var ym = ymOf(dateStr);
-  ensureMonth(ym).then(function(){
-    if(state.currentView==='today') renderToday();
-  });
-}
-
-// ---------- render: CALENDAR ----------
-function renderCalendar(){
-  var el = document.getElementById('view-calendar');
-  var ym = state.calYm;
-  ensureMonth(ym).then(function(monthData){
-    var y = parseInt(ym.slice(0,4),10), m = parseInt(ym.slice(5,7),10);
-    var first = new Date(y, m-1, 1);
-    var startDow = first.getDay();
-    var daysInMonth = new Date(y, m, 0).getDate();
-
-    var html = '<div class="cal-head"><button class="icon-btn" id="calPrev">◀</button>';
-    html += '<h2>'+y+'년 '+m+'월</h2><button class="icon-btn" id="calNext">▶</button></div>';
-    html += '<div class="cal-grid">';
-    ['일','월','화','수','목','금','토'].forEach(function(w){ html += '<div class="cal-dow">'+w+'</div>'; });
-    for(var i=0;i<startDow;i++) html += '<div class="cal-cell empty"></div>';
-    for(var day=1; day<=daysInMonth; day++){
-      var ds = ym+'-'+pad2(day);
-      var isToday = ds===todayStr();
-      var isHoliday = isHolidayEffective(ds);
-      var isVacation = !isHoliday && !inAnySemester(ds);
-      var isSelected = ds===state.calSelected;
-      var recs = monthData[ds] || [];
-      var exam = state.settings.exams.find(function(e){ return ds>=e.startDate && ds<=e.endDate; });
-      var cls = 'cal-cell'+(isToday?' today':'')+((isHoliday||isVacation)?' holiday':'')+(isSelected?' selected':'');
-      var dotsHtml = '';
-      var seen = {};
-      recs.forEach(function(r){
-        if(seen[r.classId]) return; seen[r.classId]=true;
-        var c = getClass(r.classId);
-        if(c) dotsHtml += '<span class="dot" style="background:'+c.color+'"></span>';
-      });
-      var stampMini = recs.some(function(r){ return r.status==='done'; }) ? '<span class="stamp-mini"></span>' : '';
-      var eventLabel = '';
-      if(exam){ eventLabel = exam.name; }
-      else if(isHoliday){
-        var autoH = findAutoHoliday(ds);
-        var neisH = findNeisEvent(ds);
-        if(autoH && isAutoHolidayActive(ds)) eventLabel = autoH.name;
-        else if(isSuneungDate(ds)) eventLabel = '대학수학능력시험일';
-        else if(neisH && neisH.classified==='holiday') eventLabel = neisH.name;
-        else eventLabel = '휴업일';
-      } else if(isVacation){ eventLabel = '방학'; }
-      else {
-        var neisEv = findNeisEvent(ds);
-        if(neisEv) eventLabel = neisEv.name;
+      if (ownerZodiac.element === friendZodiac.element) {
+        return `🔥 ${ownerName}님과 뜻이 딱 통하는 '행운의 영혼 콤비'`;
       }
-      html += '<div class="'+cls+'" data-date="'+ds+'"><span class="num">'+day+'</span>'+
-        (exam?'<span class="exam-flag"></span>':'')+
-        (eventLabel?('<div class="event-label">'+escapeHtml(eventLabel)+'</div>'):'')+
-        '<div class="dots">'+dotsHtml+'</div>'+stampMini+'</div>';
-    }
-    html += '</div>';
+      
+      const isBestCombo = 
+        (ownerZodiac.element === 'fire' && friendZodiac.element === 'air') ||
+        (ownerZodiac.element === 'air' && friendZodiac.element === 'fire') ||
+        (ownerZodiac.element === 'earth' && friendZodiac.element === 'water') ||
+        (ownerZodiac.element === 'water' && friendZodiac.element === 'earth');
 
-    if(state.settings.classes.length){
-      html += '<div class="legend">';
-      state.settings.classes.forEach(function(c){
-        html += '<div class="item"><span class="sw" style="background:'+c.color+'"></span>'+escapeHtml(c.name)+'</div>';
-      });
-      html += '<div class="item"><span class="sw" style="background:var(--coral-deep)"></span>시험일</div>';
-      html += '<div class="item"><span class="sw" style="background:var(--sage-deep)"></span>진도 완료</div>';
-      html += '<div class="item"><span class="sw" style="background:var(--holiday-bg);border:1px solid var(--coral)"></span>휴업일</div>';
-      html += '</div>';
+      if (isBestCombo) {
+        return `✨ ${ownerName}님의 시름을 녹여주는 '환상의 별자리 수호신'`;
+      } else {
+        return `🌙 ${ownerName}님에게 색다른 매력을 주는 '반전의 꿀귀인'`;
+      }
     }
 
-    html += '<div class="day-panel" id="dayPanel"></div>';
-    el.innerHTML = html;
+    const urlParams = new URLSearchParams(window.location.search);
+    let ownerName = urlParams.get('moon') ? decodeURIComponent(urlParams.get('moon')) : null;
+    let ownerBirth = urlParams.get('birth') || null;
+    let ownerZodiac = ownerBirth ? getZodiacByDate(ownerBirth) : null;
 
-    document.getElementById('calPrev').onclick = function(){ shiftMonth(-1); };
-    document.getElementById('calNext').onclick = function(){ shiftMonth(1); };
-    el.querySelectorAll('.cal-cell[data-date]').forEach(function(cell){
-      cell.addEventListener('click', function(){
-        state.calSelected = cell.getAttribute('data-date');
-        renderCalendar();
-      });
-    });
+    const ownerModal = document.getElementById('ownerModal');
 
-    if(state.calSelected){
-      renderDayPanel(state.calSelected);
-    }
-  });
-}
-
-function shiftMonth(delta){
-  var y = parseInt(state.calYm.slice(0,4),10), m = parseInt(state.calYm.slice(5,7),10);
-  m += delta;
-  if(m<1){ m=12; y--; } if(m>12){ m=1; y++; }
-  state.calYm = y+'-'+pad2(m);
-  renderCalendar();
-}
-
-function renderDayPanel(dateStr){
-  var panel = document.getElementById('dayPanel');
-  if(!panel) return;
-  panel.innerHTML = '<h3>'+niceDate(dateStr)+' ('+dayKorOf(dateStr)+') 기록</h3><div id="dayPanelCards"></div>';
-  var cardsEl = document.getElementById('dayPanelCards');
-  var status = dayStatus(dateStr);
-  var sched = status==='school' ? scheduleFor(dateStr) : [];
-  var html = '';
-  if(status==='vacation'){
-    html = '<p class="small-note">방학 기간이에요.</p>';
-  } else if(status==='holiday'){
-    var autoH = findAutoHoliday(dateStr);
-    html = '<p class="small-note">'+(autoH?autoH.name:'휴업일')+'이에요.</p>';
-  } else if(sched.length===0){
-    html = '<p class="small-note">이 날은 등록된 수업이 없어요.</p>';
-  } else {
-    sched.forEach(function(s){
-      var blockingExam = findBlockingExam(dateStr, s.classId, s.period);
-      html += blockingExam ? renderExamBlockedCard(s.period, s.classId, blockingExam) : renderDayCard(dateStr, s.period, s.classId);
-    });
-  }
-  html += renderExtrasSection(dateStr);
-  cardsEl.innerHTML = html;
-  bindDayCardEvents(cardsEl, dateStr);
-  bindExtrasEvents(cardsEl, dateStr, function(){ renderDayPanel(dateStr); });
-}
-
-// ---------- render: CLASSES ----------
-function stageForRatio(ratio){
-  if(ratio<=0) return 0;
-  if(ratio>=1) return 4;
-  return Math.min(4, Math.floor(ratio*5));
-}
-function treeSVG(stage, accentColor){
-  var trunk = '#8A7256';
-  var leaf1 = '#8FAE7E', leaf2 = '#7A9A6B';
-  var ground = '<ellipse cx="30" cy="70" rx="24" ry="4" fill="var(--bg-soft)"/>';
-  if(stage===0){
-    return '<svg viewBox="0 0 60 76" width="52" height="66">'+ground+
-      '<rect x="28.5" y="58" width="3" height="12" rx="1.5" fill="'+leaf2+'"/>'+
-      '<ellipse cx="24" cy="58" rx="7" ry="4" fill="'+leaf1+'" transform="rotate(-25 24 58)"/>'+
-      '<ellipse cx="37" cy="58" rx="7" ry="4" fill="'+leaf1+'" transform="rotate(25 37 58)"/>'+
-      '</svg>';
-  }
-  if(stage===1){
-    return '<svg viewBox="0 0 60 76" width="52" height="66">'+ground+
-      '<rect x="28.5" y="38" width="3" height="32" rx="1.5" fill="'+trunk+'"/>'+
-      '<ellipse cx="22" cy="46" rx="8" ry="5" fill="'+leaf1+'" transform="rotate(-30 22 46)"/>'+
-      '<ellipse cx="39" cy="46" rx="8" ry="5" fill="'+leaf1+'" transform="rotate(30 39 46)"/>'+
-      '<ellipse cx="22" cy="58" rx="8" ry="5" fill="'+leaf2+'" transform="rotate(-25 22 58)"/>'+
-      '<ellipse cx="39" cy="58" rx="8" ry="5" fill="'+leaf2+'" transform="rotate(25 39 58)"/>'+
-      '</svg>';
-  }
-  if(stage===2){
-    return '<svg viewBox="0 0 60 76" width="52" height="66">'+ground+
-      '<rect x="27.5" y="42" width="5" height="28" rx="2" fill="'+trunk+'"/>'+
-      '<circle cx="30" cy="34" r="18" fill="'+leaf1+'"/>'+
-      '<circle cx="19" cy="40" r="11" fill="'+leaf2+'"/>'+
-      '<circle cx="41" cy="40" r="11" fill="'+leaf2+'"/>'+
-      '</svg>';
-  }
-  var dots3 = [[20,26],[38,22],[30,14],[16,36],[44,34]];
-  var dots4 = dots3.concat([[26,32],[34,38],[22,20]]);
-  if(stage===3){
-    var flowers = dots3.map(function(p){ return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="2.6" fill="'+accentColor+'"/>'; }).join('');
-    return '<svg viewBox="0 0 60 76" width="52" height="66">'+ground+
-      '<rect x="27.5" y="42" width="5" height="28" rx="2" fill="'+trunk+'"/>'+
-      '<circle cx="30" cy="34" r="18" fill="'+leaf1+'"/>'+
-      '<circle cx="19" cy="40" r="11" fill="'+leaf2+'"/>'+
-      '<circle cx="41" cy="40" r="11" fill="'+leaf2+'"/>'+
-      flowers+
-      '</svg>';
-  }
-  var fruits = dots4.map(function(p){ return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.2" fill="'+darken(accentColor,0.15)+'"/>'; }).join('');
-  return '<svg viewBox="0 0 60 76" width="52" height="66">'+ground+
-    '<rect x="27.5" y="42" width="5" height="28" rx="2" fill="'+trunk+'"/>'+
-    '<circle cx="30" cy="34" r="18" fill="'+leaf1+'"/>'+
-    '<circle cx="19" cy="40" r="11" fill="'+leaf2+'"/>'+
-    '<circle cx="41" cy="40" r="11" fill="'+leaf2+'"/>'+
-    fruits+
-    '</svg>';
-}
-var STAGE_LABEL = ['새싹','줄기·잎','나무','꽃나무','열매나무'];
-
-function renderClasses(){
-  var el = document.getElementById('view-classes');
-  if(state.settings.classes.length===0){
-    el.innerHTML = emptyStateHtml('📊','반별 현황','설정에서 반을 먼저 등록해주세요.','settings');
-    return;
-  }
-  var stats = state.settings.classes.map(function(c){
-    return { cls:c, stat:classStats(c.id) };
-  });
-  var withPlans = stats.filter(function(s){ return s.stat.total>0; });
-  var slowestId = null, fastestId = null;
-  if(withPlans.length>1){
-    var sorted = withPlans.slice().sort(function(a,b){ return a.stat.ratio-b.stat.ratio; });
-    slowestId = sorted[0].stat.ratio < sorted[sorted.length-1].stat.ratio ? sorted[0].cls.id : null;
-    fastestId = sorted[sorted.length-1].stat.ratio > sorted[0].stat.ratio ? sorted[sorted.length-1].cls.id : null;
-  }
-  stats.sort(function(a,b){ return a.stat.ratio-b.stat.ratio; });
-
-  var html = '<h1 style="margin:6px 0 4px;">반별 진도 현황</h1>';
-  html += '<p class="small-note" style="margin:0 0 14px;">진도가 늘수록 나무가 자라요 — 새싹 → 줄기·잎 → 나무 → 꽃나무 → 열매나무</p>';
-  stats.forEach(function(s){
-    var c = s.cls, st = s.stat;
-    var pct = Math.round(st.ratio*100);
-    var stage = st.total>0 ? stageForRatio(st.ratio) : 0;
-    html += '<div class="class-card">';
-    html += '<div class="tree-wrap">'+treeSVG(stage, c.color)+'<div class="tree-label">'+STAGE_LABEL[stage]+'</div></div>';
-    html += '<div class="class-card-body">';
-    html += '<div class="row1"><span class="class-chip" style="background:'+c.color+'">'+escapeHtml(c.name)+'</span>';
-    if(c.id===slowestId) html += '<span class="badge slow">진도가 느려요</span>';
-    else if(c.id===fastestId) html += '<span class="badge fast">순조로워요</span>';
-    html += '</div>';
-    if(st.total===0){
-      html += '<p class="small-note" style="margin:0;">진도 계획이 등록되지 않았어요.</p>';
+    if (!ownerName || !ownerBirth) {
+      ownerModal.classList.add('active');
     } else {
-      html += '<div class="progress-bar-bg"><div class="progress-bar-fill" style="width:'+pct+'%;background:'+c.color+'"></div></div>';
-      html += '<div class="meta"><b>'+st.done+' / '+st.total+'</b> 항목 완료 ('+pct+'%)<br>';
-      html += st.last ? ('마지막 진도: <b>'+escapeHtml(st.last.title)+'</b>'+(st.last.donePage?(' · '+escapeHtml(st.last.donePage)):'')+' · <span style="display:inline-flex;align-items:center;gap:4px;vertical-align:middle;">'+statusIconSvg(st.last.status||'done',13)+(STATUS_META[st.last.status||'done']?STATUS_META[st.last.status||'done'].short:'')+'</span> · '+niceDate(st.last.doneDate) ) : '아직 기록된 진도가 없어요';
-      html += '<br>';
-      html += st.next ? ('다음 진도: <b>'+escapeHtml(st.next.title)+'</b>') : '남은 진도 항목이 없어요';
-      html += '</div>';
+      updatePageHeader();
+      listenForDuckdams();
     }
-    html += '</div></div>';
-  });
-  el.innerHTML = html;
-}
 
-// ---------- render: EXAM D-day ----------
-function renderExam(){
-  var el = document.getElementById('view-exam');
-  if(state.settings.classes.length===0){
-    el.innerHTML = emptyStateHtml('⏳','시험 D-day','설정에서 반과 학사일정을 먼저 등록해주세요.','settings');
-    return;
-  }
-  if(!state.examFilterTab) state.examFilterTab = 'all';
-  var today = todayStr();
-  var html = '<h1 style="margin:6px 0 4px;">시험 D-day</h1>';
-  html += '<div class="tab-pills">';
-  [['all','전체'],['auto','자동(학사일정)'],['manual','수동(직접 등록)']].forEach(function(t){
-    html += '<div class="tab-pill'+(state.examFilterTab===t[0]?' active':'')+'" data-filter="'+t[0]+'">'+t[1]+'</div>';
-  });
-  html += '</div>';
-
-  var showAuto = state.examFilterTab==='all' || state.examFilterTab==='auto';
-  var showManual = state.examFilterTab==='all' || state.examFilterTab==='manual';
-
-  if(showAuto){
-    if(state.settings.exams.length===0){
-      html += '<p class="small-note">등록된 시험이 없어요. 설정 &gt; 학사일정에서 모의고사·지필평가·수행평가·학교행사를 추가해보세요.</p>';
+    function updatePageHeader() {
+      document.title = `${ownerName}님의 달빛 아래 강강술래 🌕`;
+      document.getElementById('pageTitle').innerText = `${ownerName}님의 강강술래 🌕`;
+      document.getElementById('pageSubtitle').innerText = `${ownerName}님과 손을 잡고 덕담을 올려보세요!`;
+      
+      const badge = document.getElementById('ownerZodiacBadge');
+      document.getElementById('ownerZodiacIcon').innerText = ownerZodiac.symbol;
+      document.getElementById('ownerZodiacText').innerText = ownerZodiac.name;
+      badge.style.display = 'flex';
     }
-    ['writtenExam','mock','performance','event'].forEach(function(type){
-      var list = state.settings.exams.filter(function(e){ return e.type===type; })
-        .slice().sort(function(a,b){ return a.startDate<b.startDate?-1:1; });
-      if(!list.length) return;
-      html += '<h3 style="margin:14px 0 8px;font-size:0.9375rem;color:var(--ink-soft);">'+EXAM_TYPES[type]+'</h3>';
-      list.forEach(function(ex, exIdx){
-        var diff = Math.ceil((parseDate(ex.startDate)-parseDate(today))/86400000);
-        var ddayText = diff===0?'D-DAY':(diff>0?('D-'+diff):('D+'+(-diff)));
-        var dateLabel = ex.startDate===ex.endDate
-          ? (niceDate(ex.startDate)+' ('+dayKorOf(ex.startDate)+')')
-          : (niceDate(ex.startDate)+' ~ '+niceDate(ex.endDate));
-        html += '<div class="exam-card"><div class="exam-top"><span class="exam-name">'+escapeHtml(ex.name)+'</span><span class="dday">'+ddayText+'</span></div>';
-        html += '<div class="exam-date">'+dateLabel+'</div>';
-        if(type==='writtenExam'){
-          var prevExam = list[exIdx-1] || null;
-          var startOrder = (prevExam && prevExam.examTargetOrder) ? prevExam.examTargetOrder : 0;
-          // 수업 횟수도 진도 목표와 같은 기준으로 세야 한다: 이전 지필평가가 있으면 그 시험이 끝난 날 이후부터,
-          // 이번 시험 날짜까지의 수업만 "이번 시험 범위를 위한 수업"으로 센다. (오늘이 이전 시험보다 늦으면 오늘부터)
-          var sessionsFrom = prevExam && prevExam.endDate > today ? prevExam.endDate : today;
-          state.settings.classes.forEach(function(c){
-            var planItems = state.plans[c.id] || [];
-            var st = examTargetStats(c.id, ex, startOrder);
-            var remain = st.remain;
-            var sessions = diff>0 ? countSessions(c.id, sessionsFrom, ex.startDate) : 0;
-            var tag='', tagClass='';
-            if(planItems.length===0){ tag='진도계획 없음'; tagClass='tight'; }
-            else if(remain<=0){ tag='진도 완료'; tagClass='ok'; }
-            else if(diff<=0){ tag='시험 지남'; tagClass='danger'; }
-            else if(sessions===0){ tag='남은 수업 없음'; tagClass='danger'; }
-            else {
-              var pace = remain/sessions;
-              if(pace<=1){ tag='여유 있어요'; tagClass='ok'; }
-              else if(pace<=1.8){ tag='1회당 '+pace.toFixed(1)+'개씩'; tagClass='tight'; }
-              else { tag='1회당 '+pace.toFixed(1)+'개씩 (빠듯)'; tagClass='danger'; }
-            }
-            html += '<div class="pace-row"><span class="cname" style="color:'+darken(c.color,0.45)+'">'+escapeHtml(c.name)+
-              (st.rangeLabel?' <span style="font-size:0.6875rem;color:var(--ink-faint);font-weight:400;">('+st.rangeLabel+')</span>':'')+'</span>'+
-              '<span>남은 '+Math.max(remain,0)+'개 · 수업 '+sessions+'회</span>'+
-              '<span class="pace-tag '+tagClass+'">'+tag+'</span></div>';
-          });
-        }
-        html += '</div>';
-      });
-    });
-  }
 
-  if(showManual){
-    html += '<h3 style="margin:14px 0 8px;font-size:0.9375rem;color:var(--ink-soft);">수동 목표일</h3>';
-    state.settings.customDdays.slice().sort(function(a,b){ return a.date<b.date?-1:1; }).forEach(function(dd){
-      var diff = Math.ceil((parseDate(dd.date)-parseDate(today))/86400000);
-      var ddayText = diff===0?'D-DAY':(diff>0?('D-'+diff):('D+'+(-diff)));
-      html += '<div class="exam-card"><div class="exam-top"><span class="exam-name">'+escapeHtml(dd.name)+'</span><span class="dday">'+ddayText+'</span></div>'+
-        '<div class="exam-date">'+niceDate(dd.date)+' ('+dayKorOf(dd.date)+')</div>'+
-        '<div style="text-align:right;"><span class="del-dday" data-id="'+dd.id+'" style="font-size:0.75rem;color:var(--rose-deep);cursor:pointer;text-decoration:underline;">삭제</span></div></div>';
-    });
-    html += '<div class="settings-section"><h3 style="font-size:0.875rem;">목표일 추가</h3>'+
-      '<div class="field-row"><label>이름 <span class="req">*</span></label><input type="text" id="ddayName" placeholder="예: 3단원 마감, 수행평가 제출 마감"></div>'+
-      '<div class="field-row"><label>날짜 <span class="req">*</span></label><input type="date" id="ddayDate"></div>'+
-      '<button class="btn small" id="addDdayBtn">추가</button></div>';
-  }
+    // 기본창 및 신규 생성 모달 비밀코드 통합 검증 함수
+    function checkSecretCodeAndProceed(successCallback) {
+      const requestCode = prompt("개발자에게 강강술래 코드를 요청하세요");
+      
+      if (requestCode === null) return; // 취소 누른 경우
 
-  el.innerHTML = html;
-
-  el.querySelectorAll('.tab-pill[data-filter]').forEach(function(p){
-    p.addEventListener('click', function(){ state.examFilterTab = p.getAttribute('data-filter'); renderExam(); });
-  });
-  var addBtn = document.getElementById('addDdayBtn');
-  if(addBtn){
-    addBtn.addEventListener('click', function(){
-      var name = document.getElementById('ddayName').value.trim();
-      var date = document.getElementById('ddayDate').value;
-      if(!name || !date) return;
-      state.settings.customDdays.push({ id:uid(), name:name, date:date });
-      saveSettings().then(function(){ renderExam(); flashSaved(); });
-    });
-  }
-  el.querySelectorAll('.del-dday').forEach(function(x){
-    x.addEventListener('click', function(){
-      var id = x.getAttribute('data-id');
-      if(!confirm('이 목표일을 삭제할까요?')) return;
-      var removed = state.settings.customDdays.find(function(d){ return d.id===id; });
-      state.settings.customDdays = state.settings.customDdays.filter(function(d){ return d.id!==id; });
-      saveSettings().then(function(){
-        renderExam(); flashSaved();
-        if(removed){
-          showUndoToast('"'+removed.name+'" 삭제됨', function(){
-            state.settings.customDdays.push(removed);
-            saveSettings().then(function(){ renderExam(); flashSaved(); });
-          });
-        }
-      });
-    });
-  });
-}
-
-// ---------- render: SETTINGS ----------
-function renderSettings(){
-  var el = document.getElementById('view-settings');
-  var tabs = [['schedule','시간표'],['calendar','학사일정'],['plans','진도계획'],['data','데이터 관리']];
-  if(state.settingsTab==='classes') state.settingsTab='schedule';
-  var html = '<h1 style="margin:6px 0 16px;">설정</h1>';
-  var curScale = state.settings.fontScale || 1;
-  html += '<div class="fontsize-control">'+
-    '<span class="fs-label">글씨 크기</span>'+
-    '<div style="display:flex;align-items:center;gap:10px;">'+
-      '<button class="fs-btn" id="fsMinus">−</button>'+
-      '<span class="fs-value">'+Math.round(curScale*100)+'%</span>'+
-      '<button class="fs-btn" id="fsPlus">+</button>'+
-    '</div></div>';
-  html += '<div class="tab-pills">';
-  tabs.forEach(function(t){
-    html += '<div class="tab-pill'+(state.settingsTab===t[0]?' active':'')+'" data-tab="'+t[0]+'">'+t[1]+'</div>';
-  });
-  html += '</div><div id="settingsBody"></div>';
-  el.innerHTML = html;
-  el.querySelectorAll('.tab-pill').forEach(function(p){
-    p.addEventListener('click', function(){ state.settingsTab = p.getAttribute('data-tab'); renderSettings(); });
-  });
-  function changeScale(delta){
-    var idx = closestScaleIndex(state.settings.fontScale||1);
-    idx = Math.max(0, Math.min(FONT_SCALE_STEPS.length-1, idx+delta));
-    state.settings.fontScale = FONT_SCALE_STEPS[idx];
-    applyFontScale();
-    saveSettings().then(function(){ renderSettings(); flashSaved(); });
-  }
-  document.getElementById('fsMinus').addEventListener('click', function(){ changeScale(-1); });
-  document.getElementById('fsPlus').addEventListener('click', function(){ changeScale(1); });
-  var body = document.getElementById('settingsBody');
-  if(state.settingsTab==='schedule') renderSettingsTimetable(body);
-  else if(state.settingsTab==='calendar') renderSettingsCalendar(body);
-  else if(state.settingsTab==='plans') renderSettingsPlans(body);
-  else if(state.settingsTab==='data') renderSettingsData(body);
-}
-
-function renderSettingsTimetable(body){
-  if(!state.scheduleSubTab) state.scheduleSubTab = 'myTimetable';
-  var subTabs = [['myTimetable','내 시간표'],['classes','반 목록'],['periods','일과 시간']];
-  var html = '<div class="tab-pills sub-pills">';
-  subTabs.forEach(function(t){
-    html += '<div class="tab-pill sub'+(state.scheduleSubTab===t[0]?' active':'')+'" data-subtab="'+t[0]+'">'+t[1]+'</div>';
-  });
-  html += '</div><div id="scheduleSubBody"></div>';
-  body.innerHTML = html;
-  body.querySelectorAll('.tab-pill[data-subtab]').forEach(function(p){
-    p.addEventListener('click', function(){ state.scheduleSubTab = p.getAttribute('data-subtab'); renderSettingsTimetable(body); });
-  });
-  var sub = document.getElementById('scheduleSubBody');
-  if(state.scheduleSubTab==='classes'){
-    sub.innerHTML = buildClassesHtml();
-  } else if(state.scheduleSubTab==='periods'){
-    sub.innerHTML = buildPeriodsHtml();
-  } else {
-    sub.innerHTML = buildMyTimetableHtml();
-  }
-  bindClassesEvents(body);
-  bindPeriodsEvents(body);
-  bindMyTimetableEvents(body);
-}
-
-function renderSettingsData(body){
-  body.innerHTML = buildDataHtml();
-  bindDataEvents(body);
-}
-
-function buildDataHtml(){
-  var html = '<div class="settings-section"><h3>데이터 내보내기</h3>'+
-    '<p class="small-note">지금까지 기록한 진도, 계획, 시간표를 엑셀 파일로 저장해요.</p>'+
-    '<button class="btn ghost small" id="exportBtn">엑셀로 내보내기</button></div>';
-  html += '<div class="settings-section"><h3>전체 데이터 백업</h3>'+
-    '<p class="small-note">다른 기기나 브라우저로 옮길 때 사용해요. 내보낸 파일을 그 기기에서 불러오면 지금 상태 그대로 복원돼요.</p>'+
-    '<div class="add-row"><button class="btn ghost small" id="backupExportBtn">백업 파일 내보내기</button>'+
-    '<button class="btn ghost small" id="backupImportBtn">백업 파일 불러오기</button></div>'+
-    '<input type="file" id="backupFileInput" accept="application/json" style="display:none;"></div>';
-  html += '<div class="settings-section"><h3>코드로 이관</h3>'+
-    '<p class="small-note">번호 6자리로 다른 기기에 전체 데이터를 옮겨요.</p>'+
-    '<div class="transfer-row"><div class="transfer-col">'+
-      '<button class="btn ghost small" id="exportCodeBtn" style="width:100%;">내보내기 (코드 받기)</button>'+
-      '<div id="exportCodeResult"></div>'+
-    '</div><div class="transfer-col">'+
-      '<div class="add-row"><input type="text" id="importCodeInput" placeholder="6자리 코드" inputmode="numeric" maxlength="6" style="flex:1;">'+
-      '<button class="btn ghost small" id="importCodeBtn">가져오기</button></div>'+
-      '<div id="importCodeResult"></div>'+
-    '</div></div></div>';
-  html += '<div class="danger-zone"><button id="resetAllBtn">모든 데이터 초기화</button></div>';
-  return html;
-}
-
-function bindDataEvents(body){
-  document.getElementById('exportBtn').addEventListener('click', function(){
-    exportExcel(this);
-  });
-  document.getElementById('backupExportBtn').addEventListener('click', function(){
-    exportJSONBackup(this);
-  });
-  document.getElementById('backupImportBtn').addEventListener('click', function(){
-    document.getElementById('backupFileInput').click();
-  });
-  document.getElementById('backupFileInput').addEventListener('change', function(e){
-    var file = e.target.files[0];
-    if(!file) return;
-    importJSONBackup(file);
-    e.target.value = '';
-  });
-  document.getElementById('exportCodeBtn').addEventListener('click', function(){
-    exportViaCode(this, document.getElementById('exportCodeResult'));
-  });
-  document.getElementById('importCodeBtn').addEventListener('click', function(){
-    var code = document.getElementById('importCodeInput').value;
-    importViaCode(this, code, document.getElementById('importCodeResult'));
-  });
-  document.getElementById('resetAllBtn').addEventListener('click', function(){
-    if(!confirm('정말 모든 데이터를 초기화할까요? 되돌릴 수 없어요.')) return;
-    state.settings = defaultSettings();
-    state.plans = {};
-    state.monthCache = {};
-    Promise.all([saveSettings(), savePlans()]).then(function(){
-      renderAll();
-    });
-  });
-}
-
-function buildClassesHtml(){
-  var html = '<div class="settings-section"><h3>반 목록</h3>';
-  html += '<p class="small-note">가르치는 반을 등록하면 색이 자동으로 배정돼요. 학년을 적어두면 시험 적용 대상을 학년별로 나눌 수 있어요.</p>';
-  state.settings.classes.forEach(function(c){
-    html += '<div class="class-list-item"><span class="swatch" style="background:'+c.color+'"></span>'+
-      '<input type="text" class="cls-name" data-id="'+c.id+'" value="'+escapeHtml(c.name)+'" style="flex:1.4;">'+
-      '<input type="text" class="cls-grade" data-id="'+c.id+'" value="'+escapeHtml(c.grade||'')+'" placeholder="학년(선택)" style="flex:0.8;">'+
-      '<span class="del" data-id="'+c.id+'" style="cursor:pointer;color:var(--rose-deep);font-size:1.0625rem;">✕</span></div>';
-  });
-  html += '<div class="field-row"><label>반 이름 <span class="req">*</span></label>'+
-    '<div class="add-row"><input type="text" id="newClassName" placeholder="예: 1-3반, 고2 미적분반" style="flex:1.4;">'+
-    '<input type="text" id="newClassGrade" placeholder="학년(선택)" style="flex:0.8;">'+
-    '<button class="btn small" id="addClassBtn">추가</button></div></div></div>';
-  return html;
-}
-
-function bindClassesEvents(body){
-  body.querySelectorAll('.cls-name').forEach(function(inp){
-    inp.addEventListener('change', function(){
-      var c = getClass(inp.getAttribute('data-id'));
-      if(c){ c.name = inp.value || c.name; saveSettings().then(function(){ flashSaved(); }); }
-    });
-  });
-  body.querySelectorAll('.cls-grade').forEach(function(inp){
-    inp.addEventListener('change', function(){
-      var c = getClass(inp.getAttribute('data-id'));
-      if(c){ c.grade = inp.value.trim(); saveSettings().then(function(){ flashSaved(); }); }
-    });
-  });
-  body.querySelectorAll('.del').forEach(function(x){
-    x.addEventListener('click', function(){
-      var id = x.getAttribute('data-id');
-      if(!confirm('이 반을 삭제할까요? 진도 계획도 함께 삭제돼요.')) return;
-      state.settings.classes = state.settings.classes.filter(function(c){ return c.id!==id; });
-      DAYS.forEach(function(d){
-        state.settings.schedule[d] = state.settings.schedule[d].map(function(cid){ return cid===id?null:cid; });
-      });
-      delete state.plans[id];
-      Promise.all([saveSettings(), savePlans()]).then(function(){ renderSettingsTimetable(body); flashSaved(); });
-    });
-  });
-  var addClassBtn = document.getElementById('addClassBtn');
-  if(addClassBtn) addClassBtn.addEventListener('click', function(){
-    var input = document.getElementById('newClassName');
-    var gradeInput = document.getElementById('newClassGrade');
-    var name = input.value.trim();
-    if(!name) return;
-    var color = CLASS_COLORS[state.settings.classes.length % CLASS_COLORS.length];
-    var id = uid();
-    state.settings.classes.push({ id:id, name:name, color:color, grade: gradeInput.value.trim() });
-    state.plans[id] = [];
-    input.value=''; gradeInput.value='';
-    Promise.all([saveSettings(), savePlans()]).then(function(){ renderSettingsTimetable(body); flashSaved(); });
-  });
-}
-
-function buildPeriodsHtml(){
-  var n = state.settings.periodsPerDay;
-  var html = '<div class="settings-section"><h3>일과시간</h3>';
-  html += '<p class="small-note">학교급과 1교시 시작 시각을 정하면, 교시별 시작·종료 시각이 자동으로 계산돼서 시간표와 오늘 화면에 표시돼요.</p>';
-  html += '<div class="field-row"><label>학교급</label><select id="schoolLevelSelect">'+
-    '<option value="elementary"'+(state.settings.schoolLevel==='elementary'?' selected':'')+'>초등학교 (40분)</option>'+
-    '<option value="middle"'+(state.settings.schoolLevel==='middle'?' selected':'')+'>중학교 (45분)</option>'+
-    '<option value="high"'+(state.settings.schoolLevel==='high'?' selected':'')+'>고등학교 (50분)</option>'+
-    '<option value="custom"'+(state.settings.schoolLevel==='custom'?' selected':'')+'>직접 입력</option>'+
-    '</select></div>';
-  html += '<div class="add-row">'+
-    '<div class="field-row" style="flex:1;"><label>1교시 시작 시각</label><input type="time" id="firstPeriodInput" value="'+escapeHtml(state.settings.firstPeriodStart)+'"></div>'+
-    '<div class="field-row" style="flex:1;"><label>수업시간(분)</label><input type="text" id="classDurationInput" inputmode="numeric" value="'+state.settings.classDuration+'"'+(state.settings.schoolLevel!=='custom'?' disabled':'')+'></div>'+
-    '<div class="field-row" style="flex:1;"><label>쉬는시간(분)</label><input type="text" id="breakDurationInput" inputmode="numeric" value="'+state.settings.breakDuration+'"></div>'+
-    '</div>';
-  html += '<div class="add-row">'+
-    '<div class="field-row" style="flex:1;"><label>점심시간 위치</label><select id="lunchAfterSelect">'+
-      '<option value="0"'+(state.settings.lunchAfterPeriod===0?' selected':'')+'>없음</option>'+
-      (function(){
-        var opts = '';
-        for(var i=1;i<=n;i++){ opts += '<option value="'+i+'"'+(state.settings.lunchAfterPeriod===i?' selected':'')+'>'+i+'교시 이후</option>'; }
-        return opts;
-      })()+
-      '</select></div>'+
-    '<div class="field-row" style="flex:1;"><label>점심시간(분)</label><input type="text" id="lunchDurationInput" inputmode="numeric" value="'+state.settings.lunchDuration+'"'+(state.settings.lunchAfterPeriod===0?' disabled':'')+'></div>'+
-    '</div></div>';
-  return html;
-}
-
-function buildMyTimetableHtml(){
-  var n = state.settings.periodsPerDay;
-  var html = '<div class="settings-section"><h3>시간표</h3>';
-  html += '<div class="field-row" style="max-width:160px;"><label>하루 교시 수</label>'+
-    '<input type="text" id="periodsInput" value="'+n+'" inputmode="numeric"></div>';
-  if(state.settings.classes.length===0){
-    html += '<p class="small-note">먼저 반을 등록해주세요.</p></div>';
-    return html;
-  }
-  html += '<div class="sched-scroll"><table class="sched-table"><thead><tr><th></th>';
-  DAYS.forEach(function(d){ html += '<th>'+d+'</th>'; });
-  html += '</tr></thead><tbody>';
-  for(var p=0; p<n; p++){
-    var pt = computePeriodTime(p);
-    html += '<tr><th>'+(p+1)+'교시<div class="sub" style="font-weight:400;">'+pt.start+'~'+pt.end+'</div></th>';
-    DAYS.forEach(function(d){
-      var val = state.settings.schedule[d][p] || '';
-      html += '<td><select data-day="'+d+'" data-period="'+p+'"><option value="">-</option>';
-      state.settings.classes.forEach(function(c){
-        html += '<option value="'+c.id+'"'+(val===c.id?' selected':'')+'>'+escapeHtml(c.name)+'</option>';
-      });
-      html += '</select></td>';
-    });
-    html += '</tr>';
-    if(state.settings.lunchAfterPeriod===(p+1)){
-      var lp = computePeriodTime(p+1);
-      var lunchStart = pt.end;
-      html += '<tr class="lunch-row"><td colspan="'+(DAYS.length+1)+'">점심시간 · '+lunchStart+'~'+lp.start+'</td></tr>';
-    }
-  }
-  html += '</tbody></table></div></div>';
-  html += '<div class="settings-section"><h3>내 시간표</h3>'+
-    '<p class="small-note">지금 등록된 시간표를 깔끔한 이미지로 저장해서 바탕화면에 두거나 인쇄할 수 있어요.</p>'+
-    renderPrettyTimetable()+
-  '</div>';
-  return html;
-}
-
-function bindPeriodsEvents(body){
-  var schoolLevelSelect = document.getElementById('schoolLevelSelect');
-  if(schoolLevelSelect){
-    schoolLevelSelect.addEventListener('change', function(){
-      state.settings.schoolLevel = this.value;
-      if(this.value !== 'custom' && SCHOOL_LEVEL_DURATION[this.value]){
-        state.settings.classDuration = SCHOOL_LEVEL_DURATION[this.value];
+      // 띄어쓰기(공백) 지우고 검증 (한가위2026, 한가위 2026 모두 가능)
+      if (requestCode.replace(/\s+/g, '') === "한가위2026") {
+        successCallback();
+      } else {
+        alert("코드가 올바르지 않습니다. 개발자에게 문의하세요.");
       }
-      saveSettings().then(function(){ renderSettingsTimetable(body); flashSaved(); });
-    });
-  }
-  var firstPeriodInput = document.getElementById('firstPeriodInput');
-  if(firstPeriodInput){
-    firstPeriodInput.addEventListener('change', function(){
-      state.settings.firstPeriodStart = this.value || '09:00';
-      saveSettings().then(function(){ renderSettingsTimetable(body); flashSaved(); });
-    });
-  }
-  var classDurationInput = document.getElementById('classDurationInput');
-  if(classDurationInput){
-    classDurationInput.addEventListener('change', function(){
-      var v = Math.max(10, Math.min(120, parseInt(this.value,10)||50));
-      state.settings.classDuration = v;
-      saveSettings().then(function(){ renderSettingsTimetable(body); flashSaved(); });
-    });
-  }
-  var breakDurationInput = document.getElementById('breakDurationInput');
-  if(breakDurationInput){
-    breakDurationInput.addEventListener('change', function(){
-      var v = Math.max(0, Math.min(60, parseInt(this.value,10)||10));
-      state.settings.breakDuration = v;
-      saveSettings().then(function(){ renderSettingsTimetable(body); flashSaved(); });
-    });
-  }
-  var lunchAfterSelect = document.getElementById('lunchAfterSelect');
-  if(lunchAfterSelect){
-    lunchAfterSelect.addEventListener('change', function(){
-      state.settings.lunchAfterPeriod = parseInt(this.value,10)||0;
-      saveSettings().then(function(){ renderSettingsTimetable(body); flashSaved(); });
-    });
-  }
-  var lunchDurationInput = document.getElementById('lunchDurationInput');
-  if(lunchDurationInput){
-    lunchDurationInput.addEventListener('change', function(){
-      var v = Math.max(10, Math.min(120, parseInt(this.value,10)||50));
-      state.settings.lunchDuration = v;
-      saveSettings().then(function(){ renderSettingsTimetable(body); flashSaved(); });
-    });
-  }
-}
+    }
 
-function bindMyTimetableEvents(body){
-  var saveTimetableBtn = document.getElementById('saveTimetableImgBtn');
-  if(saveTimetableBtn) saveTimetableBtn.addEventListener('click', saveTimetableImage);
-  var periodsInput = document.getElementById('periodsInput');
-  if(!periodsInput) return;
-  periodsInput.addEventListener('change', function(){
-    var v = Math.max(1, Math.min(10, parseInt(this.value,10)||7));
-    state.settings.periodsPerDay = v;
-    DAYS.forEach(function(d){
-      var arr = state.settings.schedule[d];
-      while(arr.length<v) arr.push(null);
-      arr.length = v;
-    });
-    saveSettings().then(function(){ renderSettingsTimetable(body); flashSaved(); });
-  });
-  body.querySelectorAll('select[data-day]').forEach(function(sel){
-    sel.addEventListener('change', function(){
-      var d = sel.getAttribute('data-day'), p = parseInt(sel.getAttribute('data-period'),10);
-      state.settings.schedule[d][p] = sel.value || null;
-      saveSettings().then(flashSaved);
-    });
-  });
-}
+    // 시작하기 버튼 클릭 시 검증 로직 추가
+    document.getElementById('saveOwnerBtn').addEventListener('click', () => {
+      const nameVal = document.getElementById('ownerNameInput').value.trim();
+      const birthVal = document.getElementById('ownerBirthInput').value;
 
-function renderSettingsCalendar(body){
-  if(!state.academicSubTab) state.academicSubTab = 'writtenExam';
-  var subTabs = [['writtenExam','지필평가'],['mock','모의고사'],['performance','수행평가'],['event','학교행사'],['calendar','학기·휴업일'],['neis','나이스 불러오기']];
-  var html = '<div class="tab-pills sub-pills">';
-  subTabs.forEach(function(t){
-    html += '<div class="tab-pill sub'+(state.academicSubTab===t[0]?' active':'')+'" data-subtab="'+t[0]+'">'+t[1]+'</div>';
-  });
-  html += '</div><div id="academicBody"></div>';
-  body.innerHTML = html;
-  body.querySelectorAll('.tab-pill').forEach(function(p){
-    p.addEventListener('click', function(){ state.academicSubTab = p.getAttribute('data-subtab'); renderSettingsCalendar(body); });
-  });
-  var sub = document.getElementById('academicBody');
-  if(state.academicSubTab==='calendar') renderSettingsSemesterHoliday(sub);
-  else if(state.academicSubTab==='neis') renderSettingsNeis(sub);
-  else renderSettingsExamType(sub, state.academicSubTab);
-}
-
-var examSlotDraft = [];
-
-function renderSettingsExamType(body, type){
-  var isSlotBased = (type==='performance');
-  var isRange = (type==='writtenExam' || type==='event');
-  var isGradeBased = (type==='event');
-  var distinctGrades = [];
-  state.settings.classes.forEach(function(c){ if(c.grade && distinctGrades.indexOf(c.grade)===-1) distinctGrades.push(c.grade); });
-  var html = '<div class="settings-section"><h3>'+EXAM_TYPES[type]+'</h3>';
-  if(type==='performance'){
-    html += '<p class="small-note">반마다 날짜와 교시가 다르면 아래에서 반 일정을 한 줄씩 추가하세요 (한 번에 여러 반 등록 가능). 교시를 지정하면 그 교시 수업만 빠지고 같은 날 다른 교시는 평소대로 진도를 기록할 수 있어요. 교시를 비워두면 그 반은 그 날 전체가 빠져요.</p>';
-  }
-  if(type==='event'){
-    html += '<p class="small-note">재량휴업일, 수련회, 수학여행, 체육대회 등 학교 행사를 자유롭게 등록하세요. 대상 학년을 고르면 해당 학년 반들만 수업일수 계산에서 제외돼요.</p>';
-  }
-  var sortedExamsOfType = state.settings.exams.filter(function(e){ return e.type===type; })
-    .slice().sort(function(a,b){ return a.startDate<b.startDate?-1:1; });
-  sortedExamsOfType.forEach(function(e, eIdx){
-      if(isSlotBased && e.slots && e.slots.length){
-        var chunk = e.slots.slice().sort(function(a,b){ return a.date<b.date?-1:1; }).map(function(s){
-          var c = getClass(s.classId);
-          var per = (s.period!=null) ? (' '+s.period+'교시') : '';
-          return (c?c.name:'')+' '+niceDate(s.date)+per;
-        }).join(', ');
-        html += '<div class="list-row"><div class="grow">'+escapeHtml(e.name)+'<div class="sub">'+chunk+'</div></div>'+
-          '<span class="del-exam" data-id="'+e.id+'">✕</span></div>';
+      if (!nameVal || !birthVal) {
+        alert('닉네임과 생년월일을 입력해주세요!');
         return;
       }
-      var dateLabel = e.startDate===e.endDate ? niceDate(e.startDate) : (niceDate(e.startDate)+' ~ '+niceDate(e.endDate));
-      var targetLabel;
-      if(isGradeBased){
-        targetLabel = (e.grades && e.grades.length) ? (' · '+e.grades.join(', ')) : (distinctGrades.length ? ' · 전체 학년' : '');
-      } else {
-        targetLabel = (e.classIds && e.classIds.length) ? (' · '+e.classIds.map(function(id){
-          var c=getClass(id); if(!c) return '';
-          var per = (e.periodsByClass && e.periodsByClass[id]!=null) ? (' '+e.periodsByClass[id]+'교시') : '';
-          return c.name+per;
-        }).filter(Boolean).join(', ')) : (state.settings.classes.length>1 ? ' · 전체 반' : '');
-      }
-      if(type==='writtenExam' && e.examTargetOrder){
-        var prevExamRow = sortedExamsOfType[eIdx-1] || null;
-        var startOrderRow = (prevExamRow && prevExamRow.examTargetOrder) ? prevExamRow.examTargetOrder : 0;
-        targetLabel += ' · 목표 '+(startOrderRow+1)+'~'+e.examTargetOrder+'번';
-      }
-      html += '<div class="list-row"><div class="grow">'+escapeHtml(e.name)+'<div class="sub">'+dateLabel+targetLabel+'</div></div>'+
-        (type==='writtenExam' ? ('<span class="edit-exam-target" data-id="'+e.id+'" style="font-size:0.75rem;color:var(--ink-soft);text-decoration:underline;cursor:pointer;margin-right:10px;">진도 목표</span>') : '')+
-        '<span class="del-exam" data-id="'+e.id+'">✕</span></div>';
-      if(type==='writtenExam' && state.examTargetEditId===e.id){
-        var refItemsEdit = referencePlanItems();
-        html += '<div class="settings-section" style="margin:-4px 0 12px;background:var(--bg-soft);">'+
-          '<p class="small-note" style="margin-top:0;">이 시험까지 몇 번째 진도 항목까지 나가야 하는지 하나만 고르면 모든 반에 똑같이 적용돼요. 바로 앞 지필평가에 목표가 있으면 그 다음 번호부터 자동으로 범위가 잡혀요 (예: 중간고사 목표 5번 → 1~5번, 기말고사 목표 10번 → 6~10번). 고르지 않으면 전체 진도계획 기준으로 계산해요.</p>';
-        if(refItemsEdit.length){
-          html += '<select class="exam-target-order-select" style="width:100%;margin-bottom:10px;">'+
-            '<option value="">자동 (전체 진도 기준)</option>'+
-            refItemsEdit.map(function(it,i){ return '<option value="'+(i+1)+'"'+(String(e.examTargetOrder||'')===String(i+1)?' selected':'')+'>'+(i+1)+'. '+escapeHtml(it.title)+(it.targetPage?(' ('+escapeHtml(it.targetPage)+')'):'')+'</option>'; }).join('')+
-            '</select>';
-        } else {
-          html += '<p class="small-note">설정 &gt; 진도계획에서 반별 진도를 먼저 입력하면 목표를 고를 수 있어요.</p>';
-        }
-        html += '<div style="display:flex;gap:8px;"><button class="btn small save-exam-target-btn" data-id="'+e.id+'">저장</button>'+
-          '<button class="btn small ghost cancel-exam-target-btn">취소</button></div></div>';
-      }
-    });
-  var namePlaceholder = type==='writtenExam' ? '1학기 기말고사' : type==='mock' ? '6월 모의고사' : type==='performance' ? '수행 - 발표평가' : '수학여행, 수련회, 재량휴업일 등';
-  html += '<div class="field-row"><label>이름 <span class="req">*</span></label><div class="add-row"><input type="text" id="examName" placeholder="예: '+namePlaceholder+'" style="flex:1.3"></div></div>';
 
-  if(isSlotBased){
-    if(!state.settings.classes.length){
-      html += '<p class="small-note">설정 &gt; 시간표에서 반을 먼저 만들어주세요.</p>';
-    } else {
-      if(examSlotDraft.length===0) examSlotDraft.push({classId:state.settings.classes[0].id, date:'', period:''});
-      html += '<div class="field-row"><label>반 · 날짜 · 교시</label><div id="examSlotRows" style="display:flex;flex-direction:column;gap:8px;">';
-      examSlotDraft.forEach(function(slot, idx){
-        html += '<div class="slot-row" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">'+
-          '<select class="slot-cls" data-idx="'+idx+'" style="flex:1;min-width:88px;">'+
-            state.settings.classes.map(function(c){ return '<option value="'+c.id+'"'+(slot.classId===c.id?' selected':'')+'>'+escapeHtml(c.name)+'</option>'; }).join('')+
-          '</select>'+
-          '<input type="date" class="slot-date" data-idx="'+idx+'" value="'+(slot.date||'')+'" style="flex:1.3;min-width:130px;">'+
-          '<select class="slot-period" data-idx="'+idx+'" style="flex:1;min-width:100px;">'+
-            '<option value="">교시 미지정</option>'+
-            Array.from({length: state.settings.periodsPerDay||7}, function(_,i){ return i+1; }).map(function(p){ return '<option value="'+p+'"'+(String(slot.period)===String(p)?' selected':'')+'>'+p+'교시만</option>'; }).join('')+
-          '</select>'+
-          '<span class="del-slot-row" data-idx="'+idx+'" style="cursor:pointer;color:var(--rose-deep,#B3435C);padding:4px 8px;font-size:0.875rem;">✕</span>'+
-        '</div>';
-      });
-      html += '</div><button type="button" class="btn ghost small" id="addSlotRowBtn" style="margin-top:6px;">+ 반 일정 추가</button></div>';
-    }
-  } else if(isRange){
-    html += '<div class="field-row"><label>시작일 <span class="req">*</span> ~ 종료일 <span class="req">*</span></label><div class="add-row"><input type="date" id="examStart"><span style="align-self:center;color:var(--ink-soft);">~</span><input type="date" id="examEnd"></div></div>'+
-      '<p class="small-note">여러 날 연달아 진행되면 시작일과 종료일을 함께 선택하세요. 하루면 같은 날짜를 두 번 선택하면 돼요.</p>';
-  } else {
-    html += '<div class="field-row"><label>날짜 <span class="req">*</span></label><div class="add-row"><input type="date" id="examStart"></div></div>';
-  }
+      // 비밀코드 검증 통과 시 생성 진행
+      checkSecretCodeAndProceed(() => {
+        ownerName = nameVal;
+        ownerBirth = birthVal;
+        ownerZodiac = getZodiacByDate(ownerBirth);
 
-  if(!isSlotBased){
-    if(isGradeBased){
-      if(distinctGrades.length){
-        html += '<div class="field-row"><label>대상 학년 (선택 안 하면 전체 학년 적용)</label><div style="display:flex;flex-wrap:wrap;gap:6px;">';
-        distinctGrades.forEach(function(g){
-          html += '<label class="check" style="font-size:0.7812rem;padding:6px 10px;"><input type="checkbox" class="exam-grade-chk" value="'+escapeHtml(g)+'"><span class="mark"></span>'+escapeHtml(g)+'</label>';
-        });
-        html += '</div></div>';
-      } else {
-        html += '<p class="small-note">설정 &gt; 시간표에서 반마다 학년을 적어두면, 이 행사가 특정 학년만 대상인지 고를 수 있어요. (지금은 전체 학년에 적용돼요)</p>';
-      }
-    } else if(state.settings.classes.length){
-      html += '<div class="field-row"><label>적용 반 (선택 안 하면 전체 반 일괄 등록)</label><div style="display:flex;flex-wrap:wrap;gap:6px;">';
-      state.settings.classes.forEach(function(c){
-        html += '<label class="check" style="font-size:0.7812rem;padding:6px 10px;"><input type="checkbox" class="exam-cls-chk" value="'+c.id+'"><span class="mark"></span>'+escapeHtml(c.name)+'</label>';
-      });
-      html += '</div></div>';
-    }
-  }
+        ownerModal.classList.remove('active');
+        updatePageHeader();
 
-  if(type==='writtenExam' && state.settings.classes.length){
-    var refItemsNew = referencePlanItems();
-    html += '<div class="field-row"><label>진도 목표 (선택, 전체 반 공통)</label>'+
-      '<p class="small-note" style="margin:2px 0 8px;">이 시험까지 나가야 할 마지막 진도 항목을 하나만 고르면, 전체 진도계획이 아니라 그 범위 기준으로 진도가 여유로운지 빠듯한지 계산해요. 반마다 세부 내용은 달라도 진도 순서는 보통 같이 가니까 반별로 따로 고를 필요 없어요. 비워두면 전체 진도계획 기준으로 계산돼요.</p>';
-    if(refItemsNew.length){
-      html += '<select id="examTargetOrder" style="width:100%;">'+
-        '<option value="">자동 (전체 진도 기준)</option>'+
-        refItemsNew.map(function(it,i){ return '<option value="'+(i+1)+'">'+(i+1)+'. '+escapeHtml(it.title)+(it.targetPage?(' ('+escapeHtml(it.targetPage)+')'):'')+'</option>'; }).join('')+
-        '</select>';
-    } else {
-      html += '<p class="small-note">설정 &gt; 진도계획에서 반별 진도를 먼저 입력하면 목표를 고를 수 있어요.</p>';
-    }
-    html += '</div>';
-  }
-
-
-  html += '<button class="btn small" id="addExamBtn" style="margin-top:8px;">추가</button></div>';
-  body.innerHTML = html;
-
-  body.querySelectorAll('.exam-cls-chk, .exam-grade-chk').forEach(function(chk){
-    chk.addEventListener('change', function(){ chk.closest('.check').classList.toggle('on', chk.checked); });
-  });
-
-  if(isSlotBased && state.settings.classes.length){
-    body.querySelectorAll('.slot-cls').forEach(function(sel){
-      sel.addEventListener('change', function(){ examSlotDraft[+sel.getAttribute('data-idx')].classId = sel.value; });
-    });
-    body.querySelectorAll('.slot-date').forEach(function(inp){
-      inp.addEventListener('change', function(){ examSlotDraft[+inp.getAttribute('data-idx')].date = inp.value; });
-    });
-    body.querySelectorAll('.slot-period').forEach(function(sel){
-      sel.addEventListener('change', function(){ examSlotDraft[+sel.getAttribute('data-idx')].period = sel.value; });
-    });
-    body.querySelectorAll('.del-slot-row').forEach(function(x){
-      x.addEventListener('click', function(){
-        examSlotDraft.splice(+x.getAttribute('data-idx'), 1);
-        renderSettingsExamType(body, type);
+        const newUrl = `${window.location.origin}${window.location.pathname}?moon=${encodeURIComponent(ownerName)}&birth=${ownerBirth}`;
+        window.history.replaceState(null, '', newUrl);
+        listenForDuckdams();
+        alert(`[${ownerName}]님의 강강술래 원이 개설되었습니다!\n링크를 복사해 친구들에게 공유하세요.`);
       });
     });
-    var addSlotBtn = document.getElementById('addSlotRowBtn');
-    if(addSlotBtn) addSlotBtn.addEventListener('click', function(){
-      examSlotDraft.push({classId: state.settings.classes[0].id, date:'', period:''});
-      renderSettingsExamType(body, type);
-    });
-  }
 
-  body.querySelectorAll('.del-exam').forEach(function(x){
-    x.addEventListener('click', function(){
-      var id = x.getAttribute('data-id');
-      if(!confirm('이 일정을 삭제할까요?')) return;
-      var removed = state.settings.exams.find(function(e){ return e.id===id; });
-      state.settings.exams = state.settings.exams.filter(function(e){ return e.id!==id; });
-      saveSettings().then(function(){
-        renderSettingsExamType(body, type); flashSaved();
-        if(removed){
-          showUndoToast('"'+removed.name+'" 삭제됨', function(){
-            state.settings.exams.push(removed);
-            saveSettings().then(function(){ renderSettingsExamType(body, type); flashSaved(); });
+    let friendZodiac = null;
+    const birthInput = document.getElementById('birthdate');
+    const zodiacBadge = document.getElementById('zodiacBadge');
+
+    birthInput.addEventListener('change', (e) => {
+      if (!e.target.value) return;
+      friendZodiac = getZodiacByDate(e.target.value);
+      const relationText = getZodiacRelation(ownerZodiac, friendZodiac, ownerName);
+      
+      zodiacBadge.style.display = 'block';
+      zodiacBadge.innerHTML = `내 별자리: <b>[${friendZodiac.name} ${friendZodiac.symbol}]</b><br/>${relationText}`;
+    });
+
+    let duckdamList = [];
+    let selectedDuckdamKey = null;
+    let selectedDuckdamPw = null;
+
+    const circle = document.getElementById('sullaeCircle');
+    const duckdamForm = document.getElementById('duckdamForm');
+
+    function listenForDuckdams() {
+      if (!ownerName || !ownerBirth) return;
+      const moonId = `${ownerName}_${ownerBirth}`.replace(/[.#$\[\]]/g, "_");
+      
+      db.ref(`moons/${moonId}/duckdams`).on('value', (snapshot) => {
+        duckdamList = [];
+        const data = snapshot.val();
+        if (data) {
+          Object.keys(data).forEach(key => {
+            duckdamList.push({ key: key, ...data[key] });
           });
         }
+        renderSullaeCircle();
+      }, (error) => {
+        alert("DB 읽기 에러 발생: " + error.message);
       });
-    });
-  });
-
-  body.querySelectorAll('.edit-exam-target').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var id = btn.getAttribute('data-id');
-      state.examTargetEditId = (state.examTargetEditId===id) ? null : id;
-      renderSettingsExamType(body, type);
-    });
-  });
-  body.querySelectorAll('.save-exam-target-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var id = btn.getAttribute('data-id');
-      var ex = state.settings.exams.find(function(x){ return x.id===id; });
-      if(!ex) return;
-      var sel = body.querySelector('.exam-target-order-select');
-      if(sel && sel.value) ex.examTargetOrder = parseInt(sel.value,10);
-      else delete ex.examTargetOrder;
-      delete ex.examTargets; // 예전 반별 지정 방식은 더 이상 쓰지 않음
-      state.examTargetEditId = null;
-      saveSettings().then(function(){ renderSettingsExamType(body, type); flashSaved(); });
-    });
-  });
-  body.querySelectorAll('.cancel-exam-target-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      state.examTargetEditId = null;
-      renderSettingsExamType(body, type);
-    });
-  });
-
-  document.getElementById('addExamBtn').addEventListener('click', function(){
-    var name = document.getElementById('examName').value.trim();
-    if(!name) return;
-
-    if(isSlotBased){
-      var finalSlots = examSlotDraft.filter(function(s){ return s.classId && s.date; }).map(function(s){
-        return { classId:s.classId, date:s.date, period: s.period ? parseInt(s.period,10) : null };
-      });
-      if(!finalSlots.length){ alert('반과 날짜를 최소 하나 이상 입력해주세요.'); return; }
-      var dates = finalSlots.map(function(s){ return s.date; });
-      var newSlotExam = { id:uid(), type:type, name:name, slots:finalSlots,
-        startDate: dates.reduce(function(a,b){ return a<b?a:b; }),
-        endDate: dates.reduce(function(a,b){ return a>b?a:b; }) };
-      state.settings.exams.push(newSlotExam);
-      examSlotDraft = [];
-      saveSettings().then(function(){ renderSettingsExamType(body, type); flashSaved(); });
-      return;
     }
 
-    var start = document.getElementById('examStart').value;
-    var endEl = document.getElementById('examEnd');
-    var end = endEl ? (endEl.value || start) : start;
-    if(!start) return;
-    if(end < start){ var t=start; start=end; end=t; }
-    var newExam = { id:uid(), type:type, name:name, startDate:start, endDate:end };
-    if(type==='writtenExam'){
-      var targetSel = document.getElementById('examTargetOrder');
-      if(targetSel && targetSel.value) newExam.examTargetOrder = parseInt(targetSel.value,10);
-    }
-    if(isGradeBased){
-      newExam.grades = Array.prototype.slice.call(body.querySelectorAll('.exam-grade-chk:checked')).map(function(c){ return c.value; });
-    } else {
-      newExam.classIds = Array.prototype.slice.call(body.querySelectorAll('.exam-cls-chk:checked')).map(function(c){ return c.value; });
-    }
-    state.settings.exams.push(newExam);
-    saveSettings().then(function(){ renderSettingsExamType(body, type); flashSaved(); });
-  });
-}
+    function renderSullaeCircle() {
+      circle.innerHTML = '';
+      const total = duckdamList.length;
+      document.getElementById('sullaeCount').innerText = `${total}명`;
 
-function renderSettingsSemesterHoliday(body){
-  var html = '<div class="settings-section"><h3>학기 기간</h3>';
-  html += '<p class="small-note">학기 시작일과 종료일을 등록하면, 그 기간을 벗어난 날은 방학으로 처리되어 시간표 기록과 D-day 계산에서 자동으로 빠져요.</p>';
-  state.settings.semesters.slice().sort(function(a,b){return a.start<b.start?-1:1;}).forEach(function(s){
-    html += '<div class="list-row"><div class="grow">'+escapeHtml(s.name)+'<div class="sub">'+niceDate(s.start)+' ~ '+niceDate(s.end)+'</div></div>'+
-      '<span class="del-sem" data-id="'+s.id+'">✕</span></div>';
-  });
-  html += '<div class="field-row"><label>학기 이름 <span class="req">*</span> / 시작일 <span class="req">*</span> ~ 종료일 <span class="req">*</span></label>'+
-    '<div class="add-row"><input type="text" id="semName" placeholder="예: 1학기" style="flex:0.8">'+
-    '<input type="date" id="semStart"><span style="align-self:center;color:var(--ink-soft);">~</span><input type="date" id="semEnd"></div></div>'+
-    '<button class="btn small" id="addSemBtn" style="margin-top:8px;">학기 추가</button></div>';
+      const radius = 110;
 
-  html += '<div class="settings-section"><h3>법정 공휴일 · 수능일 자동 표시</h3>';
-  html += '<label class="check'+(state.settings.autoHolidaysEnabled?' progress on':'')+'" id="autoHolidayToggle" style="margin-bottom:8px;">'+
-    '<input type="checkbox" id="autoHolidayCheckbox"'+(state.settings.autoHolidaysEnabled?' checked':'')+'><span class="mark"></span>법정 공휴일 자동으로 휴업일 처리</label>';
-  html += '<label class="check'+(state.settings.autoSuneungEnabled?' progress on':'')+'" id="autoSuneungToggle" style="margin-bottom:10px;">'+
-    '<input type="checkbox" id="autoSuneungCheckbox"'+(state.settings.autoSuneungEnabled?' checked':'')+'><span class="mark"></span>수능일(11월 셋째 주 목요일) 자동으로 휴업일 처리</label>';
-  html += '<p class="small-note">참고용으로 자동 표시돼요. 나이스 학사일정을 불러와 쓰신다면 이 토글은 꺼두셔도 돼요. 학교 자체 재량휴업일 등 실제 학사일정과 다르면 목록에서 개별적으로 빼거나(제외), 아래에서 직접 추가해주세요.</p>';
-  html += '<div id="holidayMergedList"></div>';
-  html += '<div class="field-row"><label>날짜 <span class="req">*</span></label><div class="add-row"><input type="date" id="holidayDate"><button class="btn small" id="addHolidayBtn">추가</button></div></div></div>';
-  body.innerHTML = html;
+      duckdamList.forEach((item, index) => {
+        const angle = (index / total) * 2 * Math.PI - (Math.PI / 2);
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
 
-  renderHolidayMergedList(body);
+        const div = document.createElement('div');
+        div.className = 'avatar-item';
+        div.style.transform = `translate(${x - 22}px, ${y - 22}px)`;
 
-  body.querySelectorAll('.del-sem').forEach(function(x){
-    x.addEventListener('click', function(){
-      var id = x.getAttribute('data-id');
-      if(!confirm('이 학기 기간을 삭제할까요?')) return;
-      var removed = state.settings.semesters.find(function(s){ return s.id===id; });
-      state.settings.semesters = state.settings.semesters.filter(function(s){ return s.id!==id; });
-      saveSettings().then(function(){
-        renderSettingsSemesterHoliday(body); flashSaved();
-        if(removed){
-          showUndoToast('"'+removed.name+'" 삭제됨', function(){
-            state.settings.semesters.push(removed);
-            saveSettings().then(function(){ renderSettingsSemesterHoliday(body); flashSaved(); });
-          });
-        }
-      });
-    });
-  });
-  document.getElementById('addSemBtn').addEventListener('click', function(){
-    var name = document.getElementById('semName').value.trim();
-    var start = document.getElementById('semStart').value;
-    var end = document.getElementById('semEnd').value;
-    if(!name || !start || !end) return;
-    state.settings.semesters.push({ id:uid(), name:name, start:start, end:end });
-    saveSettings().then(function(){ renderSettingsSemesterHoliday(body); flashSaved(); });
-  });
-  document.getElementById('autoHolidayCheckbox').addEventListener('change', function(){
-    state.settings.autoHolidaysEnabled = this.checked;
-    saveSettings().then(function(){ renderSettingsSemesterHoliday(body); flashSaved(); });
-  });
-  document.getElementById('autoSuneungCheckbox').addEventListener('change', function(){
-    state.settings.autoSuneungEnabled = this.checked;
-    saveSettings().then(function(){ renderSettingsSemesterHoliday(body); flashSaved(); });
-  });
-  document.getElementById('addHolidayBtn').addEventListener('click', function(){
-    var date = document.getElementById('holidayDate').value;
-    if(!date) return;
-    if(state.settings.holidays.indexOf(date)===-1) state.settings.holidays.push(date);
-    saveSettings().then(function(){ renderSettingsSemesterHoliday(body); flashSaved(); });
-  });
-}
+        const profile = item.profile || getRandomEmojiProfile(item.name);
 
-function renderSettingsNeis(body){
-  var html = '<div class="settings-section"><h3>나이스(NEIS) 학사일정 불러오기</h3>';
-  html += '<p class="small-note">학교 이름을 검색해서 나이스 학사일정을 자동으로 불러와요. 이 기능은 학교/브라우저 환경에 따라 정상 동작하지 않을 수 있어요 — 안 되면 알려주세요, 바로 고쳐드릴게요.</p>';
-  if(state.settings.neisSchul && state.settings.neisSchoolName){
-    html += '<div class="field-row"><label>선택된 학교</label>'+
-      '<div class="list-row"><div class="grow">'+escapeHtml(state.settings.neisSchoolName)+'</div>'+
-      '<span id="neisSchoolChangeBtn" style="font-size:0.75rem;color:var(--coral-deep);text-decoration:underline;cursor:pointer;">변경</span></div></div>';
-  } else {
-    html += '<div class="field-row"><label>학교 이름</label><div class="add-row"><input type="text" id="neisSchoolSearch" placeholder="예: 효성고등학교" style="flex:1;"><button class="btn ghost small" id="neisSearchBtn">검색</button></div></div>'+
-      '<div id="neisSearchResults"></div>';
-  }
-  html += '<button class="btn ghost small" id="neisFetchBtn" style="margin-top:6px;">학사일정 불러오기</button>'+
-    '<div id="neisStatus" class="small-note" style="margin-top:8px;"></div></div>';
+        div.innerHTML = `
+          <div class="avatar-inner">
+            <div class="avatar-emoji-box" style="background-color: ${profile.bg};">
+              ${profile.emoji}
+            </div>
+            <div class="avatar-name">${item.name}</div>
+          </div>
+        `;
 
-  html += '<div class="settings-section"><h3>나이스에서 불러온 일정</h3>'+
-    '<p class="small-note">불러온 항목마다 실제로 수업이 없는 날인지 정해주세요. 정하기 전까지는 "행사"로 취급되어(수업이 정상 진행되는 것으로 보고) 수업일수 계산에 영향을 주지 않아요.</p>'+
-    '<div id="neisEventsList"></div></div>';
-  body.innerHTML = html;
+        div.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectedDuckdamKey = item.key;
+          selectedDuckdamPw = item.password;
 
-  renderNeisEventsList(body);
+          const modalAvatarBox = document.getElementById('modalAvatarBox');
+          modalAvatarBox.innerText = profile.emoji;
+          modalAvatarBox.style.backgroundColor = profile.bg;
+          
+          const modalTag = document.getElementById('modalTag');
+          modalTag.innerText = item.relation;
+          modalTag.style.backgroundColor = item.zodiac.tagColor;
 
-  var neisSchoolChangeBtn = document.getElementById('neisSchoolChangeBtn');
-  if(neisSchoolChangeBtn){
-    neisSchoolChangeBtn.addEventListener('click', function(){
-      state.settings.neisSchul = '';
-      state.settings.neisOfcdc = '';
-      state.settings.neisSchoolName = '';
-      saveSettings().then(function(){ renderSettingsNeis(body); flashSaved(); });
-    });
-  }
-  var neisSearchBtn = document.getElementById('neisSearchBtn');
-  if(neisSearchBtn){
-    neisSearchBtn.addEventListener('click', function(){
-      var name = document.getElementById('neisSchoolSearch').value.trim();
-      searchNeisSchool(NEIS_KEY, name, body);
-    });
-  }
-  document.getElementById('neisFetchBtn').addEventListener('click', function(){
-    fetchNeisSchedule(NEIS_KEY, state.settings.neisOfcdc, state.settings.neisSchul, document.getElementById('neisStatus'), body);
-  });
-}
-
-function renderNeisEventsList(body){
-  var listEl = document.getElementById('neisEventsList');
-  if(!listEl) return;
-  var today = todayStr();
-  var items = (state.settings.neisHolidays||[]).filter(function(h){ return h.date >= today; })
-    .slice().sort(function(a,b){ return a.date<b.date?-1:1; });
-  if(!items.length){
-    listEl.innerHTML = '<p class="small-note">불러온 일정이 없어요.</p>';
-    return;
-  }
-  var html = '';
-  items.forEach(function(h){
-    var isHoliday = h.classified==='holiday';
-    html += '<div class="list-row neis-event-row"><div class="grow">'+niceDate(h.date)+' ('+dayKorOf(h.date)+') · '+escapeHtml(h.name)+
-      (h.sbtr?(' <span class="sub">나이스 분류: '+escapeHtml(h.sbtr)+'</span>'):'')+
-      (h.grades&&h.grades.length?(' <span class="sub">'+h.grades.join(', ')+'</span>'):'')+
-      '</div>'+
-      '<div class="neis-classify">'+
-        '<span class="neis-classify-btn'+(!isHoliday?' active':'')+'" data-date="'+h.date+'" data-val="event">행사</span>'+
-        '<span class="neis-classify-btn'+(isHoliday?' active':'')+'" data-date="'+h.date+'" data-val="holiday">휴업일</span>'+
-      '</div>'+
-      '<span class="del-neis-h" data-date="'+h.date+'">✕</span></div>';
-  });
-  listEl.innerHTML = html;
-  listEl.querySelectorAll('.neis-classify-btn').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var dt = btn.getAttribute('data-date'), val = btn.getAttribute('data-val');
-      var entry = (state.settings.neisHolidays||[]).find(function(h){ return h.date===dt; });
-      if(entry){ entry.classified = val; }
-      saveSettings().then(function(){
-        renderNeisEventsList(body);
-        renderHolidayMergedList(body);
-        flashSaved();
-      });
-    });
-  });
-  listEl.querySelectorAll('.del-neis-h').forEach(function(x){
-    x.addEventListener('click', function(){
-      var dt = x.getAttribute('data-date');
-      state.settings.neisHolidays = (state.settings.neisHolidays||[]).filter(function(h){ return h.date!==dt; });
-      saveSettings().then(function(){ renderNeisEventsList(body); renderHolidayMergedList(body); flashSaved(); });
-    });
-  });
-}
-
-function renderHolidayMergedList(body){
-  var listEl = document.getElementById('holidayMergedList');
-  if(!listEl) return;
-  var today = todayStr();
-  var merged = [];
-  state.settings.holidays.forEach(function(h){ merged.push({ date:h, name:'직접 등록', source:'custom' }); });
-  if(state.settings.autoHolidaysEnabled){
-    LEGAL_HOLIDAYS.forEach(function(h){
-      if(h.date >= today && state.settings.holidayExceptions.indexOf(h.date)===-1) merged.push({ date:h.date, name:h.name, source:'auto' });
-    });
-  }
-  if(state.settings.autoSuneungEnabled){
-    var thisYear = parseInt(today.slice(0,4),10);
-    [0,1].forEach(function(offset){
-      var y = thisYear+offset;
-      var d = suneungDate(y);
-      if(d >= today && state.settings.holidayExceptions.indexOf(d)===-1) merged.push({ date:d, name:'대학수학능력시험일 ('+y+')', source:'auto' });
-    });
-  }
-  (state.settings.neisHolidays||[]).forEach(function(h){
-    if(h.date < today || h.classified!=='holiday') return;
-    merged.push({ date:h.date, name:h.name+(h.grades&&h.grades.length?(' · '+h.grades.join(',')):''), source:'neis' });
-  });
-  merged.sort(function(a,b){ return a.date<b.date?-1:1; });
-  var html = '<p class="small-note" style="margin-top:0;">오늘 이후 일정만 보여드려요. (나이스로 불러온 항목 중 "휴업일"로 지정한 것만 여기 표시돼요 — 전체 목록은 아래 "나이스에서 불러온 일정"에서 볼 수 있어요.)</p>';
-  merged.forEach(function(h){
-    var delClass = h.source==='auto' ? 'del-auto-h' : (h.source==='neis' ? 'del-neis-h' : 'del-h');
-    var tag = h.source==='auto' ? ' <span class="sub">자동</span>' : (h.source==='neis' ? ' <span class="sub">나이스</span>' : '');
-    html += '<div class="list-row"><div class="grow">'+niceDate(h.date)+' ('+dayKorOf(h.date)+') · '+escapeHtml(h.name)+tag+'</div>'+
-      '<span class="'+delClass+'" data-date="'+h.date+'">✕</span></div>';
-  });
-  var excluded = state.settings.holidayExceptions.filter(function(d){ return LEGAL_HOLIDAYS.some(function(h){return h.date===d;}) || d===suneungDate(parseInt(d.slice(0,4),10)); });
-  if(excluded.length){
-    html += '<p class="small-note" style="margin-top:10px;">제외한 공휴일</p>';
-    excluded.sort().forEach(function(d){
-      var h = findAutoHoliday(d);
-      var nm = h ? h.name : '대학수학능력시험일';
-      html += '<div class="list-row" style="opacity:.6;"><div class="grow">'+niceDate(d)+' · '+escapeHtml(nm)+'</div>'+
-        '<span class="restore-h" data-date="'+d+'" style="font-size:0.75rem;text-decoration:underline;cursor:pointer;color:var(--sage-deep);">복원</span></div>';
-    });
-  }
-  if(!merged.length) html += '<p class="small-note">등록된 휴업일이 없어요.</p>';
-  listEl.innerHTML = html;
-
-  listEl.querySelectorAll('.del-h').forEach(function(x){
-    x.addEventListener('click', function(){
-      var dt = x.getAttribute('data-date');
-      if(!confirm('이 휴업일을 삭제할까요?')) return;
-      state.settings.holidays = state.settings.holidays.filter(function(h){ return h!==dt; });
-      saveSettings().then(function(){
-        renderHolidayMergedList(body); flashSaved();
-        showUndoToast(niceDate(dt)+' 삭제됨', function(){
-          if(state.settings.holidays.indexOf(dt)===-1) state.settings.holidays.push(dt);
-          saveSettings().then(function(){ renderHolidayMergedList(body); flashSaved(); });
+          document.getElementById('modalName').innerText = `${item.name} 님 (${item.zodiac.name} ${item.zodiac.symbol})`;
+          document.getElementById('modalText').innerText = item.message;
+          document.getElementById('modal').classList.add('active');
         });
+
+        circle.appendChild(div);
       });
-    });
-  });
-  listEl.querySelectorAll('.del-auto-h').forEach(function(x){
-    x.addEventListener('click', function(){
-      var dt = x.getAttribute('data-date');
-      if(state.settings.holidayExceptions.indexOf(dt)===-1) state.settings.holidayExceptions.push(dt);
-      saveSettings().then(function(){ renderHolidayMergedList(body); flashSaved(); });
-    });
-  });
-  listEl.querySelectorAll('.del-neis-h').forEach(function(x){
-    x.addEventListener('click', function(){
-      var dt = x.getAttribute('data-date');
-      state.settings.neisHolidays = (state.settings.neisHolidays||[]).filter(function(h){ return h.date!==dt; });
-      saveSettings().then(function(){ renderHolidayMergedList(body); flashSaved(); renderNeisEventsList(body); });
-    });
-  });
-  listEl.querySelectorAll('.restore-h').forEach(function(x){
-    x.addEventListener('click', function(){
-      var dt = x.getAttribute('data-date');
-      state.settings.holidayExceptions = state.settings.holidayExceptions.filter(function(d){ return d!==dt; });
-      saveSettings().then(function(){ renderHolidayMergedList(body); flashSaved(); });
-    });
-  });
-}
-
-function renderSettingsPlans(body){
-  if(state.settings.classes.length===0){
-    body.innerHTML = '<p class="small-note">먼저 반을 등록해주세요.</p>';
-    return;
-  }
-  if(!state.planClassId || !getClass(state.planClassId)){
-    state.planClassId = state.settings.classes[0].id;
-  }
-  var html = '<div class="tab-pills">';
-  state.settings.classes.forEach(function(c){
-    html += '<div class="tab-pill'+(state.planClassId===c.id?' active':'')+'" data-cid="'+c.id+'" style="'+(state.planClassId===c.id?('background:'+c.color+'22;color:'+c.color+';border-color:'+c.color):'')+'">'+escapeHtml(c.name)+'</div>';
-  });
-  html += '</div>';
-  var otherClasses = state.settings.classes.filter(function(c){ return c.id!==state.planClassId; });
-  if(otherClasses.length){
-    html += '<div class="settings-section"><h3>다른 반 계획 복사</h3>';
-    html += '<p class="small-note">다른 반과 진도 계획이 같다면, 여기서 불러와 지금 반 목록 뒤에 이어 붙여요.</p>';
-    html += '<div class="add-row"><select id="copyFromClass">';
-    otherClasses.forEach(function(c){ html += '<option value="'+c.id+'">'+escapeHtml(c.name)+'</option>'; });
-    html += '</select><button class="btn ghost small" id="copyPlanBtn">복사해오기</button></div></div>';
-  }
-  html += '<div class="settings-section"><h3>진도 계획 순서</h3>';
-  html += '<p class="small-note">단원/차시 순서대로 미리 입력해두면, [오늘] 화면에서 항목을 골라 체크할 수 있어요.</p>';
-  var items = state.plans[state.planClassId] || [];
-  items.forEach(function(it, idx){
-    html += '<div class="list-row plan-item-row'+(it.done?' done':'')+'">';
-    html += '<div class="updown"><span data-act="up" data-id="'+it.id+'">▲</span><span data-act="down" data-id="'+it.id+'">▼</span></div>';
-    html += '<div class="grow">'+(idx+1)+'. '+escapeHtml(it.title)+(it.targetPage?(' <span class="sub">('+escapeHtml(it.targetPage)+')</span>'):'')+'</div>';
-    html += '<span class="del-item" data-id="'+it.id+'">✕</span></div>';
-  });
-  html += '<div class="add-row"><input type="text" id="planTitle" placeholder="예: 2단원 이차방정식" style="flex:1.4">'+
-    '<input type="text" id="planPage" placeholder="목표쪽수" style="max-width:90px"></div>'+
-    '<button class="btn small" id="addPlanBtn" style="margin-top:8px;">항목 추가</button></div>';
-  body.innerHTML = html;
-
-  body.querySelectorAll('.tab-pill').forEach(function(p){
-    p.addEventListener('click', function(){ state.planClassId = p.getAttribute('data-cid'); renderSettingsPlans(body); });
-  });
-  var copyBtn = document.getElementById('copyPlanBtn');
-  if(copyBtn){
-    copyBtn.addEventListener('click', function(){
-      var fromId = document.getElementById('copyFromClass').value;
-      var srcItems = state.plans[fromId] || [];
-      if(!srcItems.length) return;
-      var copied = srcItems.map(function(it){
-        return { id:uid(), title:it.title, targetPage:it.targetPage||'', done:false, status:'pending', doneDate:null, donePage:'' };
-      });
-      if(!state.plans[state.planClassId]) state.plans[state.planClassId] = [];
-      state.plans[state.planClassId] = state.plans[state.planClassId].concat(copied);
-      savePlans().then(function(){ renderSettingsPlans(body); flashSaved(); });
-    });
-  }
-  body.querySelectorAll('.del-item').forEach(function(x){
-    x.addEventListener('click', function(){
-      var arr = state.plans[state.planClassId];
-      state.plans[state.planClassId] = arr.filter(function(i){ return i.id!==x.getAttribute('data-id'); });
-      savePlans().then(function(){ renderSettingsPlans(body); flashSaved(); });
-    });
-  });
-  body.querySelectorAll('[data-act]').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      var arr = state.plans[state.planClassId];
-      var id = btn.getAttribute('data-id');
-      var i = arr.findIndex(function(x){ return x.id===id; });
-      var dir = btn.getAttribute('data-act')==='up'?-1:1;
-      var j = i+dir;
-      if(j<0||j>=arr.length) return;
-      var tmp = arr[i]; arr[i]=arr[j]; arr[j]=tmp;
-      savePlans().then(function(){ renderSettingsPlans(body); flashSaved(); });
-    });
-  });
-  document.getElementById('addPlanBtn').addEventListener('click', function(){
-    var title = document.getElementById('planTitle').value.trim();
-    var page = document.getElementById('planPage').value.trim();
-    if(!title) return;
-    if(!state.plans[state.planClassId]) state.plans[state.planClassId]=[];
-    state.plans[state.planClassId].push({ id:uid(), title:title, targetPage:page, done:false, status:'pending', doneDate:null, donePage:'' });
-    savePlans().then(function(){ renderSettingsPlans(body); flashSaved(); });
-  });
-}
-
-// ---------- nav ----------
-function renderAll(){
-  renderToday();
-  renderCalendar();
-  renderClasses();
-  renderExam();
-  renderSettings();
-}
-function switchView(name){
-  state.currentView = name;
-  document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
-  document.getElementById('view-'+name).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(function(b){
-    b.classList.toggle('active', b.getAttribute('data-view')===name);
-  });
-  if(name==='today') renderToday();
-  else if(name==='calendar') renderCalendar();
-  else if(name==='classes') renderClasses();
-  else if(name==='exam') renderExam();
-  else if(name==='settings') renderSettings();
-}
-window.__gotoView = switchView;
-
-document.querySelectorAll('.nav-btn').forEach(function(b){
-  b.addEventListener('click', function(){ switchView(b.getAttribute('data-view')); });
-});
-
-// ---------- init ----------
-function hideSplash(){
-  // Capacitor 네이티브 스플래시가 따로 떠있다면 먼저 내려주고, 우리가 만든 체크 애니메이션 스플래시를 보여준 뒤 사라지게 한다.
-  try{
-    if(window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.SplashScreen){
-      window.Capacitor.Plugins.SplashScreen.hide();
     }
-  }catch(e){}
-  setTimeout(function(){
-    var sp = document.getElementById('customSplash');
-    if(!sp) return;
-    sp.classList.add('fade-out');
-    setTimeout(function(){ sp.remove(); }, 500);
-  }, 1500);
-}
 
-function init(){
-  Promise.all([
-    loadJSON('settings', null),
-    loadJSON('plans', {})
-  ]).then(function(res){
-    state.settings = res[0] || defaultSettings();
-    if(!state.settings.holidays) state.settings.holidays = [];
-    if(!state.settings.exams) state.settings.exams = [];
-    if(!state.settings.semesters) state.settings.semesters = [];
-    if(state.settings.autoHolidaysEnabled === undefined) state.settings.autoHolidaysEnabled = true;
-    if(!state.settings.holidayExceptions) state.settings.holidayExceptions = [];
-    if(state.settings.autoSuneungEnabled === undefined) state.settings.autoSuneungEnabled = true;
-    if(!state.settings.customDdays) state.settings.customDdays = [];
-    if(!state.settings.neisHolidays) state.settings.neisHolidays = [];
-    state.settings.neisHolidays.forEach(function(h){ if(!h.classified) h.classified = 'event'; });
-    if(state.settings.neisOfcdc === undefined) state.settings.neisOfcdc = '';
-    if(state.settings.neisSchul === undefined) state.settings.neisSchul = '';
-    if(state.settings.neisSchoolName === undefined) state.settings.neisSchoolName = '';
-    if(!state.settings.fontScale) state.settings.fontScale = 1;
-    if(!state.settings.schoolLevel) state.settings.schoolLevel = 'high';
-    if(!state.settings.classDuration) state.settings.classDuration = 50;
-    if(state.settings.breakDuration===undefined) state.settings.breakDuration = 10;
-    if(!state.settings.firstPeriodStart) state.settings.firstPeriodStart = '09:00';
-    if(state.settings.lunchAfterPeriod===undefined) state.settings.lunchAfterPeriod = 4;
-    if(!state.settings.lunchDuration) state.settings.lunchDuration = 50;
-    applyFontScale();
-    state.settings.exams = state.settings.exams.map(function(e){
-      if(!e.type || !e.startDate){
-        e = { id:e.id||uid(), type:'writtenExam', name:e.name, startDate:e.date||e.startDate, endDate:e.date||e.endDate||e.startDate };
-      }
-      if(!e.classIds){
-        if(e.grades && e.grades.length){
-          e.classIds = state.settings.classes.filter(function(c){ return c.grade && e.grades.indexOf(c.grade)!==-1; }).map(function(c){ return c.id; });
+    duckdamForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = document.getElementById('username').value;
+      const passwordInput = document.getElementById('userPassword').value;
+      const messageInput = document.getElementById('message').value;
+
+      if (!friendZodiac) friendZodiac = getZodiacByDate(birthInput.value);
+      const relationText = getZodiacRelation(ownerZodiac, friendZodiac, ownerName);
+      const profile = getRandomEmojiProfile(nameInput);
+
+      const newDuckdam = {
+        name: nameInput,
+        password: passwordInput,
+        message: messageInput,
+        zodiac: friendZodiac,
+        relation: relationText,
+        profile: profile,
+        timestamp: Date.now()
+      };
+
+      const moonId = `${ownerName}_${ownerBirth}`.replace(/[.#$\[\]]/g, "_");
+      
+      db.ref(`moons/${moonId}/duckdams`).push(newDuckdam, (error) => {
+        if (error) {
+          alert("저장 에러 원인: " + error.message);
         } else {
-          e.classIds = [];
+          document.getElementById('username').value = '';
+          document.getElementById('userPassword').value = '';
+          document.getElementById('message').value = '';
+          alert(`[${friendZodiac.name}] 기운으로 ${ownerName}님의 강강술래 원에 함께 손을 잡았습니다! 🤝`);
         }
-      }
-      return e;
-    });
-    state.plans = res[1] || {};
-    Object.keys(state.plans).forEach(function(cid){
-      (state.plans[cid]||[]).forEach(function(it){
-        if(!it.status) it.status = it.done ? 'done' : 'pending';
       });
     });
-    return ensureMonth(ymOf(state.currentDate));
-  }).then(function(){
-    renderAll();
-    hideSplash();
-  }).catch(function(e){
-    console.error(e);
-    state.settings = defaultSettings();
-    state.plans = {};
-    applyFontScale();
-    renderAll();
-    hideSplash();
-  });
-}
-init();
 
-})();
-</script>
+    document.getElementById('deleteDuckdamBtn').addEventListener('click', () => {
+      const inputPw = prompt("손을 놓으시려면 설정했던 비밀번호를 입력해주세요:");
+      if (!inputPw) return;
+
+      if (inputPw === selectedDuckdamPw) {
+        const moonId = `${ownerName}_${ownerBirth}`.replace(/[.#$\[\]]/g, "_");
+        db.ref(`moons/${moonId}/duckdams/${selectedDuckdamKey}`).remove()
+          .then(() => {
+            alert("강강술래 원에서 빠졌습니다! 🧹");
+            document.getElementById('modal').classList.remove('active');
+          })
+          .catch((err) => {
+            alert("삭제 실패: " + err.message);
+          });
+      } else {
+        alert("비밀번호가 일치하지 않습니다! ❌");
+      }
+    });
+
+    document.getElementById('shareBtn').addEventListener('click', () => {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        alert(`[${ownerName}]님의 강강술래 링크가 복사되었습니다!\n친구들에게 전달해 보세요.`);
+      });
+    });
+
+    // 하단 '나도 내 강강술래 만들기' 버튼
+    document.getElementById('createNewBtn').addEventListener('click', () => {
+      document.getElementById('ownerNameInput').value = '';
+      document.getElementById('ownerBirthInput').value = '';
+      ownerModal.classList.add('active');
+    });
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('modal').classList.remove('active');
+    });
+  </script>
 </body>
 </html>
