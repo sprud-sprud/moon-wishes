@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>달토끼의 별자리 덕담 떡방아 🌕</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
@@ -19,7 +19,7 @@
       position: relative; margin: 45px auto 20px;
     }
 
-    /* 달 옆에 둥둥 떠있는 주인의 수호 별자리 뱃지 */
+    /* 달 옆 수호 별자리 뱃지 */
     .owner-zodiac-badge {
       position: absolute; top: -15px; left: -20px; z-index: 15;
       background: rgba(26, 28, 46, 0.85); border: 1.5px solid #FFE885;
@@ -67,13 +67,12 @@
       display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 12px; padding: 40px;
     }
 
-    /* 파스텔 송편 */
+    /* 송편 모형 */
     .songpyeon-shape {
       width: 46px; height: 32px; border-radius: 50px 50px 12px 12px; position: relative; cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.2s, filter 0.2s;
       animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    /* 송편 반죽 주름 광택 */
     .songpyeon-shape::after {
       content: ''; position: absolute; top: 3px; left: 15%; width: 70%; height: 4px; background: rgba(255, 255, 255, 0.6); border-radius: 10px;
     }
@@ -118,7 +117,7 @@
       border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 12px; font-size: 0.85rem; cursor: pointer; margin-top: 8px;
     }
 
-    /* 팝업 모달 */
+    /* 모달 */
     .modal-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8);
       display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; z-index: 100;
@@ -140,7 +139,6 @@
   </header>
 
   <div class="moon-wrapper">
-    <!-- 달 옆 수호 별자리 뱃지 -->
     <div class="owner-zodiac-badge" id="ownerZodiacBadge">
       <span class="z-icon" id="ownerZodiacIcon">✨</span>
       <span class="z-name" id="ownerZodiacText">별자리</span>
@@ -158,7 +156,6 @@
     </div>
   </div>
 
-  <!-- 덕담 입력 폼 -->
   <div class="form-card">
     <form id="duckdamForm">
       <div class="form-group">
@@ -185,7 +182,6 @@
     </form>
   </div>
 
-  <!-- [주인용] 별자리 등록 모달 -->
   <div class="modal-overlay" id="ownerModal">
     <div class="modal-content">
       <h3 style="margin-bottom:8px; color:#1A1C2E;">🌕 내 별자리 보름달 개설하기</h3>
@@ -202,7 +198,6 @@
     </div>
   </div>
 
-  <!-- [방문자용] 덕담 상세 모달 -->
   <div class="modal-overlay" id="modal">
     <div class="modal-content">
       <div style="display:flex; justify-content:center; margin-bottom:12px;">
@@ -217,12 +212,8 @@
 
   <script>
     const pastelColors = [
-      'sp-pastel-pink',
-      'sp-pastel-green',
-      'sp-pastel-yellow',
-      'sp-pastel-mint',
-      'sp-pastel-purple',
-      'sp-pastel-white'
+      'sp-pastel-pink', 'sp-pastel-green', 'sp-pastel-yellow',
+      'sp-pastel-mint', 'sp-pastel-purple', 'sp-pastel-white'
     ];
 
     function getRandomPastelColor() {
