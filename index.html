@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>별자리 은하수 소원 밤하늘 🌌</title>
+  <title>달빛 아래 강강술래 🌕</title>
   
   <!-- Firebase SDK (Compat Version) CDN -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -12,153 +12,145 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
     body {
-      background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+      background: radial-gradient(circle at center, #111827 0%, #030712 100%);
       color: #FFF; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; overflow-x: hidden;
     }
-    header { text-align: center; margin-top: 15px; margin-bottom: 25px; }
-    h1 { font-size: 1.7rem; color: #E2E8F0; text-shadow: 0 0 15px rgba(255, 255, 255, 0.6); margin-bottom: 6px; }
-    p.subtitle { font-size: 0.88rem; color: #94A3B8; }
+    header { text-align: center; margin-top: 15px; margin-bottom: 20px; }
+    h1 { font-size: 1.7rem; color: #FDE047; text-shadow: 0 0 15px rgba(253, 224, 71, 0.5); margin-bottom: 6px; }
+    p.subtitle { font-size: 0.88rem; color: #9CA3AF; }
 
-    .sky-wrapper { position: relative; margin: 30px auto 20px; }
+    /* 강강술래 원형 영역 */
+    .sullae-wrapper { position: relative; margin: 30px auto 20px; width: 300px; height: 300px; }
 
     .owner-zodiac-badge {
-      position: absolute; top: -15px; left: 50%; transform: translateX(-50%); z-index: 15;
-      background: rgba(15, 23, 42, 0.85); border: 1.5px solid #38BDF8;
+      position: absolute; top: -15px; left: 50%; transform: translateX(-50%); z-index: 25;
+      background: rgba(17, 24, 39, 0.85); border: 1.5px solid #FDE047;
       backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px;
       display: none; align-items: center; gap: 8px;
-      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+      box-shadow: 0 0 15px rgba(253, 224, 71, 0.3);
       animation: floatBadge 3s ease-in-out infinite;
       white-space: nowrap;
     }
     .owner-zodiac-badge .z-icon { font-size: 1.4rem; }
-    .owner-zodiac-badge .z-name { font-size: 0.85rem; font-weight: bold; color: #38BDF8; }
+    .owner-zodiac-badge .z-name { font-size: 0.85rem; font-weight: bold; color: #FDE047; }
 
     @keyframes floatBadge {
       0%, 100% { transform: translate(-50%, 0); }
       50% { transform: translate(-50%, -6px); }
     }
 
-    /* 은하수 수호성 원형 배경 */
-    .galaxy-container {
-      position: relative; width: 300px; height: 300px;
-      background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, rgba(15, 23, 42, 0.8) 70%, rgba(2, 6, 23, 0.95) 100%);
-      border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: inset 0 0 30px rgba(56, 189, 248, 0.2), 0 0 40px rgba(0, 0, 0, 0.8);
-      display: flex; justify-content: center; align-items: center;
-      overflow: hidden;
+    /* 중앙 보름달 */
+    .center-moon {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 140px; height: 140px;
+      background: radial-gradient(circle, #FEF08A 0%, #FDE047 70%, #EAB308 100%);
+      border-radius: 50%; box-shadow: 0 0 40px rgba(253, 224, 71, 0.5);
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      z-index: 5; text-align: center; padding: 10px;
+    }
+    .moon-text-count { font-size: 1.1rem; font-weight: bold; color: #854D0E; }
+    .moon-text-sub { font-size: 0.72rem; color: #A16207; margin-top: 2px; }
+
+    /* 강강술래 캐릭터배치 보드 */
+    .sullae-circle {
+      position: absolute; width: 100%; height: 100%; border-radius: 50%; z-index: 10;
     }
 
-    /* 배경 별빛 반짝임 효과 */
-    .galaxy-container::before {
-      content: ''; position: absolute; width: 100%; height: 100%;
-      background-image: radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-                        radial-gradient(2px 2px at 40px 70px, #38bdf8, rgba(0,0,0,0)),
-                        radial-gradient(1.5px 1.5px at 150px 180px, #f472b6, rgba(0,0,0,0)),
-                        radial-gradient(2px 2px at 230px 120px, #a78bfa, rgba(0,0,0,0));
-      background-size: 280px 280px; opacity: 0.5;
+    /* 👧🏻 강강술래 아바타 컨테이너 */
+    .avatar-item {
+      position: absolute; top: 50%; left: 50%;
+      width: 44px; height: 44px; margin-top: -22px; margin-left: -22px;
+      cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      animation: popIn 0.5s ease-out;
+    }
+    .avatar-item:hover {
+      transform: scale(1.45) !important; z-index: 30;
+      filter: drop-shadow(0 0 10px #FDE047);
     }
 
-    .star-board {
-      position: absolute; width: 100%; height: 100%; border-radius: 50%;
-      display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 16px; padding: 35px; z-index: 2;
+    /* 한복 아이콘 및 이름표 */
+    .avatar-body { font-size: 1.8rem; line-height: 1; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
+    .avatar-name {
+      font-size: 0.65rem; font-weight: bold; background: rgba(0, 0, 0, 0.75);
+      color: #FFF; padding: 2px 6px; border-radius: 8px; margin-top: -2px;
+      white-space: nowrap; border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    /* ✨ 별 아이템 디자인 */
-    .star-shape {
-      width: 32px; height: 32px; cursor: pointer; position: relative;
-      display: flex; justify-content: center; align-items: center;
-      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.25s;
-      animation: starTwinkle 2.5s ease-in-out infinite alternate, popIn 0.4s ease-out;
-    }
-    .star-shape::before {
-      content: '★'; font-size: 1.8rem; line-height: 1;
-    }
-    .star-shape:hover {
-      transform: scale(1.5) rotate(15deg);
-      filter: drop-shadow(0 0 12px currentColor);
-    }
-
-    /* 🎨 파스텔톤 빛나는 별 색상 정의 */
-    .star-pink   { color: #F472B6; text-shadow: 0 0 8px #F472B6; }
-    .star-cyan   { color: #38BDF8; text-shadow: 0 0 8px #38BDF8; }
-    .star-yellow { color: #FACC15; text-shadow: 0 0 8px #FACC15; }
-    .star-purple { color: #C084FC; text-shadow: 0 0 8px #C084FC; }
-    .star-mint   { color: #34D399; text-shadow: 0 0 8px #34D399; }
-    .star-white  { color: #F8FAFC; text-shadow: 0 0 8px #F8FAFC; }
-
-    @keyframes starTwinkle {
-      0% { opacity: 0.7; transform: scale(0.95); }
-      100% { opacity: 1; transform: scale(1.1); }
-    }
-    @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { opacity: 1; } }
 
     .form-card {
-      background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(16px);
+      background: rgba(31, 41, 55, 0.7); backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px;
       padding: 20px; width: 100%; max-width: 360px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
     }
     .form-group { margin-bottom: 14px; }
     .form-row { display: flex; gap: 8px; }
-    label { display: block; font-size: 0.85rem; color: #38BDF8; margin-bottom: 8px; }
+    label { display: block; font-size: 0.85rem; color: #FDE047; margin-bottom: 8px; }
     input[type="text"], input[type="password"], input[type="date"], textarea {
-      width: 100%; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); outline: none; background: rgba(30, 41, 59, 0.8); color: #F8FAFC; font-size: 0.88rem;
+      width: 100%; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); outline: none; background: rgba(17, 24, 39, 0.8); color: #F9FAFB; font-size: 0.88rem;
     }
     textarea { resize: none; height: 60px; }
 
     .zodiac-badge-info {
-      background: rgba(56, 189, 248, 0.1); border: 1px dashed #38BDF8; border-radius: 12px;
-      padding: 10px; font-size: 0.82rem; color: #38BDF8; text-align: center; margin-top: 6px; display: none; line-height: 1.4;
+      background: rgba(253, 224, 71, 0.1); border: 1px dashed #FDE047; border-radius: 12px;
+      padding: 10px; font-size: 0.82rem; color: #FDE047; text-align: center; margin-top: 6px; display: none; line-height: 1.4;
     }
 
     .submit-btn {
-      width: 100%; padding: 12px; background: linear-gradient(135deg, #38BDF8, #818CF8); color: #0F172A; font-weight: bold;
+      width: 100%; padding: 12px; background: #FDE047; color: #111827; font-weight: bold;
       border: none; border-radius: 12px; font-size: 1rem; cursor: pointer; margin-top: 6px; transition: opacity 0.2s;
     }
     .submit-btn:hover { opacity: 0.9; }
     
     .btn-group { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
     .share-btn {
-      width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.08); color: #E2E8F0;
+      width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.08); color: #E5E7EB;
       border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; font-size: 0.83rem; cursor: pointer; transition: background 0.2s;
     }
     .share-btn:hover { background: rgba(255, 255, 255, 0.15); }
     .create-new-btn {
-      width: 100%; padding: 10px; background: rgba(129, 140, 248, 0.2); color: #A5B4FC; font-weight: bold;
-      border: 1px solid rgba(129, 140, 248, 0.4); border-radius: 12px; font-size: 0.83rem; cursor: pointer;
+      width: 100%; padding: 10px; background: rgba(253, 224, 71, 0.15); color: #FDE047; font-weight: bold;
+      border: 1px solid rgba(253, 224, 71, 0.3); border-radius: 12px; font-size: 0.83rem; cursor: pointer;
     }
 
     .modal-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(2, 6, 23, 0.85);
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(3, 7, 18, 0.85);
       display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; z-index: 100;
     }
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content {
-      background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); color: #F8FAFC;
+      background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: #F9FAFB;
       border: 1px solid rgba(255, 255, 255, 0.15); padding: 24px; border-radius: 24px; max-width: 320px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
     .zodiac-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: #FFF; margin-bottom: 8px; }
     
     .modal-action-btns { display: flex; gap: 8px; justify-content: center; margin-top: 14px; }
-    .close-btn { background: #334155; color: white; border: none; padding: 8px 20px; border-radius: 10px; cursor: pointer; }
+    .close-btn { background: #374151; color: white; border: none; padding: 8px 20px; border-radius: 10px; cursor: pointer; }
     .delete-btn { background: #EF4444; color: white; border: none; padding: 8px 16px; border-radius: 10px; cursor: pointer; font-size: 0.85rem; }
   </style>
 </head>
 <body>
 
   <header>
-    <h1 id="pageTitle">별자리 은하수 소원 밤하늘 🌌</h1>
-    <p class="subtitle" id="pageSubtitle">소중한 별빛 메시지를 하늘에 띄워보세요!</p>
+    <h1 id="pageTitle">달빛 아래 강강술래 🌕</h1>
+    <p class="subtitle" id="pageSubtitle">손을 잡고 함께 원을 만들어 덕담을 나눠요!</p>
   </header>
 
-  <div class="sky-wrapper">
+  <div class="sullae-wrapper">
     <div class="owner-zodiac-badge" id="ownerZodiacBadge">
       <span class="z-icon" id="ownerZodiacIcon">✨</span>
       <span class="z-name" id="ownerZodiacText">별자리</span>
     </div>
 
-    <div class="galaxy-container">
-      <div class="star-board" id="starBoard"></div>
+    <!-- 중앙 보름달 및 인원수 카운트 -->
+    <div class="center-moon">
+      <div class="moon-text-count" id="sullaeCount">0명</div>
+      <div class="moon-text-sub">함께 손잡는 중!</div>
     </div>
+
+    <!-- 손잡는 캐릭터 배치 원 -->
+    <div class="sullae-circle" id="sullaeCircle"></div>
   </div>
 
   <div class="form-card">
@@ -183,15 +175,15 @@
       </div>
 
       <div class="form-group">
-        <label for="message">별빛 소원 한마디</label>
-        <textarea id="message" placeholder="달빛과 별빛 아래 풍성하고 따뜻한 가을 보내길!" maxlength="60" required></textarea>
+        <label for="message">덕담 한마디</label>
+        <textarea id="message" placeholder="달빛 아래 함께 손잡고 밝은 한가위 보내자!" maxlength="60" required></textarea>
       </div>
 
-      <button type="submit" class="submit-btn">별빛 수호신 띄우기 ✨</button>
+      <button type="submit" class="submit-btn">강강술래 손잡기 🤝</button>
       
       <div class="btn-group">
-        <button type="button" id="shareBtn" class="share-btn">🔗 이 은하수 주소 복사하기</button>
-        <button type="button" id="createNewBtn" class="create-new-btn">🌌 나도 내 별자리 은하수 만들기</button>
+        <button type="button" id="shareBtn" class="share-btn">🔗 이 강강술래 주소 복사하기</button>
+        <button type="button" id="createNewBtn" class="create-new-btn">🌕 나도 내 강강술래 만들기</button>
       </div>
     </form>
   </div>
@@ -199,33 +191,31 @@
   <!-- 주인 생성 모달 -->
   <div class="modal-overlay" id="ownerModal">
     <div class="modal-content">
-      <h3 style="margin-bottom:8px; color:#38BDF8;">🌌 내 별자리 은하수 개설하기</h3>
-      <p style="font-size:0.82rem; color:#94A3B8; margin-bottom:16px;">닉네임과 생년월일을 입력하면 수호 별자리 은하수가 펼쳐집니다!</p>
+      <h3 style="margin-bottom:8px; color:#FDE047;">🌕 내 강강술래 원 개설하기</h3>
+      <p style="font-size:0.82rem; color:#9CA3AF; margin-bottom:16px;">닉네임과 생년월일을 입력하면 달빛 아래 모임이 시작됩니다!</p>
       <div class="form-group" style="text-align:left;">
-        <label style="color:#CBD5E1;">주인 닉네임</label>
-        <input type="text" id="ownerNameInput" placeholder="예: 별빛하늘" required />
+        <label style="color:#D1D5DB;">주인 닉네임</label>
+        <input type="text" id="ownerNameInput" placeholder="예: 달빛초롱" required />
       </div>
       <div class="form-group" style="text-align:left;">
-        <label style="color:#CBD5E1;">주인 생년월일</label>
+        <label style="color:#D1D5DB;">주인 생년월일</label>
         <input type="date" id="ownerBirthInput" required />
       </div>
-      <button class="submit-btn" id="saveOwnerBtn">은하수 밤하늘 열기 🚀</button>
+      <button class="submit-btn" id="saveOwnerBtn">강강술래 시작하기 🚀</button>
     </div>
   </div>
 
-  <!-- 별빛 정보 & 삭제 모달 -->
+  <!-- 덕담 확인 & 삭제 모달 -->
   <div class="modal-overlay" id="modal">
     <div class="modal-content">
-      <div style="display:flex; justify-content:center; margin-bottom:12px;">
-        <div class="star-shape" id="modalStar" style="transform: scale(1.6);"></div>
-      </div>
+      <div style="font-size: 3rem; margin-bottom: 8px;" id="modalAvatar">👧🏻</div>
       <div class="zodiac-tag" id="modalTag">✨ 별자리 케미</div>
-      <div style="font-weight:bold; color:#F8FAFC; font-size:1.1rem; margin-top: 6px;" id="modalName">홍길동</div>
-      <div style="font-size:0.95rem; line-height:1.5; color:#CBD5E1; margin-top:10px; margin-bottom:18px;" id="modalText">덕담 내용</div>
+      <div style="font-weight:bold; color:#F9FAFB; font-size:1.1rem; margin-top: 6px;" id="modalName">홍길동</div>
+      <div style="font-size:0.95rem; line-height:1.5; color:#D1D5DB; margin-top:10px; margin-bottom:18px;" id="modalText">덕담 내용</div>
       
       <div class="modal-action-btns">
         <button class="close-btn" id="closeModal">닫기</button>
-        <button class="delete-btn" id="deleteDuckdamBtn">🗑️ 삭제하기</button>
+        <button class="delete-btn" id="deleteDuckdamBtn">🗑️ 손놓기 (삭제)</button>
       </div>
     </div>
   </div>
@@ -245,14 +235,11 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // 🎨 파스텔 별빛 색상 클래스
-    const starColors = [
-      'star-pink', 'star-cyan', 'star-yellow',
-      'star-purple', 'star-mint', 'star-white'
-    ];
+    // 👧🏻👦🏻 다양한 한복 아바타 이모지 목록
+    const hanbokAvatars = ['👧🏻', '👦🏻', '👧🏼', '👦🏼', '👧🏽', '👦🏽', '🧑🏻‍🌾', '👧살'];
 
-    function getRandomStarColor() {
-      return starColors[Math.floor(Math.random() * starColors.length)];
+    function getRandomAvatar() {
+      return hanbokAvatars[Math.floor(Math.random() * hanbokAvatars.length)];
     }
 
     const zodiacList = [
@@ -322,8 +309,8 @@
     }
 
     function updatePageHeader() {
-      document.getElementById('pageTitle').innerText = `${ownerName}님의 별자리 은하수 🌌`;
-      document.getElementById('pageSubtitle').innerText = `${ownerName}님을 향한 별빛 소원을 남겨보세요!`;
+      document.getElementById('pageTitle').innerText = `${ownerName}님의 강강술래 🌕`;
+      document.getElementById('pageSubtitle').innerText = `${ownerName}님과 손을 잡고 덕담을 올해보세요!`;
       
       const badge = document.getElementById('ownerZodiacBadge');
       document.getElementById('ownerZodiacIcon').innerText = ownerZodiac.symbol;
@@ -350,7 +337,7 @@
       const newUrl = `${window.location.origin}${window.location.pathname}?moon=${encodeURIComponent(ownerName)}&birth=${ownerBirth}`;
       window.history.replaceState(null, '', newUrl);
       listenForDuckdams();
-      alert(`[${ownerName}]님의 별자리 은하수가 개설되었습니다!\n링크를 복사해 친구들에게 공유하세요.`);
+      alert(`[${ownerName}]님의 강강술래 원이 개설되었습니다!\n링크를 복사해 친구들에게 공유하세요.`);
     });
 
     let friendZodiac = null;
@@ -370,7 +357,7 @@
     let selectedDuckdamKey = null;
     let selectedDuckdamPw = null;
 
-    const board = document.getElementById('starBoard');
+    const circle = document.getElementById('sullaeCircle');
     const duckdamForm = document.getElementById('duckdamForm');
 
     function listenForDuckdams() {
@@ -385,24 +372,42 @@
             duckdamList.push({ key: key, ...data[key] });
           });
         }
-        renderStars();
+        renderSullaeCircle();
       }, (error) => {
         alert("DB 읽기 에러 발생: " + error.message);
       });
     }
 
-    function renderStars() {
-      board.innerHTML = '';
-      duckdamList.forEach((item) => {
+    /* ⭕ 강강술래 원 둘레에 인원수별 원형 배치 알고리즘 */
+    function renderSullaeCircle() {
+      circle.innerHTML = '';
+      const total = duckdamList.length;
+      document.getElementById('sullaeCount').innerText = `${total}명`;
+
+      const radius = 118; // 배치 반지름 (px)
+
+      duckdamList.forEach((item, index) => {
+        // 원의 각도 계산 (라디안)
+        const angle = (index / total) * 2 * Math.PI - (Math.PI / 2);
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+
         const div = document.createElement('div');
-        const colorClass = item.colorClass || getRandomStarColor();
-        div.className = `star-shape ${colorClass}`;
+        div.className = 'avatar-item';
+        div.style.transform = `translate(${x}px, ${y}px)`;
+
+        const avatarEmoji = item.avatar || getRandomAvatar();
+
+        div.innerHTML = `
+          <div class="avatar-body">${avatarEmoji}</div>
+          <div class="avatar-name">${item.name}</div>
+        `;
 
         div.addEventListener('click', () => {
           selectedDuckdamKey = item.key;
           selectedDuckdamPw = item.password;
 
-          document.getElementById('modalStar').className = `star-shape ${colorClass}`;
+          document.getElementById('modalAvatar').innerText = avatarEmoji;
           
           const modalTag = document.getElementById('modalTag');
           modalTag.innerText = item.relation;
@@ -413,7 +418,7 @@
           document.getElementById('modal').classList.add('active');
         });
 
-        board.appendChild(div);
+        circle.appendChild(div);
       });
     }
 
@@ -425,7 +430,7 @@
 
       if (!friendZodiac) friendZodiac = getZodiacByDate(birthInput.value);
       const relationText = getZodiacRelation(ownerZodiac, friendZodiac, ownerName);
-      const chosenColor = getRandomStarColor();
+      const avatarEmoji = getRandomAvatar();
 
       const newDuckdam = {
         name: nameInput,
@@ -433,7 +438,7 @@
         message: messageInput,
         zodiac: friendZodiac,
         relation: relationText,
-        colorClass: chosenColor,
+        avatar: avatarEmoji,
         timestamp: Date.now()
       };
 
@@ -446,20 +451,20 @@
           document.getElementById('username').value = '';
           document.getElementById('userPassword').value = '';
           document.getElementById('message').value = '';
-          alert(`[${friendZodiac.name}] 수호 기운을 담아 ${ownerName}님의 은하수에 별빛을 새겼습니다! ✨`);
+          alert(`[${friendZodiac.name}] 기운으로 ${ownerName}님의 강강술래 원에 함께 손을 잡았습니다! 🤝`);
         }
       });
     });
 
     document.getElementById('deleteDuckdamBtn').addEventListener('click', () => {
-      const inputPw = prompt("별빛 소원을 설정할 때 입력한 비밀번호를 입력해주세요:");
+      const inputPw = prompt("손을 놓으시려면 설정했던 비밀번호를 입력해주세요:");
       if (!inputPw) return;
 
       if (inputPw === selectedDuckdamPw) {
         const moonId = `${ownerName}_${ownerBirth}`.replace(/[.#$\[\]]/g, "_");
         db.ref(`moons/${moonId}/duckdams/${selectedDuckdamKey}`).remove()
           .then(() => {
-            alert("별빛 소원이 성공적으로 삭제되었습니다! 🧹");
+            alert("강강술래 원에서 빠졌습니다! 🧹");
             document.getElementById('modal').classList.remove('active');
           })
           .catch((err) => {
@@ -472,7 +477,7 @@
 
     document.getElementById('shareBtn').addEventListener('click', () => {
       navigator.clipboard.writeText(window.location.href).then(() => {
-        alert(`[${ownerName}]님의 별자리 은하수 링크가 복사되었습니다!\n친구들에게 전달해 보세요.`);
+        alert(`[${ownerName}]님의 강강술래 링크가 복사되었습니다!\n친구들에게 전달해 보세요.`);
       });
     });
 
