@@ -2,7 +2,419 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>달토끼의 별자리 덕담 떡방아 🌕</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
+    body {
+      background: linear-gradient(180deg, #101227 0%, #25284B 100%);
+      color: #FFF; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; overflow-x: hidden;
+    }
+    header { text-align: center; margin-top: 15px; margin-bottom: 25px; }
+    h1 { font-size: 1.7rem; color: #FFE885; text-shadow: 0 0 12px rgba(255, 232, 133, 0.6); margin-bottom: 6px; }
+    p.subtitle { font-size: 0.88rem; color: #D1D5DB; }
+
+    /* 보름달 영역 전체 */
+    .moon-wrapper {
+      position: relative; margin: 45px auto 20px;
+    }
+
+    /* 달 옆에 둥둥 떠있는 주인의 수호 별자리 뱃지 */
+    .owner-zodiac-badge {
+      position: absolute; top: -15px; left: -20px; z-index: 15;
+      background: rgba(26, 28, 46, 0.85); border: 1.5px solid #FFE885;
+      backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 30px;
+      display: none; align-items: center; gap: 8px;
+      box-shadow: 0 0 15px rgba(255, 232, 133, 0.4);
+      animation: floatBadge 3s ease-in-out infinite;
+    }
+    .owner-zodiac-badge .z-icon { font-size: 1.4rem; }
+    .owner-zodiac-badge .z-name { font-size: 0.85rem; font-weight: bold; color: #FFE885; }
+
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* 보름달 컨테이너 */
+    .moon-container {
+      position: relative; width: 280px; height: 280px;
+      background: radial-gradient(circle, #FFF9E6 0%, #FFE57F 65%, #FFD54F 100%);
+      border-radius: 50%; box-shadow: 0 0 50px rgba(255, 229, 127, 0.6);
+      display: flex; justify-content: center; align-items: center;
+    }
+
+    /* 토끼 & 돌절구 */
+    .rabbit-mortar-container {
+      position: absolute; top: -65px; right: 10px; display: flex; align-items: flex-end; pointer-events: none; z-index: 10;
+    }
+    .big-rabbit { font-size: 4.5rem; display: inline-block; transform: scaleX(-1); margin-right: -15px; }
+    .stone-mortar-wrap { display: flex; flex-direction: column; align-items: center; position: relative; }
+    .stone-pestle {
+      width: 12px; height: 45px; background: linear-gradient(135deg, #A1A8B0 0%, #6C757D 100%);
+      border-radius: 6px; transform: rotate(-25deg); margin-bottom: -15px; margin-left: -10px;
+      box-shadow: inset 1px 1px 2px rgba(255,255,255,0.4), 2px 2px 4px rgba(0,0,0,0.3);
+    }
+    .stone-mortar {
+      width: 55px; height: 40px; background: radial-gradient(circle at 30% 30%, #9EA5AD 0%, #495057 100%);
+      border-radius: 8px 8px 25px 25px; border-top: 4px solid #6C757D;
+      box-shadow: inset -2px -2px 6px rgba(0,0,0,0.4), inset 2px 2px 6px rgba(255,255,255,0.3), 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    /* 보름달 위 송편 보드 */
+    .songpyeon-board {
+      position: absolute; width: 100%; height: 100%; border-radius: 50%;
+      display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 12px; padding: 40px;
+    }
+
+    /* 파스텔 송편 */
+    .songpyeon-shape {
+      width: 46px; height: 32px; border-radius: 50px 50px 12px 12px; position: relative; cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.2s, filter 0.2s;
+      animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    /* 송편 반죽 주름 광택 */
+    .songpyeon-shape::after {
+      content: ''; position: absolute; top: 3px; left: 15%; width: 70%; height: 4px; background: rgba(255, 255, 255, 0.6); border-radius: 10px;
+    }
+    .songpyeon-shape:hover { transform: scale(1.3) rotate(8deg); filter: drop-shadow(0 0 12px rgba(255, 232, 133, 1)); }
+
+    /* 파스텔톤 송편 색상 팔레트 */
+    .sp-pastel-pink   { background: linear-gradient(135deg, #FFB7B2, #FF8E8F); }
+    .sp-pastel-green  { background: linear-gradient(135deg, #C7CEEA, #7FA2D4); }
+    .sp-pastel-yellow { background: linear-gradient(135deg, #FFF176, #FFD54F); }
+    .sp-pastel-mint   { background: linear-gradient(135deg, #B5EAD7, #72D6B5); }
+    .sp-pastel-purple { background: linear-gradient(135deg, #E2F0CB, #B2E2A6); }
+    .sp-pastel-white  { background: linear-gradient(135deg, #FFFFFF, #E0E0E0); }
+
+    @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+    /* 입력 폼 */
+    .form-card {
+      background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
+      padding: 20px; width: 100%; max-width: 360px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-row { display: flex; gap: 10px; }
+    label { display: block; font-size: 0.85rem; color: #FFE885; margin-bottom: 8px; }
+    input[type="text"], input[type="date"], textarea {
+      width: 100%; padding: 10px 12px; border-radius: 12px; border: none; outline: none; background: rgba(255, 255, 255, 0.9); color: #333; font-size: 0.88rem;
+    }
+    textarea { resize: none; height: 60px; }
+
+    .zodiac-badge-info {
+      background: rgba(255, 232, 133, 0.15); border: 1px dashed #FFE885; border-radius: 12px;
+      padding: 10px; font-size: 0.82rem; color: #FFE885; text-align: center; margin-top: 6px; display: none; line-height: 1.4;
+    }
+
+    .submit-btn {
+      width: 100%; padding: 12px; background: #FFE885; color: #1A1C2E; font-weight: bold;
+      border: none; border-radius: 12px; font-size: 1rem; cursor: pointer; margin-top: 6px; transition: background 0.2s;
+    }
+    .submit-btn:hover { background: #FFD54F; }
+    .share-btn {
+      width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.2); color: #FFF;
+      border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 12px; font-size: 0.85rem; cursor: pointer; margin-top: 8px;
+    }
+
+    /* 팝업 모달 */
+    .modal-overlay {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8);
+      display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; z-index: 100;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: auto; }
+    .modal-content {
+      background: linear-gradient(135deg, #FFF 0%, #F8F9FA 100%); color: #333;
+      padding: 24px; border-radius: 24px; max-width: 320px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .zodiac-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: #FFF; margin-bottom: 8px; }
+    .close-btn { background: #1A1C2E; color: white; border: none; padding: 8px 22px; border-radius: 10px; cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="pageTitle">보름달 별자리 덕담 🌕</h1>
+    <p class="subtitle" id="pageSubtitle">달님을 위한 송편 덕담을 올려보세요!</p>
+  </header>
+
+  <div class="moon-wrapper">
+    <!-- 달 옆 수호 별자리 뱃지 -->
+    <div class="owner-zodiac-badge" id="ownerZodiacBadge">
+      <span class="z-icon" id="ownerZodiacIcon">✨</span>
+      <span class="z-name" id="ownerZodiacText">별자리</span>
+    </div>
+
+    <div class="moon-container">
+      <div class="rabbit-mortar-container">
+        <span class="big-rabbit">🐇</span>
+        <div class="stone-mortar-wrap">
+          <div class="stone-pestle"></div>
+          <div class="stone-mortar"></div>
+        </div>
+      </div>
+      <div class="songpyeon-board" id="songpyeonBoard"></div>
+    </div>
+  </div>
+
+  <!-- 덕담 입력 폼 -->
+  <div class="form-card">
+    <form id="duckdamForm">
+      <div class="form-group">
+        <div class="form-row">
+          <div style="flex:1;">
+            <label for="username">보내는 사람</label>
+            <input type="text" id="username" placeholder="닉네임" maxlength="8" required />
+          </div>
+          <div style="flex:1.2;">
+            <label for="birthdate">내 생년월일</label>
+            <input type="date" id="birthdate" required />
+          </div>
+        </div>
+        <div id="zodiacBadge" class="zodiac-badge-info"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">추석 덕담 한마디</label>
+        <textarea id="message" placeholder="풍성하고 따뜻한 한가위 보내세요!" maxlength="60" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">송편 빚어 올리기 🍡</button>
+      <button type="button" id="shareBtn" class="share-btn">🔗 내 보름달 생성/복사하기</button>
+    </form>
+  </div>
+
+  <!-- [주인용] 별자리 등록 모달 -->
+  <div class="modal-overlay" id="ownerModal">
+    <div class="modal-content">
+      <h3 style="margin-bottom:8px; color:#1A1C2E;">🌕 내 별자리 보름달 개설하기</h3>
+      <p style="font-size:0.82rem; color:#666; margin-bottom:16px;">닉네임과 생년월일을 입력하면 달 옆에 수호 별자리가 떠오릅니다!</p>
+      <div class="form-group" style="text-align:left;">
+        <label style="color:#333;">주인 닉네임</label>
+        <input type="text" id="ownerNameInput" placeholder="예: 달빛토끼" required />
+      </div>
+      <div class="form-group" style="text-align:left;">
+        <label style="color:#333;">주인 생년월일</label>
+        <input type="date" id="ownerBirthInput" required />
+      </div>
+      <button class="submit-btn" id="saveOwnerBtn">별자리 보름달 만들기 🚀</button>
+    </div>
+  </div>
+
+  <!-- [방문자용] 덕담 상세 모달 -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal-content">
+      <div style="display:flex; justify-content:center; margin-bottom:12px;">
+        <div class="songpyeon-shape" id="modalSongpyeon"></div>
+      </div>
+      <div class="zodiac-tag" id="modalTag">✨ 별자리 케미</div>
+      <div style="font-weight:bold; color:#1A1C2E; font-size:1.1rem;" id="modalName">홍길동</div>
+      <div style="font-size:0.95rem; line-height:1.5; color:#444; margin-top:10px; margin-bottom:18px;" id="modalText">덕담 내용</div>
+      <button class="close-btn" id="closeModal">닫기</button>
+    </div>
+  </div>
+
+  <script>
+    const pastelColors = [
+      'sp-pastel-pink',
+      'sp-pastel-green',
+      'sp-pastel-yellow',
+      'sp-pastel-mint',
+      'sp-pastel-purple',
+      'sp-pastel-white'
+    ];
+
+    function getRandomPastelColor() {
+      return pastelColors[Math.floor(Math.random() * pastelColors.length)];
+    }
+
+    const zodiacList = [
+      { name: "염소자리", symbol: "♑", element: "earth", tagColor: "#5D4037", start: [12, 22], end: [1, 19] },
+      { name: "물병자리", symbol: "♒", element: "air",   tagColor: "#F57C00", start: [1, 20], end: [2, 18] },
+      { name: "물고기자리", symbol: "♓", element: "water", tagColor: "#1E88E5", start: [2, 19], end: [3, 20] },
+      { name: "양자리",   symbol: "♈", element: "fire",  tagColor: "#C62828", start: [3, 21], end: [4, 19] },
+      { name: "황소자리", symbol: "♉", element: "earth", tagColor: "#5D4037", start: [4, 20], end: [5, 20] },
+      { name: "쌍둥이자리", symbol: "♊", element: "air",   tagColor: "#F57C00", start: [5, 21], end: [6, 21] },
+      { name: "게자리",   symbol: "♋", element: "water", tagColor: "#1E88E5", start: [6, 22], end: [7, 22] },
+      { name: "사자자리", symbol: "♌", element: "fire",  tagColor: "#C62828", start: [7, 23], end: [8, 22] },
+      { name: "처녀자리", symbol: "♍", element: "earth", tagColor: "#5D4037", start: [8, 23], end: [9, 22] },
+      { name: "천칭자리", symbol: "♎", element: "air",   tagColor: "#F57C00", start: [9, 23], end: [10, 23] },
+      { name: "전갈자리", symbol: "♏", element: "water", tagColor: "#1E88E5", start: [10, 24], end: [11, 22] },
+      { name: "사수자리", symbol: "♐", element: "fire",  tagColor: "#C62828", start: [11, 23], end: [12, 21] }
+    ];
+
+    function getZodiacByDate(dateString) {
+      if (!dateString) return zodiacList[0];
+      const date = new Date(dateString);
+      const m = date.getMonth() + 1;
+      const d = date.getDate();
+
+      for (let z of zodiacList) {
+        if (z.name === "염소자리") {
+          if ((m === 12 && d >= 22) || (m === 1 && d <= 19)) return z;
+        } else {
+          if ((m === z.start[0] && d >= z.start[1]) || (m === z.end[0] && d <= z.end[1])) return z;
+        }
+      }
+      return zodiacList[0];
+    }
+
+    function getZodiacRelation(ownerZodiac, friendZodiac, ownerName) {
+      if (ownerZodiac.name === friendZodiac.name) {
+        return `💖 ${ownerName}님과 시너지 폭발하는 '데칼코마니 찰떡 파트너'`;
+      }
+      if (ownerZodiac.element === friendZodiac.element) {
+        return `🔥 ${ownerName}님과 뜻이 딱 통하는 '행운의 영혼 콤비'`;
+      }
+      
+      const isBestCombo = 
+        (ownerZodiac.element === 'fire' && friendZodiac.element === 'air') ||
+        (ownerZodiac.element === 'air' && friendZodiac.element === 'fire') ||
+        (ownerZodiac.element === 'earth' && friendZodiac.element === 'water') ||
+        (ownerZodiac.element === 'water' && friendZodiac.element === 'earth');
+
+      if (isBestCombo) {
+        return `✨ ${ownerName}님의 시름을 녹여주는 '환상의 별자리 수호신'`;
+      } else {
+        return `🌙 ${ownerName}님에게 색다른 매력을 주는 '반전의 꿀귀인'`;
+      }
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let ownerName = urlParams.get('moon') ? decodeURIComponent(urlParams.get('moon')) : null;
+    let ownerBirth = urlParams.get('birth') || null;
+    let ownerZodiac = ownerBirth ? getZodiacByDate(ownerBirth) : null;
+
+    const ownerModal = document.getElementById('ownerModal');
+
+    if (!ownerName || !ownerBirth) {
+      ownerModal.classList.add('active');
+    } else {
+      updatePageHeader();
+    }
+
+    function updatePageHeader() {
+      document.getElementById('pageTitle').innerText = `${ownerName}님의 보름달 🌕`;
+      document.getElementById('pageSubtitle').innerText = `${ownerName}님에게 송편 덕담을 올려보세요!`;
+      
+      const badge = document.getElementById('ownerZodiacBadge');
+      document.getElementById('ownerZodiacIcon').innerText = ownerZodiac.symbol;
+      document.getElementById('ownerZodiacText').innerText = ownerZodiac.name;
+      badge.style.display = 'flex';
+    }
+
+    document.getElementById('saveOwnerBtn').addEventListener('click', () => {
+      const nameVal = document.getElementById('ownerNameInput').value.trim();
+      const birthVal = document.getElementById('ownerBirthInput').value;
+
+      if (!nameVal || !birthVal) {
+        alert('닉네임과 생년월일을 입력해주세요!');
+        return;
+      }
+
+      ownerName = nameVal;
+      ownerBirth = birthVal;
+      ownerZodiac = getZodiacByDate(ownerBirth);
+
+      ownerModal.classList.remove('active');
+      updatePageHeader();
+
+      const newUrl = `${window.location.origin}${window.location.pathname}?moon=${encodeURIComponent(ownerName)}&birth=${ownerBirth}`;
+      window.history.replaceState(null, '', newUrl);
+      alert(`[${ownerName}]님의 별자리 보름달이 개설되었습니다!\n링크를 복사해 친구들에게 전달하세요.`);
+    });
+
+    let friendZodiac = null;
+    const birthInput = document.getElementById('birthdate');
+    const zodiacBadge = document.getElementById('zodiacBadge');
+
+    birthInput.addEventListener('change', (e) => {
+      if (!e.target.value) return;
+      friendZodiac = getZodiacByDate(e.target.value);
+      const relationText = getZodiacRelation(ownerZodiac, friendZodiac, ownerName);
+      
+      zodiacBadge.style.display = 'block';
+      zodiacBadge.innerHTML = `내 별자리: <b>[${friendZodiac.name} ${friendZodiac.symbol}]</b><br/>${relationText}`;
+    });
+
+    const duckdamList = [
+      { name: "달토끼", message: "풍성한 한가위 되세요! ✨", zodiac: zodiacList[3], relation: `✨ ${ownerName || '달님'}의 환상의 별자리 수호신`, colorClass: 'sp-pastel-pink' }
+    ];
+
+    const board = document.getElementById('songpyeonBoard');
+    const duckdamForm = document.getElementById('duckdamForm');
+
+    function renderSongpyeons() {
+      board.innerHTML = '';
+      duckdamList.forEach((item) => {
+        const div = document.createElement('div');
+        div.classList.add('songpyeon-shape', item.colorClass);
+
+        div.addEventListener('click', () => {
+          document.getElementById('modalSongpyeon').className = `songpyeon-shape ${item.colorClass}`;
+          
+          const modalTag = document.getElementById('modalTag');
+          modalTag.innerText = item.relation;
+          modalTag.style.backgroundColor = item.zodiac.tagColor;
+
+          document.getElementById('modalName').innerText = `${item.name} 님 (${item.zodiac.name} ${item.zodiac.symbol})`;
+          document.getElementById('modalText').innerText = item.message;
+          document.getElementById('modal').classList.add('active');
+        });
+
+        board.appendChild(div);
+      });
+    }
+
+    duckdamForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = document.getElementById('username').value;
+      const messageInput = document.getElementById('message').value;
+
+      if (!friendZodiac) friendZodiac = getZodiacByDate(birthInput.value);
+      const relationText = getZodiacRelation(ownerZodiac, friendZodiac, ownerName);
+
+      const chosenColor = getRandomPastelColor();
+
+      duckdamList.push({
+        name: nameInput,
+        message: messageInput,
+        zodiac: friendZodiac,
+        relation: relationText,
+        colorClass: chosenColor
+      });
+
+      renderSongpyeons();
+      document.getElementById('username').value = '';
+      document.getElementById('message').value = '';
+      alert(`[${friendZodiac.name}] 기운을 담아 ${ownerName}님께 송편 덕담을 전달했습니다! 🌕`);
+    });
+
+    document.getElementById('shareBtn').addEventListener('click', () => {
+      if (!ownerName || !ownerBirth) {
+        alert('먼저 내 별자리 보름달을 생성해주세요!');
+        ownerModal.classList.add('active');
+        return;
+      }
+      const shareUrl = `${window.location.origin}${window.location.pathname}?moon=${encodeURIComponent(ownerName)}&birth=${ownerBirth}`;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        alert(`[${ownerName}]님의 별자리 보름달 링크가 복사되었습니다!\n친구들에게 공유해보세요.`);
+      });
+    });
+
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('modal').classList.remove('active');
+    });
+
+    renderSongpyeons();
+  </script>
+</body>
+</html>="width=device-width, initial-scale=1.0"/>
   <title>달토끼의 별자리 덕담 떡방아 🌕</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
