@@ -2,66 +2,84 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>달빛 아래 강강술래 🌕</title>
   
-  <!-- 카카오톡 / SNS 링크 공유 시 나타나는 미리보기 설정 (Open Graph) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="달빛 아래 강강술래 🌕" />
   <meta property="og:description" content="손을 잡고 함께 원을 만들어 달빛 아래 덕담을 나눠요!" />
 
-  <!-- Firebase SDK (Compat Version) CDN -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Pretendard', sans-serif; }
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      font-family: -apple-system, BlinkMacSystemFont, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Pretendard", sans-serif;
+      letter-spacing: normal !important; /* 글자 벌어짐 완전 방지 */
+      word-break: keep-all;
+    }
+
     body {
       background: radial-gradient(circle at center, #111827 0%, #030712 100%);
-      color: #FFF; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; overflow-x: hidden;
+      color: #FFF; 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      padding: 16px; 
+      overflow-x: hidden;
     }
-    header { text-align: center; margin-top: 15px; margin-bottom: 20px; }
-    h1 { font-size: 1.7rem; color: #FDE047; text-shadow: 0 0 15px rgba(253, 224, 71, 0.5); margin-bottom: 6px; }
-    p.subtitle { font-size: 0.88rem; color: #9CA3AF; }
 
-    .sullae-wrapper { position: relative; margin: 30px auto 20px; width: 300px; height: 300px; }
+    header { text-align: center; margin-top: 10px; margin-bottom: 15px; }
+    h1 { font-size: 1.5rem; color: #FDE047; text-shadow: 0 0 15px rgba(253, 224, 71, 0.5); margin-bottom: 4px; }
+    p.subtitle { font-size: 0.82rem; color: #9CA3AF; }
+
+    /* 모바일 맞춤 원 크기 설정 */
+    .sullae-wrapper { 
+      position: relative; 
+      margin: 20px auto 15px; 
+      width: 280px; 
+      height: 280px; 
+    }
 
     .owner-zodiac-badge {
-      position: absolute; top: -15px; left: 50%; transform: translateX(-50%); z-index: 25;
-      background: rgba(17, 24, 39, 0.85); border: 1.5px solid #FDE047;
-      backdrop-filter: blur(8px); padding: 8px 18px; border-radius: 30px;
-      display: none; align-items: center; gap: 8px;
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%); z-index: 25;
+      background: rgba(17, 24, 39, 0.9); border: 1.5px solid #FDE047;
+      backdrop-filter: blur(8px); padding: 6px 14px; border-radius: 30px;
+      display: none; align-items: center; gap: 6px;
       box-shadow: 0 0 15px rgba(253, 224, 71, 0.3);
       animation: floatBadge 3s ease-in-out infinite;
       white-space: nowrap;
     }
-    .owner-zodiac-badge .z-icon { font-size: 1.4rem; }
-    .owner-zodiac-badge .z-name { font-size: 0.85rem; font-weight: bold; color: #FDE047; }
+    .owner-zodiac-badge .z-icon { font-size: 1.2rem; }
+    .owner-zodiac-badge .z-name { font-size: 0.8rem; font-weight: bold; color: #FDE047; }
 
     @keyframes floatBadge {
       0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -6px); }
+      50% { transform: translate(-50%, -5px); }
     }
 
     .center-moon {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 140px; height: 140px;
+      width: 120px; height: 120px;
       background: radial-gradient(circle, #FEF08A 0%, #FDE047 70%, #EAB308 100%);
-      border-radius: 50%; box-shadow: 0 0 40px rgba(253, 224, 71, 0.5);
+      border-radius: 50%; box-shadow: 0 0 35px rgba(253, 224, 71, 0.5);
       display: flex; flex-direction: column; justify-content: center; align-items: center;
-      z-index: 5; text-align: center; padding: 10px;
+      z-index: 5; text-align: center; padding: 8px;
     }
-    .moon-text-count { font-size: 1.1rem; font-weight: bold; color: #854D0E; }
-    .moon-text-sub { font-size: 0.72rem; color: #A16207; margin-top: 2px; }
+    .moon-text-count { font-size: 1rem; font-weight: bold; color: #854D0E; }
+    .moon-text-sub { font-size: 0.7rem; color: #A16207; margin-top: 2px; }
 
-    .sullae-circle {
-      position: absolute; width: 100%; height: 100%; border-radius: 50%; z-index: 10;
-    }
+    .sullae-circle { position: absolute; width: 100%; height: 100%; border-radius: 50%; z-index: 10; }
 
-    /* 🐱🐰 귀여운 이모지 프레임 아바타 */
+    /* 아바타 고정 크기 */
     .avatar-item {
       position: absolute; top: 50%; left: 50%;
-      width: 48px; height: 48px;
+      width: 44px; height: 44px;
       cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
       z-index: 15; user-select: none;
     }
@@ -70,60 +88,59 @@
       display: flex; flex-direction: column; align-items: center;
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .avatar-item:hover .avatar-inner {
-      transform: scale(1.35);
-      filter: drop-shadow(0 0 12px #FDE047);
-    }
+    .avatar-item:hover .avatar-inner { transform: scale(1.2); }
 
-    /* 파스텔톤 원형 이모지 프레임 */
     .avatar-emoji-box {
-      width: 44px; height: 44px; border-radius: 50%;
+      width: 40px; height: 40px; border-radius: 50%;
       border: 2px solid #FDE047;
       display: flex; justify-content: center; align-items: center;
-      font-size: 1.6rem; line-height: 1;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      font-size: 1.4rem; line-height: 1;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
       pointer-events: none;
     }
 
     .avatar-name {
-      font-size: 0.65rem; font-weight: bold; background: rgba(0, 0, 0, 0.85);
-      color: #FFF; padding: 2px 7px; border-radius: 10px; margin-top: 3px;
+      font-size: 0.62rem; font-weight: bold; background: rgba(0, 0, 0, 0.85);
+      color: #FFF; padding: 2px 6px; border-radius: 8px; margin-top: 2px;
       white-space: nowrap; border: 1px solid rgba(253, 224, 71, 0.4); pointer-events: none;
     }
 
+    /* 폼 카드 스타일 수정 */
     .form-card {
-      background: rgba(31, 41, 55, 0.7); backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px;
-      padding: 20px; width: 100%; max-width: 360px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+      background: rgba(31, 41, 55, 0.75); backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px;
+      padding: 16px; width: 100%; max-width: 340px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
     }
-    .form-group { margin-bottom: 14px; }
+    .form-group { margin-bottom: 12px; }
     .form-row { display: flex; gap: 8px; }
-    label { display: block; font-size: 0.85rem; color: #FDE047; margin-bottom: 8px; }
+    label { display: block; font-size: 0.8rem; color: #FDE047; margin-bottom: 6px; font-weight: bold; }
+    
     input[type="text"], input[type="password"], input[type="date"], textarea {
-      width: 100%; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); outline: none; background: rgba(17, 24, 39, 0.8); color: #F9FAFB; font-size: 0.88rem;
+      width: 100%; padding: 8px 10px; border-radius: 10px; 
+      border: 1px solid rgba(255, 255, 255, 0.15); outline: none; 
+      background: rgba(17, 24, 39, 0.85); color: #F9FAFB; font-size: 0.85rem;
     }
-    textarea { resize: none; height: 60px; }
+    textarea { resize: none; height: 55px; }
 
     .zodiac-badge-info {
-      background: rgba(253, 224, 71, 0.1); border: 1px dashed #FDE047; border-radius: 12px;
-      padding: 10px; font-size: 0.82rem; color: #FDE047; text-align: center; margin-top: 6px; display: none; line-height: 1.4;
+      background: rgba(253, 224, 71, 0.1); border: 1px dashed #FDE047; border-radius: 10px;
+      padding: 8px; font-size: 0.78rem; color: #FDE047; text-align: center; margin-top: 8px; display: none; line-height: 1.35;
     }
 
     .submit-btn {
-      width: 100%; padding: 12px; background: #FDE047; color: #111827; font-weight: bold;
-      border: none; border-radius: 12px; font-size: 1rem; cursor: pointer; margin-top: 6px; transition: opacity 0.2s;
+      width: 100%; padding: 11px; background: #FDE047; color: #111827; font-weight: bold;
+      border: none; border-radius: 10px; font-size: 0.92rem; cursor: pointer; transition: opacity 0.2s;
     }
     .submit-btn:hover { opacity: 0.9; }
     
     .btn-group { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
     .share-btn {
-      width: 100%; padding: 10px; background: rgba(255, 255, 255, 0.08); color: #E5E7EB;
-      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; font-size: 0.83rem; cursor: pointer; transition: background 0.2s;
+      width: 100%; padding: 9px; background: rgba(255, 255, 255, 0.08); color: #E5E7EB;
+      border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; font-size: 0.8rem; cursor: pointer;
     }
-    .share-btn:hover { background: rgba(255, 255, 255, 0.15); }
     .create-new-btn {
-      width: 100%; padding: 10px; background: rgba(253, 224, 71, 0.15); color: #FDE047; font-weight: bold;
-      border: 1px solid rgba(253, 224, 71, 0.3); border-radius: 12px; font-size: 0.83rem; cursor: pointer;
+      width: 100%; padding: 9px; background: rgba(253, 224, 71, 0.15); color: #FDE047; font-weight: bold;
+      border: 1px solid rgba(253, 224, 71, 0.3); border-radius: 10px; font-size: 0.8rem; cursor: pointer;
     }
 
     .modal-overlay {
@@ -133,17 +150,17 @@
     .modal-overlay.active { opacity: 1; pointer-events: auto; }
     .modal-content {
       background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: #F9FAFB;
-      border: 1px solid rgba(255, 255, 255, 0.15); padding: 24px; border-radius: 24px; max-width: 320px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 20px; max-width: 310px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
     .modal-avatar-box {
-      width: 70px; height: 70px; border-radius: 50%; border: 2px solid #FDE047;
-      margin: 0 auto 10px auto; display: flex; justify-content: center; align-items: center; font-size: 2.5rem;
+      width: 60px; height: 60px; border-radius: 50%; border: 2px solid #FDE047;
+      margin: 0 auto 10px auto; display: flex; justify-content: center; align-items: center; font-size: 2rem;
     }
-    .zodiac-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: #FFF; margin-bottom: 8px; }
+    .zodiac-tag { display: inline-block; padding: 5px 12px; border-radius: 16px; font-size: 0.78rem; font-weight: bold; color: #FFF; margin-bottom: 6px; }
     
     .modal-action-btns { display: flex; gap: 8px; justify-content: center; margin-top: 14px; }
-    .close-btn { background: #374151; color: white; border: none; padding: 8px 20px; border-radius: 10px; cursor: pointer; }
-    .delete-btn { background: #EF4444; color: white; border: none; padding: 8px 16px; border-radius: 10px; cursor: pointer; font-size: 0.85rem; }
+    .close-btn { background: #374151; color: white; border: none; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; }
+    .delete-btn { background: #EF4444; color: white; border: none; padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
   </style>
 </head>
 <body>
@@ -205,8 +222,8 @@
   <!-- 주인 생성 모달 -->
   <div class="modal-overlay" id="ownerModal">
     <div class="modal-content">
-      <h3 style="margin-bottom:8px; color:#FDE047;">🌕 내 강강술래 원 개설하기</h3>
-      <p style="font-size:0.82rem; color:#9CA3AF; margin-bottom:16px;">닉네임과 생년월일을 입력하면 달빛 아래 모임이 시작됩니다!</p>
+      <h3 style="margin-bottom:6px; color:#FDE047; font-size:1.1rem;">🌕 내 강강술래 원 개설하기</h3>
+      <p style="font-size:0.78rem; color:#9CA3AF; margin-bottom:14px;">닉네임과 생년월일을 입력하면 달빛 아래 모임이 시작됩니다!</p>
       <div class="form-group" style="text-align:left;">
         <label style="color:#D1D5DB;">주인 닉네임</label>
         <input type="text" id="ownerNameInput" placeholder="예: 달빛초롱" required />
@@ -224,8 +241,8 @@
     <div class="modal-content">
       <div class="modal-avatar-box" id="modalAvatarBox">🐰</div>
       <div><span class="zodiac-tag" id="modalTag">✨ 별자리 케미</span></div>
-      <div style="font-weight:bold; color:#F9FAFB; font-size:1.1rem; margin-top: 6px;" id="modalName">홍길동</div>
-      <div style="font-size:0.95rem; line-height:1.5; color:#D1D5DB; margin-top:10px; margin-bottom:18px;" id="modalText">덕담 내용</div>
+      <div style="font-weight:bold; color:#F9FAFB; font-size:1rem; margin-top: 4px;" id="modalName">홍길동</div>
+      <div style="font-size:0.9rem; line-height:1.45; color:#D1D5DB; margin-top:8px; margin-bottom:14px;" id="modalText">덕담 내용</div>
       
       <div class="modal-action-btns">
         <button class="close-btn" id="closeModal">닫기</button>
@@ -249,7 +266,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // 🐰🐻 귀여운 스마트폰 기본 이모지 리스트 (사람, 동물 캐릭터)
     const emojiList = ['🐰', '🐱', '🐶', '🦊', '🐻', '🐼', '🐥', '🐹', '🐨', '🐯', '👧🏻', '👦🏻', '🧙🏻‍♀️', '🧚🏻‍♀️', '👧🏽', '🏼‍♂️'];
     const bgColors = ['#FEF08A', '#FBCFE8', '#BFDBFE', '#BBF7D0', '#FED7AA', '#E9D5FF'];
 
@@ -330,6 +346,7 @@
     }
 
     function updatePageHeader() {
+      document.title = `${ownerName}님의 달빛 아래 강강술래 🌕`;
       document.getElementById('pageTitle').innerText = `${ownerName}님의 강강술래 🌕`;
       document.getElementById('pageSubtitle').innerText = `${ownerName}님과 손을 잡고 덕담을 올려보세요!`;
       
@@ -404,7 +421,7 @@
       const total = duckdamList.length;
       document.getElementById('sullaeCount').innerText = `${total}명`;
 
-      const radius = 118;
+      const radius = 110;
 
       duckdamList.forEach((item, index) => {
         const angle = (index / total) * 2 * Math.PI - (Math.PI / 2);
@@ -413,7 +430,7 @@
 
         const div = document.createElement('div');
         div.className = 'avatar-item';
-        div.style.transform = `translate(${x - 24}px, ${y - 24}px)`;
+        div.style.transform = `translate(${x - 22}px, ${y - 22}px)`;
 
         const profile = item.profile || getRandomEmojiProfile(item.name);
 
