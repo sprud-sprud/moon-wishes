@@ -75,12 +75,13 @@
     }
     .songpyeon-shape:hover { transform: scale(1.3) rotate(8deg); filter: drop-shadow(0 0 12px rgba(255, 232, 133, 1)); }
 
-    .sp-pastel-pink   { background: linear-gradient(135deg, #FFB7B2, #FF8E8F); }
-    .sp-pastel-green  { background: linear-gradient(135deg, #C7CEEA, #7FA2D4); }
-    .sp-pastel-yellow { background: linear-gradient(135deg, #FFF176, #FFD54F); }
-    .sp-pastel-mint   { background: linear-gradient(135deg, #B5EAD7, #72D6B5); }
-    .sp-pastel-purple { background: linear-gradient(135deg, #E2F0CB, #B2E2A6); }
-    .sp-pastel-white  { background: linear-gradient(135deg, #FFFFFF, #E0E0E0); }
+    /* 🍡 알록달록 떡 색상 수정 (6가지 파스텔톤) */
+    .sp-pastel-pink   { background: linear-gradient(135deg, #FFB7B2, #FF7B9C) !important; }
+    .sp-pastel-green  { background: linear-gradient(135deg, #A8E6CF, #56AB2F) !important; }
+    .sp-pastel-yellow { background: linear-gradient(135deg, #FFF176, #FFD54F) !important; }
+    .sp-pastel-mint   { background: linear-gradient(135deg, #B5EAD7, #72D6B5) !important; }
+    .sp-pastel-purple { background: linear-gradient(135deg, #E8D5C4, #C7CEEA) !important; }
+    .sp-pastel-white  { background: linear-gradient(135deg, #FFFFFF, #E0E0E0) !important; }
 
     @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
@@ -216,7 +217,6 @@
   </div>
 
   <script>
-    // 🔥 싱가포르 전용 URL(asia-southeast1)이 반영된 설정
     const firebaseConfig = {
       apiKey: "AIzaSyB6Gl5fByMl2EEvu3PO2ja_H20dllTliM0",
       authDomain: "moon-wishes.firebaseapp.com",
@@ -231,6 +231,7 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
+    // 🎨 6가지 송편 색상 클래스
     const pastelColors = [
       'sp-pastel-pink', 'sp-pastel-green', 'sp-pastel-yellow',
       'sp-pastel-mint', 'sp-pastel-purple', 'sp-pastel-white'
@@ -375,10 +376,12 @@
       board.innerHTML = '';
       duckdamList.forEach((item) => {
         const div = document.createElement('div');
-        div.classList.add('songpyeon-shape', item.colorClass);
+        // 혹시 예전에 작성한 색상값이 누락되었을 경우를 대비해 기본 랜덤 색상 지정
+        const colorClass = item.colorClass || getRandomPastelColor();
+        div.className = `songpyeon-shape ${colorClass}`;
 
         div.addEventListener('click', () => {
-          document.getElementById('modalSongpyeon').className = `songpyeon-shape ${item.colorClass}`;
+          document.getElementById('modalSongpyeon').className = `songpyeon-shape ${colorClass}`;
           
           const modalTag = document.getElementById('modalTag');
           modalTag.innerText = item.relation;
