@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>달토끼의 별자리 덕담 떡방아 🌕</title>
+  
+  <!-- Firebase SDK (Compat Version) CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
     body {
@@ -14,10 +19,8 @@
     h1 { font-size: 1.7rem; color: #FFE885; text-shadow: 0 0 12px rgba(255, 232, 133, 0.6); margin-bottom: 6px; }
     p.subtitle { font-size: 0.88rem; color: #D1D5DB; }
 
-    /* 보름달 영역 전체 */
     .moon-wrapper { position: relative; margin: 45px auto 20px; }
 
-    /* 달 옆 수호 별자리 뱃지 */
     .owner-zodiac-badge {
       position: absolute; top: -15px; left: -20px; z-index: 15;
       background: rgba(26, 28, 46, 0.85); border: 1.5px solid #FFE885;
@@ -34,7 +37,6 @@
       50% { transform: translateY(-6px); }
     }
 
-    /* 보름달 컨테이너 */
     .moon-container {
       position: relative; width: 280px; height: 280px;
       background: radial-gradient(circle, #FFF9E6 0%, #FFE57F 65%, #FFD54F 100%);
@@ -42,7 +44,6 @@
       display: flex; justify-content: center; align-items: center;
     }
 
-    /* 토끼 & 돌절구 */
     .rabbit-mortar-container {
       position: absolute; top: -65px; right: 10px; display: flex; align-items: flex-end; pointer-events: none; z-index: 10;
     }
@@ -59,13 +60,11 @@
       box-shadow: inset -2px -2px 6px rgba(0,0,0,0.4), inset 2px 2px 6px rgba(255,255,255,0.3), 0 4px 8px rgba(0,0,0,0.3);
     }
 
-    /* 보름달 위 송편 보드 */
     .songpyeon-board {
       position: absolute; width: 100%; height: 100%; border-radius: 50%;
       display: flex; flex-wrap: wrap; justify-content: center; align-content: center; gap: 12px; padding: 40px;
     }
 
-    /* 송편 모형 */
     .songpyeon-shape {
       width: 46px; height: 32px; border-radius: 50px 50px 12px 12px; position: relative; cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: transform 0.2s, filter 0.2s;
@@ -76,7 +75,6 @@
     }
     .songpyeon-shape:hover { transform: scale(1.3) rotate(8deg); filter: drop-shadow(0 0 12px rgba(255, 232, 133, 1)); }
 
-    /* 파스텔톤 송편 색상 팔레트 */
     .sp-pastel-pink   { background: linear-gradient(135deg, #FFB7B2, #FF8E8F); }
     .sp-pastel-green  { background: linear-gradient(135deg, #C7CEEA, #7FA2D4); }
     .sp-pastel-yellow { background: linear-gradient(135deg, #FFF176, #FFD54F); }
@@ -86,7 +84,6 @@
 
     @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-    /* 입력 폼 */
     .form-card {
       background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 20px;
@@ -122,7 +119,6 @@
       border: none; border-radius: 12px; font-size: 0.83rem; cursor: pointer;
     }
 
-    /* 모달 */
     .modal-overlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.8);
       display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; padding: 20px; z-index: 100;
@@ -191,7 +187,6 @@
     </form>
   </div>
 
-  <!-- 주인 등록 모달 -->
   <div class="modal-overlay" id="ownerModal">
     <div class="modal-content">
       <h3 style="margin-bottom:8px; color:#1A1C2E;">🌕 내 별자리 보름달 개설하기</h3>
@@ -208,7 +203,6 @@
     </div>
   </div>
 
-  <!-- 덕담 상세 모달 -->
   <div class="modal-overlay" id="modal">
     <div class="modal-content">
       <div style="display:flex; justify-content:center; margin-bottom:12px;">
@@ -222,6 +216,21 @@
   </div>
 
   <script>
+    // 🔥 파이어베이스 키 자동 연동 완료
+    const firebaseConfig = {
+      apiKey: "AIzaSyB6Gl5fByMl2EEvu3PO2ja_H20dllTliM0",
+      authDomain: "moon-wishes.firebaseapp.com",
+      databaseURL: "https://moon-wishes-default-rtdb.firebaseio.com",
+      projectId: "moon-wishes",
+      storageBucket: "moon-wishes.firebasestorage.app",
+      messagingSenderId: "337988318732",
+      appId: "1:337988318732:web:31ef9f89d85f07ffa5a029",
+      measurementId: "G-818HYR468B"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     const pastelColors = [
       'sp-pastel-pink', 'sp-pastel-green', 'sp-pastel-yellow',
       'sp-pastel-mint', 'sp-pastel-purple', 'sp-pastel-white'
@@ -294,6 +303,7 @@
       ownerModal.classList.add('active');
     } else {
       updatePageHeader();
+      listenForDuckdams();
     }
 
     function updatePageHeader() {
@@ -324,6 +334,7 @@
 
       const newUrl = `${window.location.origin}${window.location.pathname}?moon=${encodeURIComponent(ownerName)}&birth=${ownerBirth}`;
       window.history.replaceState(null, '', newUrl);
+      listenForDuckdams();
       alert(`[${ownerName}]님의 별자리 보름달이 개설되었습니다!\n링크를 복사해 친구들에게 공유하세요.`);
     });
 
@@ -340,12 +351,23 @@
       zodiacBadge.innerHTML = `내 별자리: <b>[${friendZodiac.name} ${friendZodiac.symbol}]</b><br/>${relationText}`;
     });
 
-    const duckdamList = [
-      { name: "달토끼", message: "풍성한 한가위 되세요! ✨", zodiac: zodiacList[3], relation: `✨ ${ownerName || '달님'}의 환상의 별자리 수호신`, colorClass: 'sp-pastel-pink' }
-    ];
-
+    let duckdamList = [];
     const board = document.getElementById('songpyeonBoard');
     const duckdamForm = document.getElementById('duckdamForm');
+
+    function listenForDuckdams() {
+      if (!ownerName || !ownerBirth) return;
+      const moonId = `${ownerName}_${ownerBirth}`.replace(/[.#$\[\]]/g, "_");
+      
+      db.ref(`moons/${moonId}/duckdams`).on('value', (snapshot) => {
+        duckdamList = [];
+        const data = snapshot.val();
+        if (data) {
+          Object.values(data).forEach(item => duckdamList.push(item));
+        }
+        renderSongpyeons();
+      });
+    }
 
     function renderSongpyeons() {
       board.innerHTML = '';
@@ -376,31 +398,35 @@
 
       if (!friendZodiac) friendZodiac = getZodiacByDate(birthInput.value);
       const relationText = getZodiacRelation(ownerZodiac, friendZodiac, ownerName);
-
       const chosenColor = getRandomPastelColor();
 
-      duckdamList.push({
+      const newDuckdam = {
         name: nameInput,
         message: messageInput,
         zodiac: friendZodiac,
         relation: relationText,
-        colorClass: chosenColor
-      });
+        colorClass: chosenColor,
+        timestamp: Date.now()
+      };
 
-      renderSongpyeons();
-      document.getElementById('username').value = '';
-      document.getElementById('message').value = '';
-      alert(`[${friendZodiac.name}] 기운을 담아 ${ownerName}님께 송편 덕담을 전달했습니다! 🌕`);
+      const moonId = `${ownerName}_${ownerBirth}`.replace(/[.#$\[\]]/g, "_");
+      db.ref(`moons/${moonId}/duckdams`).push(newDuckdam, (error) => {
+        if (error) {
+          alert("저장 오류: 파이어베이스 콘솔에서 Realtime Database의 Rules(규칙)을 'true'로 변경해 주세요.");
+        } else {
+          document.getElementById('username').value = '';
+          document.getElementById('message').value = '';
+          alert(`[${friendZodiac.name}] 기운을 담아 ${ownerName}님께 송편 덕담을 전달했습니다! 🌕`);
+        }
+      });
     });
 
-    // 1. 현재 보고 있는 보름달 주소 복사
     document.getElementById('shareBtn').addEventListener('click', () => {
       navigator.clipboard.writeText(window.location.href).then(() => {
         alert(`[${ownerName}]님의 보름달 링크가 복사되었습니다!\n친구들에게 전달해 보세요.`);
       });
     });
 
-    // 2. 방문자가 자기만의 새 보름달 만들기
     document.getElementById('createNewBtn').addEventListener('click', () => {
       document.getElementById('ownerNameInput').value = '';
       document.getElementById('ownerBirthInput').value = '';
@@ -410,8 +436,6 @@
     document.getElementById('closeModal').addEventListener('click', () => {
       document.getElementById('modal').classList.remove('active');
     });
-
-    renderSongpyeons();
   </script>
 </body>
 </html>
