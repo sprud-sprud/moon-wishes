@@ -9,14 +9,13 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="달빛 아래 강강술래 🌕" />
   <meta property="og:description" content="손을 잡고 함께 원을 만들어 달빛 아래 덕담을 나눠요!" />
-  <meta property="og:image" content="https://api.dicebear.com/7.x/big-smile/svg?seed=moon_preview&backgroundColor=fde047" />
 
   <!-- Firebase SDK (Compat Version) CDN -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Pretendard', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Pretendard', sans-serif; }
     body {
       background: radial-gradient(circle at center, #111827 0%, #030712 100%);
       color: #FFF; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; overflow-x: hidden;
@@ -59,7 +58,7 @@
       position: absolute; width: 100%; height: 100%; border-radius: 50%; z-index: 10;
     }
 
-    /* 🐰🐻 깜찍 동글 캐릭터 아바타 */
+    /* 🐱🐰 귀여운 이모지 프레임 아바타 */
     .avatar-item {
       position: absolute; top: 50%; left: 50%;
       width: 48px; height: 48px;
@@ -76,11 +75,13 @@
       filter: drop-shadow(0 0 12px #FDE047);
     }
 
-    /* 둥글둥글 캐릭터 파스텔 이미지 스타일 */
-    .avatar-img {
+    /* 파스텔톤 원형 이모지 프레임 */
+    .avatar-emoji-box {
       width: 44px; height: 44px; border-radius: 50%;
-      border: 2px solid #FDE047; background: #FFF;
-      object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      border: 2px solid #FDE047;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 1.6rem; line-height: 1;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
       pointer-events: none;
     }
 
@@ -134,7 +135,10 @@
       background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: #F9FAFB;
       border: 1px solid rgba(255, 255, 255, 0.15); padding: 24px; border-radius: 24px; max-width: 320px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
-    .modal-avatar-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #FDE047; margin-bottom: 10px; background: #FFF; }
+    .modal-avatar-box {
+      width: 70px; height: 70px; border-radius: 50%; border: 2px solid #FDE047;
+      margin: 0 auto 10px auto; display: flex; justify-content: center; align-items: center; font-size: 2.5rem;
+    }
     .zodiac-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: #FFF; margin-bottom: 8px; }
     
     .modal-action-btns { display: flex; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -218,7 +222,7 @@
   <!-- 덕담 확인 & 삭제 모달 -->
   <div class="modal-overlay" id="modal">
     <div class="modal-content">
-      <img src="" id="modalAvatarImg" class="modal-avatar-img" alt="아바타" />
+      <div class="modal-avatar-box" id="modalAvatarBox">🐰</div>
       <div><span class="zodiac-tag" id="modalTag">✨ 별자리 케미</span></div>
       <div style="font-weight:bold; color:#F9FAFB; font-size:1.1rem; margin-top: 6px;" id="modalName">홍길동</div>
       <div style="font-size:0.95rem; line-height:1.5; color:#D1D5DB; margin-top:10px; margin-bottom:18px;" id="modalText">덕담 내용</div>
@@ -245,14 +249,18 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // 🎨 파스텔 톤의 둥글둥글하고 깜찍한 스마일/동물 캐릭터 생성 함수
-    function getRandomAvatarUrl(seedName) {
-      const randomSeed = seedName ? encodeURIComponent(seedName + "_" + Math.random()) : Math.random().toString(36).substring(7);
-      const bgColors = ['fef08a', 'fbcfe8', 'bfdbfe', 'bbf7d0', 'fed7aa', 'e9d5ff'];
-      const randomBg = bgColors[Math.floor(Math.random() * bgColors.length)];
-      
-      // big-smile 스타일: 볼살이 통통하고 미소 짓는 귀여운 캐릭터
-      return `https://api.dicebear.com/7.x/big-smile/svg?seed=${randomSeed}&backgroundColor=${randomBg}`;
+    // 🐰🐻 귀여운 스마트폰 기본 이모지 리스트 (사람, 동물 캐릭터)
+    const emojiList = ['🐰', '🐱', '🐶', '🦊', '🐻', '🐼', '🐥', '🐹', '🐨', '🐯', '👧🏻', '👦🏻', '🧙🏻‍♀️', '🧚🏻‍♀️', '👧🏽', '🏼‍♂️'];
+    const bgColors = ['#FEF08A', '#FBCFE8', '#BFDBFE', '#BBF7D0', '#FED7AA', '#E9D5FF'];
+
+    function getRandomEmojiProfile(name) {
+      let hash = 0;
+      for (let i = 0; i < name.length; i++) {
+        hash = name.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const emoji = emojiList[Math.abs(hash) % emojiList.length];
+      const bg = bgColors[Math.abs(hash) % bgColors.length];
+      return { emoji, bg };
     }
 
     const zodiacList = [
@@ -407,11 +415,13 @@
         div.className = 'avatar-item';
         div.style.transform = `translate(${x - 24}px, ${y - 24}px)`;
 
-        const avatarImgUrl = item.avatarUrl || getRandomAvatarUrl(item.name);
+        const profile = item.profile || getRandomEmojiProfile(item.name);
 
         div.innerHTML = `
           <div class="avatar-inner">
-            <img class="avatar-img" src="${avatarImgUrl}" alt="아바타" />
+            <div class="avatar-emoji-box" style="background-color: ${profile.bg};">
+              ${profile.emoji}
+            </div>
             <div class="avatar-name">${item.name}</div>
           </div>
         `;
@@ -421,7 +431,9 @@
           selectedDuckdamKey = item.key;
           selectedDuckdamPw = item.password;
 
-          document.getElementById('modalAvatarImg').src = avatarImgUrl;
+          const modalAvatarBox = document.getElementById('modalAvatarBox');
+          modalAvatarBox.innerText = profile.emoji;
+          modalAvatarBox.style.backgroundColor = profile.bg;
           
           const modalTag = document.getElementById('modalTag');
           modalTag.innerText = item.relation;
@@ -444,7 +456,7 @@
 
       if (!friendZodiac) friendZodiac = getZodiacByDate(birthInput.value);
       const relationText = getZodiacRelation(ownerZodiac, friendZodiac, ownerName);
-      const avatarImgUrl = getRandomAvatarUrl(nameInput);
+      const profile = getRandomEmojiProfile(nameInput);
 
       const newDuckdam = {
         name: nameInput,
@@ -452,7 +464,7 @@
         message: messageInput,
         zodiac: friendZodiac,
         relation: relationText,
-        avatarUrl: avatarImgUrl,
+        profile: profile,
         timestamp: Date.now()
       };
 
