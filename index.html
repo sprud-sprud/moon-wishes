@@ -524,10 +524,19 @@
       });
     });
 
+    // 강강술래 만들기 코드 검증 로직 추가
     document.getElementById('createNewBtn').addEventListener('click', () => {
-      document.getElementById('ownerNameInput').value = '';
-      document.getElementById('ownerBirthInput').value = '';
-      ownerModal.classList.add('active');
+      const requestCode = prompt("개발자에게 강강술래 코드를 요청하세요");
+      
+      if (requestCode === null) return;
+
+      if (requestCode.trim() === "한가위2026") {
+        document.getElementById('ownerNameInput').value = '';
+        document.getElementById('ownerBirthInput').value = '';
+        ownerModal.classList.add('active');
+      } else {
+        alert("코드가 올바르지 않습니다. 개발자에게 문의하세요.");
+      }
     });
 
     document.getElementById('closeModal').addEventListener('click', () => {
