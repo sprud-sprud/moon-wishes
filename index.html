@@ -75,7 +75,7 @@
     }
     .songpyeon-shape:hover { transform: scale(1.3) rotate(8deg); filter: drop-shadow(0 0 12px rgba(255, 232, 133, 1)); }
 
-    /* 🍡 알록달록 떡 색상 수정 (6가지 파스텔톤) */
+    /* 파스텔톤 떡 색상 */
     .sp-pastel-pink   { background: linear-gradient(135deg, #FFB7B2, #FF7B9C) !important; }
     .sp-pastel-green  { background: linear-gradient(135deg, #A8E6CF, #56AB2F) !important; }
     .sp-pastel-yellow { background: linear-gradient(135deg, #FFF176, #FFD54F) !important; }
@@ -91,9 +91,9 @@
       padding: 20px; width: 100%; max-width: 360px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
     }
     .form-group { margin-bottom: 14px; }
-    .form-row { display: flex; gap: 10px; }
+    .form-row { display: flex; gap: 8px; }
     label { display: block; font-size: 0.85rem; color: #FFE885; margin-bottom: 8px; }
-    input[type="text"], input[type="date"], textarea {
+    input[type="text"], input[type="password"], input[type="date"], textarea {
       width: 100%; padding: 10px 12px; border-radius: 12px; border: none; outline: none; background: rgba(255, 255, 255, 0.9); color: #333; font-size: 0.88rem;
     }
     textarea { resize: none; height: 60px; }
@@ -130,7 +130,10 @@
       padding: 24px; border-radius: 24px; max-width: 320px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
     .zodiac-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: #FFF; margin-bottom: 8px; }
-    .close-btn { background: #1A1C2E; color: white; border: none; padding: 8px 22px; border-radius: 10px; cursor: pointer; }
+    
+    .modal-action-btns { display: flex; gap: 8px; justify-content: center; margin-top: 10px; }
+    .close-btn { background: #1A1C2E; color: white; border: none; padding: 8px 20px; border-radius: 10px; cursor: pointer; }
+    .delete-btn { background: #FF5252; color: white; border: none; padding: 8px 16px; border-radius: 10px; cursor: pointer; font-size: 0.85rem; }
   </style>
 </head>
 <body>
@@ -171,6 +174,11 @@
             <input type="date" id="birthdate" required />
           </div>
         </div>
+      </div>
+
+      <div class="form-group">
+        <label for="userPassword">삭제용 비밀번호 (4자리)</label>
+        <input type="password" id="userPassword" placeholder="비밀번호 4자리 설정" maxlength="8" required />
         <div id="zodiacBadge" class="zodiac-badge-info"></div>
       </div>
 
@@ -188,6 +196,7 @@
     </form>
   </div>
 
+  <!-- 주인 생성 모달 -->
   <div class="modal-overlay" id="ownerModal">
     <div class="modal-content">
       <h3 style="margin-bottom:8px; color:#1A1C2E;">🌕 내 별자리 보름달 개설하기</h3>
@@ -204,6 +213,7 @@
     </div>
   </div>
 
+  <!-- 송편 정보 & 삭제 모달 -->
   <div class="modal-overlay" id="modal">
     <div class="modal-content">
       <div style="display:flex; justify-content:center; margin-bottom:12px;">
@@ -212,7 +222,11 @@
       <div class="zodiac-tag" id="modalTag">✨ 별자리 케미</div>
       <div style="font-weight:bold; color:#1A1C2E; font-size:1.1rem;" id="modalName">홍길동</div>
       <div style="font-size:0.95rem; line-height:1.5; color:#444; margin-top:10px; margin-bottom:18px;" id="modalText">덕담 내용</div>
-      <button class="close-btn" id="closeModal">닫기</button>
+      
+      <div class="modal-action-btns">
+        <button class="close-btn" id="closeModal">닫기</button>
+        <button class="delete-btn" id="deleteDuckdamBtn">🗑️ 삭제하기</button>
+      </div>
     </div>
   </div>
 
@@ -231,7 +245,6 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // 🎨 6가지 송편 색상 클래스
     const pastelColors = [
       'sp-pastel-pink', 'sp-pastel-green', 'sp-pastel-yellow',
       'sp-pastel-mint', 'sp-pastel-purple', 'sp-pastel-white'
@@ -353,6 +366,9 @@
     });
 
     let duckdamList = [];
+    let selectedDuckdamKey = null; // 선택된 덕담의 DB 키
+    let selectedDuckdamPw = null;  // 선택된 덕담의 비밀번호
+
     const board = document.getElementById('songpyeonBoard');
     const duckdamForm = document.getElementById('duckdamForm');
 
@@ -364,7 +380,9 @@
         duckdamList = [];
         const data = snapshot.val();
         if (data) {
-          Object.values(data).forEach(item => duckdamList.push(item));
+          Object.keys(data).forEach(key => {
+            duckdamList.push({ key: key, ...data[key] });
+          });
         }
         renderSongpyeons();
       }, (error) => {
@@ -376,11 +394,13 @@
       board.innerHTML = '';
       duckdamList.forEach((item) => {
         const div = document.createElement('div');
-        // 혹시 예전에 작성한 색상값이 누락되었을 경우를 대비해 기본 랜덤 색상 지정
         const colorClass = item.colorClass || getRandomPastelColor();
         div.className = `songpyeon-shape ${colorClass}`;
 
         div.addEventListener('click', () => {
+          selectedDuckdamKey = item.key;
+          selectedDuckdamPw = item.password;
+
           document.getElementById('modalSongpyeon').className = `songpyeon-shape ${colorClass}`;
           
           const modalTag = document.getElementById('modalTag');
@@ -399,6 +419,7 @@
     duckdamForm.addEventListener('submit', (e) => {
       e.preventDefault();
       const nameInput = document.getElementById('username').value;
+      const passwordInput = document.getElementById('userPassword').value;
       const messageInput = document.getElementById('message').value;
 
       if (!friendZodiac) friendZodiac = getZodiacByDate(birthInput.value);
@@ -407,6 +428,7 @@
 
       const newDuckdam = {
         name: nameInput,
+        password: passwordInput,
         message: messageInput,
         zodiac: friendZodiac,
         relation: relationText,
@@ -421,10 +443,31 @@
           alert("저장 에러 원인: " + error.message);
         } else {
           document.getElementById('username').value = '';
+          document.getElementById('userPassword').value = '';
           document.getElementById('message').value = '';
           alert(`[${friendZodiac.name}] 기운을 담아 ${ownerName}님께 송편 덕담을 전달했습니다! 🌕`);
         }
       });
+    });
+
+    // 🗑️ 비밀번호 확인 후 삭제하는 로직
+    document.getElementById('deleteDuckdamBtn').addEventListener('click', () => {
+      const inputPw = prompt("송편을 빚을 때 설정한 비밀번호를 입력해주세요:");
+      if (!inputPw) return;
+
+      if (inputPw === selectedDuckdamPw) {
+        const moonId = `${ownerName}_${ownerBirth}`.replace(/[.#$\[\]]/g, "_");
+        db.ref(`moons/${moonId}/duckdams/${selectedDuckdamKey}`).remove()
+          .then(() => {
+            alert("송편이 성공적으로 삭제되었습니다! 🧹");
+            document.getElementById('modal').classList.remove('active');
+          })
+          .catch((err) => {
+            alert("삭제 실패: " + err.message);
+          });
+      } else {
+        alert("비밀번호가 일치하지 않습니다! ❌");
+      }
     });
 
     document.getElementById('shareBtn').addEventListener('click', () => {
