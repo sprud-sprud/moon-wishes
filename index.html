@@ -216,11 +216,11 @@
   </div>
 
   <script>
-    // 🔥 파이어베이스 키 자동 연동 완료
+    // 🔥 싱가포르 전용 URL(asia-southeast1)이 반영된 설정
     const firebaseConfig = {
       apiKey: "AIzaSyB6Gl5fByMl2EEvu3PO2ja_H20dllTliM0",
       authDomain: "moon-wishes.firebaseapp.com",
-      databaseURL: "https://moon-wishes-default-rtdb.firebaseio.com",
+      databaseURL: "https://moon-wishes-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "moon-wishes",
       storageBucket: "moon-wishes.firebasestorage.app",
       messagingSenderId: "337988318732",
@@ -366,6 +366,8 @@
           Object.values(data).forEach(item => duckdamList.push(item));
         }
         renderSongpyeons();
+      }, (error) => {
+        alert("DB 읽기 에러 발생: " + error.message);
       });
     }
 
@@ -410,9 +412,10 @@
       };
 
       const moonId = `${ownerName}_${ownerBirth}`.replace(/[.#$\[\]]/g, "_");
+      
       db.ref(`moons/${moonId}/duckdams`).push(newDuckdam, (error) => {
         if (error) {
-          alert("저장 오류: 파이어베이스 콘솔에서 Realtime Database의 Rules(규칙)을 'true'로 변경해 주세요.");
+          alert("저장 에러 원인: " + error.message);
         } else {
           document.getElementById('username').value = '';
           document.getElementById('message').value = '';
