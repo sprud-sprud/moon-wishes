@@ -19,7 +19,6 @@
     h1 { font-size: 1.7rem; color: #FDE047; text-shadow: 0 0 15px rgba(253, 224, 71, 0.5); margin-bottom: 6px; }
     p.subtitle { font-size: 0.88rem; color: #9CA3AF; }
 
-    /* 강강술래 원형 영역 */
     .sullae-wrapper { position: relative; margin: 30px auto 20px; width: 300px; height: 300px; }
 
     .owner-zodiac-badge {
@@ -39,7 +38,6 @@
       50% { transform: translate(-50%, -6px); }
     }
 
-    /* 중앙 보름달 */
     .center-moon {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       width: 140px; height: 140px;
@@ -51,33 +49,40 @@
     .moon-text-count { font-size: 1.1rem; font-weight: bold; color: #854D0E; }
     .moon-text-sub { font-size: 0.72rem; color: #A16207; margin-top: 2px; }
 
-    /* 강강술래 캐릭터배치 보드 */
     .sullae-circle {
       position: absolute; width: 100%; height: 100%; border-radius: 50%; z-index: 10;
     }
 
-    /* 👧🏻 강강술래 아바타 컨테이너 */
+    /* 👧🏻 강강술래 귀여운 아바타 아이템 */
     .avatar-item {
       position: absolute; top: 50%; left: 50%;
-      width: 44px; height: 44px; margin-top: -22px; margin-left: -22px;
+      width: 48px; height: 48px;
       cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
-      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      animation: popIn 0.5s ease-out;
-    }
-    .avatar-item:hover {
-      transform: scale(1.45) !important; z-index: 30;
-      filter: drop-shadow(0 0 10px #FDE047);
+      z-index: 15; user-select: none;
     }
 
-    /* 한복 아이콘 및 이름표 */
-    .avatar-body { font-size: 1.8rem; line-height: 1; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
+    .avatar-inner {
+      display: flex; flex-direction: column; align-items: center;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .avatar-item:hover .avatar-inner {
+      transform: scale(1.35);
+      filter: drop-shadow(0 0 12px #FDE047);
+    }
+
+    /* 귀여운 일러스트 이미지 스타일 */
+    .avatar-img {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 2px solid #FDE047; background: #1F2937;
+      object-fit: cover; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+
     .avatar-name {
-      font-size: 0.65rem; font-weight: bold; background: rgba(0, 0, 0, 0.75);
-      color: #FFF; padding: 2px 6px; border-radius: 8px; margin-top: -2px;
-      white-space: nowrap; border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.65rem; font-weight: bold; background: rgba(0, 0, 0, 0.85);
+      color: #FFF; padding: 2px 7px; border-radius: 10px; margin-top: 3px;
+      white-space: nowrap; border: 1px solid rgba(253, 224, 71, 0.4); pointer-events: none;
     }
-
-    @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { opacity: 1; } }
 
     .form-card {
       background: rgba(31, 41, 55, 0.7); backdrop-filter: blur(16px);
@@ -123,6 +128,7 @@
       background: linear-gradient(135deg, #1F2937 0%, #111827 100%); color: #F9FAFB;
       border: 1px solid rgba(255, 255, 255, 0.15); padding: 24px; border-radius: 24px; max-width: 320px; width: 100%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
+    .modal-avatar-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #FDE047; margin-bottom: 10px; }
     .zodiac-tag { display: inline-block; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; color: #FFF; margin-bottom: 8px; }
     
     .modal-action-btns { display: flex; gap: 8px; justify-content: center; margin-top: 14px; }
@@ -143,13 +149,11 @@
       <span class="z-name" id="ownerZodiacText">별자리</span>
     </div>
 
-    <!-- 중앙 보름달 및 인원수 카운트 -->
     <div class="center-moon">
       <div class="moon-text-count" id="sullaeCount">0명</div>
       <div class="moon-text-sub">함께 손잡는 중!</div>
     </div>
 
-    <!-- 손잡는 캐릭터 배치 원 -->
     <div class="sullae-circle" id="sullaeCircle"></div>
   </div>
 
@@ -208,8 +212,8 @@
   <!-- 덕담 확인 & 삭제 모달 -->
   <div class="modal-overlay" id="modal">
     <div class="modal-content">
-      <div style="font-size: 3rem; margin-bottom: 8px;" id="modalAvatar">👧🏻</div>
-      <div class="zodiac-tag" id="modalTag">✨ 별자리 케미</div>
+      <img src="" id="modalAvatarImg" class="modal-avatar-img" alt="아바타" />
+      <div><span class="zodiac-tag" id="modalTag">✨ 별자리 케미</span></div>
       <div style="font-weight:bold; color:#F9FAFB; font-size:1.1rem; margin-top: 6px;" id="modalName">홍길동</div>
       <div style="font-size:0.95rem; line-height:1.5; color:#D1D5DB; margin-top:10px; margin-bottom:18px;" id="modalText">덕담 내용</div>
       
@@ -235,11 +239,11 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
 
-    // 👧🏻👦🏻 다양한 한복 아바타 이모지 목록
-    const hanbokAvatars = ['👧🏻', '👦🏻', '👧🏼', '👦🏼', '👧🏽', '👦🏽', '🧑🏻‍🌾', '👧살'];
-
-    function getRandomAvatar() {
-      return hanbokAvatars[Math.floor(Math.random() * hanbokAvatars.length)];
+    // 🎨 랜선 아바타 이미지 생성기 (DiceBear API)
+    function getRandomAvatarUrl(seedName) {
+      const randomSeed = seedName ? encodeURIComponent(seedName + "_" + Math.random()) : Math.random().toString(36).substring(7);
+      // adventurer 스타일: 아기자기한 캐릭터 일러스트
+      return `https://api.dicebear.com/7.x/adventurer/svg?seed=${randomSeed}&backgroundColor=fef08a,fde047,eab308,b45309`;
     }
 
     const zodiacList = [
@@ -378,36 +382,37 @@
       });
     }
 
-    /* ⭕ 강강술래 원 둘레에 인원수별 원형 배치 알고리즘 */
     function renderSullaeCircle() {
       circle.innerHTML = '';
       const total = duckdamList.length;
       document.getElementById('sullaeCount').innerText = `${total}명`;
 
-      const radius = 118; // 배치 반지름 (px)
+      const radius = 118;
 
       duckdamList.forEach((item, index) => {
-        // 원의 각도 계산 (라디안)
         const angle = (index / total) * 2 * Math.PI - (Math.PI / 2);
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
 
         const div = document.createElement('div');
         div.className = 'avatar-item';
-        div.style.transform = `translate(${x}px, ${y}px)`;
+        div.style.transform = `translate(${x - 24}px, ${y - 24}px)`;
 
-        const avatarEmoji = item.avatar || getRandomAvatar();
+        const avatarImgUrl = item.avatarUrl || getRandomAvatarUrl(item.name);
 
         div.innerHTML = `
-          <div class="avatar-body">${avatarEmoji}</div>
-          <div class="avatar-name">${item.name}</div>
+          <div class="avatar-inner">
+            <img class="avatar-img" src="${avatarImgUrl}" alt="아바타" />
+            <div class="avatar-name">${item.name}</div>
+          </div>
         `;
 
-        div.addEventListener('click', () => {
+        div.addEventListener('click', (e) => {
+          e.stopPropagation();
           selectedDuckdamKey = item.key;
           selectedDuckdamPw = item.password;
 
-          document.getElementById('modalAvatar').innerText = avatarEmoji;
+          document.getElementById('modalAvatarImg').src = avatarImgUrl;
           
           const modalTag = document.getElementById('modalTag');
           modalTag.innerText = item.relation;
@@ -430,7 +435,7 @@
 
       if (!friendZodiac) friendZodiac = getZodiacByDate(birthInput.value);
       const relationText = getZodiacRelation(ownerZodiac, friendZodiac, ownerName);
-      const avatarEmoji = getRandomAvatar();
+      const avatarImgUrl = getRandomAvatarUrl(nameInput);
 
       const newDuckdam = {
         name: nameInput,
@@ -438,7 +443,7 @@
         message: messageInput,
         zodiac: friendZodiac,
         relation: relationText,
-        avatar: avatarEmoji,
+        avatarUrl: avatarImgUrl,
         timestamp: Date.now()
       };
 
